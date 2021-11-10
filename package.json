@@ -1,0 +1,36 @@
+{
+  "name": "project-jose-arteaga",
+  "version": "1.0.0",
+  "description": "Full-Stack Individual Project - Fall 2021 - Movie Booking System",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "watch": "webpack --watch"
+  },
+  "keywords": [],
+  "author": "Jose Arteaga",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.63.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
