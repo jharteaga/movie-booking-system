@@ -42,10 +42,10 @@
   {
     "title": "Black Widow",
     "overview": "Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by a force that will stop at nothing to bring her down, Natasha must deal with her history as a spy and the broken relationships left in her wake long before she became an Avenger.",
-    "imageUrl": "https://image.tmdb.org/t/p/w500/",
-    "videoUrl": "https://image.tmdb.org/t/p/w500/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
+    "imageUrl": "https://image.tmdb.org/t/p/w500/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=ybji16u608U",
     "genres": ["Action", "Adventure", "Science Fiction"],
-    "rating": 7,
+    "rating": 4,
     "releaseDate": "2021-07-07",
     "kids": false
   }
