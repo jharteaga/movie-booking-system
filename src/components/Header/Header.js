@@ -5,8 +5,8 @@ import { Container } from './Header.style'
 const Header = () => {
   return (
     <Container>
-      <h1>VanCinema</h1>
-      <p>Hello! Santiago</p>
+      <h1 className="logo">VanCinema</h1>
+      <p className="user-profile">Hello! Santiago</p>
     </Container>
   )
 }

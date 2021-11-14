@@ -12492,88 +12492,60 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/react-router-dom/cjs/react-router-dom.js":
+/***/ "./node_modules/react-router-dom/esm/react-router-dom.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/react-router-dom/cjs/react-router-dom.js ***!
+  !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MemoryRouter": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.MemoryRouter),
+/* harmony export */   "Prompt": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.Prompt),
+/* harmony export */   "Redirect": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.Redirect),
+/* harmony export */   "Route": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.Route),
+/* harmony export */   "Router": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.Router),
+/* harmony export */   "StaticRouter": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.StaticRouter),
+/* harmony export */   "Switch": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.Switch),
+/* harmony export */   "generatePath": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.generatePath),
+/* harmony export */   "matchPath": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.matchPath),
+/* harmony export */   "useHistory": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.useHistory),
+/* harmony export */   "useLocation": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.useLocation),
+/* harmony export */   "useParams": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.useParams),
+/* harmony export */   "useRouteMatch": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.useRouteMatch),
+/* harmony export */   "withRouter": () => (/* reexport safe */ react_router__WEBPACK_IMPORTED_MODULE_0__.withRouter),
+/* harmony export */   "BrowserRouter": () => (/* binding */ BrowserRouter),
+/* harmony export */   "HashRouter": () => (/* binding */ HashRouter),
+/* harmony export */   "Link": () => (/* binding */ Link),
+/* harmony export */   "NavLink": () => (/* binding */ NavLink)
+/* harmony export */ });
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var tiny_warning__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tiny-warning */ "./node_modules/tiny-warning/dist/tiny-warning.esm.js");
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var tiny_invariant__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js");
 
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _interopDefault(ex) {
-  return ex && _typeof(ex) === 'object' && 'default' in ex ? ex['default'] : ex;
-}
 
-var reactRouter = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
 
-var React = _interopDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var history = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 
-var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
 
-var warning = _interopDefault(__webpack_require__(/*! tiny-warning */ "./node_modules/tiny-warning/dist/tiny-warning.esm.js"));
 
-var invariant = _interopDefault(__webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js"));
 
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-
-  _setPrototypeOf(subClass, superClass);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
 /**
  * The public API for a <Router> that uses HTML5 history.
  */
 
-
 var BrowserRouter = /*#__PURE__*/function (_React$Component) {
-  _inheritsLoose(BrowserRouter, _React$Component);
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(BrowserRouter, _React$Component);
 
   function BrowserRouter() {
     var _this;
@@ -12583,41 +12555,42 @@ var BrowserRouter = /*#__PURE__*/function (_React$Component) {
     }
 
     _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-    _this.history = history.createBrowserHistory(_this.props);
+    _this.history = (0,history__WEBPACK_IMPORTED_MODULE_6__.createBrowserHistory)(_this.props);
     return _this;
   }
 
   var _proto = BrowserRouter.prototype;
 
   _proto.render = function render() {
-    return /*#__PURE__*/React.createElement(reactRouter.Router, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_0__.Router, {
       history: this.history,
       children: this.props.children
     });
   };
 
   return BrowserRouter;
-}(React.Component);
+}(react__WEBPACK_IMPORTED_MODULE_2__.Component);
 
-{
+if (true) {
   BrowserRouter.propTypes = {
-    basename: PropTypes.string,
-    children: PropTypes.node,
-    forceRefresh: PropTypes.bool,
-    getUserConfirmation: PropTypes.func,
-    keyLength: PropTypes.number
+    basename: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+    children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+    forceRefresh: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+    getUserConfirmation: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+    keyLength: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().number)
   };
 
   BrowserRouter.prototype.componentDidMount = function () {
-    warning(!this.props.history, "<BrowserRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { BrowserRouter as Router }`.");
+     true ? (0,tiny_warning__WEBPACK_IMPORTED_MODULE_7__["default"])(!this.props.history, "<BrowserRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { BrowserRouter as Router }`.") : 0;
   };
 }
 /**
  * The public API for a <Router> that uses window.location.hash.
  */
 
+
 var HashRouter = /*#__PURE__*/function (_React$Component) {
-  _inheritsLoose(HashRouter, _React$Component);
+  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(HashRouter, _React$Component);
 
   function HashRouter() {
     var _this;
@@ -12627,32 +12600,32 @@ var HashRouter = /*#__PURE__*/function (_React$Component) {
     }
 
     _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-    _this.history = history.createHashHistory(_this.props);
+    _this.history = (0,history__WEBPACK_IMPORTED_MODULE_6__.createHashHistory)(_this.props);
     return _this;
   }
 
   var _proto = HashRouter.prototype;
 
   _proto.render = function render() {
-    return /*#__PURE__*/React.createElement(reactRouter.Router, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_0__.Router, {
       history: this.history,
       children: this.props.children
     });
   };
 
   return HashRouter;
-}(React.Component);
+}(react__WEBPACK_IMPORTED_MODULE_2__.Component);
 
-{
+if (true) {
   HashRouter.propTypes = {
-    basename: PropTypes.string,
-    children: PropTypes.node,
-    getUserConfirmation: PropTypes.func,
-    hashType: PropTypes.oneOf(["hashbang", "noslash", "slash"])
+    basename: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+    children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+    getUserConfirmation: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+    hashType: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(["hashbang", "noslash", "slash"])
   };
 
   HashRouter.prototype.componentDidMount = function () {
-    warning(!this.props.history, "<HashRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { HashRouter as Router }`.");
+     true ? (0,tiny_warning__WEBPACK_IMPORTED_MODULE_7__["default"])(!this.props.history, "<HashRouter> ignores the history prop. To use a custom history, " + "use `import { Router }` instead of `import { HashRouter as Router }`.") : 0;
   };
 }
 
@@ -12661,14 +12634,14 @@ var resolveToLocation = function resolveToLocation(to, currentLocation) {
 };
 
 var normalizeToLocation = function normalizeToLocation(to, currentLocation) {
-  return typeof to === "string" ? history.createLocation(to, null, null, currentLocation) : to;
+  return typeof to === "string" ? (0,history__WEBPACK_IMPORTED_MODULE_6__.createLocation)(to, null, null, currentLocation) : to;
 };
 
 var forwardRefShim = function forwardRefShim(C) {
   return C;
 };
 
-var forwardRef = React.forwardRef;
+var forwardRef = react__WEBPACK_IMPORTED_MODULE_2__.forwardRef;
 
 if (typeof forwardRef === "undefined") {
   forwardRef = forwardRefShim;
@@ -12682,11 +12655,11 @@ var LinkAnchor = forwardRef(function (_ref, forwardedRef) {
   var innerRef = _ref.innerRef,
       navigate = _ref.navigate,
       _onClick = _ref.onClick,
-      rest = _objectWithoutPropertiesLoose(_ref, ["innerRef", "navigate", "onClick"]);
+      rest = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_5__["default"])(_ref, ["innerRef", "navigate", "onClick"]);
 
   var target = rest.target;
 
-  var props = _extends({}, rest, {
+  var props = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__["default"])({}, rest, {
     onClick: function onClick(event) {
       try {
         if (_onClick) _onClick(event);
@@ -12715,14 +12688,16 @@ var LinkAnchor = forwardRef(function (_ref, forwardedRef) {
   /* eslint-disable-next-line jsx-a11y/anchor-has-content */
 
 
-  return /*#__PURE__*/React.createElement("a", props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("a", props);
 });
-{
+
+if (true) {
   LinkAnchor.displayName = "LinkAnchor";
 }
 /**
  * The public API for rendering a history-aware <a>.
  */
+
 
 var Link = forwardRef(function (_ref2, forwardedRef) {
   var _ref2$component = _ref2.component,
@@ -12730,20 +12705,20 @@ var Link = forwardRef(function (_ref2, forwardedRef) {
       replace = _ref2.replace,
       to = _ref2.to,
       innerRef = _ref2.innerRef,
-      rest = _objectWithoutPropertiesLoose(_ref2, ["component", "replace", "to", "innerRef"]);
+      rest = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_5__["default"])(_ref2, ["component", "replace", "to", "innerRef"]);
 
-  return /*#__PURE__*/React.createElement(reactRouter.__RouterContext.Consumer, null, function (context) {
-    !context ? invariant(false, "You should not use <Link> outside a <Router>") : void 0;
-    var history$1 = context.history;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_0__.__RouterContext.Consumer, null, function (context) {
+    !context ?  true ? (0,tiny_invariant__WEBPACK_IMPORTED_MODULE_8__["default"])(false, "You should not use <Link> outside a <Router>") : 0 : void 0;
+    var history = context.history;
     var location = normalizeToLocation(resolveToLocation(to, context.location), context.location);
-    var href = location ? history$1.createHref(location) : "";
+    var href = location ? history.createHref(location) : "";
 
-    var props = _extends({}, rest, {
+    var props = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__["default"])({}, rest, {
       href: href,
       navigate: function navigate() {
         var location = resolveToLocation(to, context.location);
-        var isDuplicateNavigation = history.createPath(context.location) === history.createPath(normalizeToLocation(location));
-        var method = replace || isDuplicateNavigation ? history$1.replace : history$1.push;
+        var isDuplicateNavigation = (0,history__WEBPACK_IMPORTED_MODULE_6__.createPath)(context.location) === (0,history__WEBPACK_IMPORTED_MODULE_6__.createPath)(normalizeToLocation(location));
+        var method = replace || isDuplicateNavigation ? history.replace : history.push;
         method(location);
       }
     }); // React 15 compat
@@ -12755,20 +12730,21 @@ var Link = forwardRef(function (_ref2, forwardedRef) {
       props.innerRef = innerRef;
     }
 
-    return /*#__PURE__*/React.createElement(component, props);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(component, props);
   });
 });
-{
-  var toType = PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.func]);
-  var refType = PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.shape({
-    current: PropTypes.any
+
+if (true) {
+  var toType = prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func)]);
+  var refType = prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func), prop_types__WEBPACK_IMPORTED_MODULE_3___default().shape({
+    current: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().any)
   })]);
   Link.displayName = "Link";
   Link.propTypes = {
     innerRef: refType,
-    onClick: PropTypes.func,
-    replace: PropTypes.bool,
-    target: PropTypes.string,
+    onClick: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+    replace: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+    target: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
     to: toType.isRequired
   };
 }
@@ -12777,7 +12753,7 @@ var forwardRefShim$1 = function forwardRefShim(C) {
   return C;
 };
 
-var forwardRef$1 = React.forwardRef;
+var forwardRef$1 = react__WEBPACK_IMPORTED_MODULE_2__.forwardRef;
 
 if (typeof forwardRef$1 === "undefined") {
   forwardRef$1 = forwardRefShim$1;
@@ -12812,16 +12788,16 @@ var NavLink = forwardRef$1(function (_ref, forwardedRef) {
       styleProp = _ref.style,
       to = _ref.to,
       innerRef = _ref.innerRef,
-      rest = _objectWithoutPropertiesLoose(_ref, ["aria-current", "activeClassName", "activeStyle", "className", "exact", "isActive", "location", "sensitive", "strict", "style", "to", "innerRef"]);
+      rest = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_5__["default"])(_ref, ["aria-current", "activeClassName", "activeStyle", "className", "exact", "isActive", "location", "sensitive", "strict", "style", "to", "innerRef"]);
 
-  return /*#__PURE__*/React.createElement(reactRouter.__RouterContext.Consumer, null, function (context) {
-    !context ? invariant(false, "You should not use <NavLink> outside a <Router>") : void 0;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(react_router__WEBPACK_IMPORTED_MODULE_0__.__RouterContext.Consumer, null, function (context) {
+    !context ?  true ? (0,tiny_invariant__WEBPACK_IMPORTED_MODULE_8__["default"])(false, "You should not use <NavLink> outside a <Router>") : 0 : void 0;
     var currentLocation = locationProp || context.location;
     var toLocation = normalizeToLocation(resolveToLocation(to, currentLocation), currentLocation);
     var path = toLocation.pathname; // Regex taken from: https://github.com/pillarjs/path-to-regexp/blob/master/index.js#L202
 
     var escapedPath = path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
-    var match = escapedPath ? reactRouter.matchPath(currentLocation.pathname, {
+    var match = escapedPath ? (0,react_router__WEBPACK_IMPORTED_MODULE_0__.matchPath)(currentLocation.pathname, {
       path: escapedPath,
       exact: exact,
       sensitive: sensitive,
@@ -12833,10 +12809,10 @@ var NavLink = forwardRef$1(function (_ref, forwardedRef) {
 
     if (isActive) {
       className = joinClassnames(className, activeClassName);
-      style = _extends({}, style, activeStyle);
+      style = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__["default"])({}, style, activeStyle);
     }
 
-    var props = _extends({
+    var props = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__["default"])({
       "aria-current": isActive && ariaCurrent || null,
       className: className,
       style: style,
@@ -12850,113 +12826,28 @@ var NavLink = forwardRef$1(function (_ref, forwardedRef) {
       props.innerRef = innerRef;
     }
 
-    return /*#__PURE__*/React.createElement(Link, props);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Link, props);
   });
 });
-{
+
+if (true) {
   NavLink.displayName = "NavLink";
-  var ariaCurrentType = PropTypes.oneOf(["page", "step", "location", "date", "time", "true", "false"]);
-  NavLink.propTypes = _extends({}, Link.propTypes, {
+  var ariaCurrentType = prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(["page", "step", "location", "date", "time", "true", "false"]);
+  NavLink.propTypes = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__["default"])({}, Link.propTypes, {
     "aria-current": ariaCurrentType,
-    activeClassName: PropTypes.string,
-    activeStyle: PropTypes.object,
-    className: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    exact: PropTypes.bool,
-    isActive: PropTypes.func,
-    location: PropTypes.object,
-    sensitive: PropTypes.bool,
-    strict: PropTypes.bool,
-    style: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
+    activeClassName: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+    activeStyle: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+    className: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func)]),
+    exact: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+    isActive: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func),
+    location: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+    sensitive: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+    strict: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
+    style: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func)])
   });
 }
-Object.defineProperty(exports, "MemoryRouter", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.MemoryRouter;
-  }
-}));
-Object.defineProperty(exports, "Prompt", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.Prompt;
-  }
-}));
-Object.defineProperty(exports, "Redirect", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.Redirect;
-  }
-}));
-Object.defineProperty(exports, "Route", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.Route;
-  }
-}));
-Object.defineProperty(exports, "Router", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.Router;
-  }
-}));
-Object.defineProperty(exports, "StaticRouter", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.StaticRouter;
-  }
-}));
-Object.defineProperty(exports, "Switch", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.Switch;
-  }
-}));
-Object.defineProperty(exports, "generatePath", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.generatePath;
-  }
-}));
-Object.defineProperty(exports, "matchPath", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.matchPath;
-  }
-}));
-Object.defineProperty(exports, "useHistory", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.useHistory;
-  }
-}));
-Object.defineProperty(exports, "useLocation", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.useLocation;
-  }
-}));
-Object.defineProperty(exports, "useParams", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.useParams;
-  }
-}));
-Object.defineProperty(exports, "useRouteMatch", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.useRouteMatch;
-  }
-}));
-Object.defineProperty(exports, "withRouter", ({
-  enumerable: true,
-  get: function get() {
-    return reactRouter.withRouter;
-  }
-}));
-exports.BrowserRouter = BrowserRouter;
-exports.HashRouter = HashRouter;
-exports.Link = Link;
-exports.NavLink = NavLink;
+
+
 
 /***/ }),
 
@@ -20264,11 +20155,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/cjs/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_Header_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Header/Header */ "./src/components/Header/Header.js");
 /* harmony import */ var _components_Footer_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Footer/Footer */ "./src/components/Footer/Footer.js");
-/* harmony import */ var _App_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App.style */ "./src/App.style.js");
-/* harmony import */ var _views_Home_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/Home/Home */ "./src/views/Home/Home.js");
+/* harmony import */ var _views_Home_Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/Home/Home */ "./src/views/Home/Home.js");
+/* harmony import */ var _views_MovieDetail_MovieDetail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/MovieDetail/MovieDetail */ "./src/views/MovieDetail/MovieDetail.js");
+/* harmony import */ var _App_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./App.style */ "./src/App.style.js");
+
 
 
 
@@ -20277,9 +20170,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App_style__WEBPACK_IMPORTED_MODULE_5__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+    path: "/movie-detail",
+    component: _views_MovieDetail_MovieDetail__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
     path: "/",
-    component: _views_Home_Home__WEBPACK_IMPORTED_MODULE_4__["default"]
+    exact: true,
+    component: _views_Home_Home__WEBPACK_IMPORTED_MODULE_3__["default"]
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Footer_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
@@ -20374,7 +20271,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Header = function Header() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "VanCinema"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Hello! Santiago"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "logo"
+  }, "VanCinema"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "user-profile"
+  }, "Hello! Santiago"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
@@ -20398,7 +20299,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].header(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1rem 3rem;\n\n  h1,\n  p {\n    margin: 0;\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].header(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem 3rem;\n\n  h1,\n  p {\n    margin: 0;\n  }\n\n  .user-profile {\n    display: none;\n  }\n\n  @media (min-width: 500px) {\n    justify-content: space-between;\n\n    .user-profile {\n      display: block;\n    }\n  }\n"])));
 
 /***/ }),
 
@@ -20501,16 +20402,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MovieCard = function MovieCard(_ref) {
-  var data = _ref.data;
+  var data = _ref.data,
+      onSelect = _ref.onSelect;
 
-  var handleMovieDetail = function handleMovieDetail(data) {
-    console.log('Movie info: ' + data.title);
+  var handleCardClick = function handleCardClick(data) {
+    onSelect(data);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MovieCard_style__WEBPACK_IMPORTED_MODULE_3__.Container, {
     backImg: data.imageUrl,
     onClick: function onClick() {
-      return handleMovieDetail(data);
+      return handleCardClick(data);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "card__like"
@@ -20701,6 +20603,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_MovieCard_MovieCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/MovieCard/MovieCard */ "./src/components/MovieCard/MovieCard.js");
@@ -20724,11 +20627,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Home = function Home() {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       movies = _useState2[0],
       setMovies = _useState2[1];
+
+  var handleMovieDetail = function handleMovieDetail(movie) {
+    history.push({
+      pathname: '/movie-detail',
+      movie: movie
+    });
+  };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get(_config__WEBPACK_IMPORTED_MODULE_3__.api.movie).then(function (_ref) {
@@ -20744,7 +20657,8 @@ var Home = function Home() {
   }, movies.map(function (movie) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_MovieCard_MovieCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: movie._id,
-      data: movie
+      data: movie,
+      onSelect: handleMovieDetail
     });
   })));
 };
@@ -20771,6 +20685,29 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1.5rem;\n  max-width: 95%;\n  width: 100%;\n  margin: auto;\n  margin-top: 1.5rem;\n  margin-bottom: 2rem;\n\n  h1 {\n    text-align: center;\n  }\n\n  .movies-container {\n    width: 100%;\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));\n    grid-template-rows: auto;\n    row-gap: 2rem;\n    justify-items: center;\n  }\n"])));
+
+/***/ }),
+
+/***/ "./src/views/MovieDetail/MovieDetail.js":
+/*!**********************************************!*\
+  !*** ./src/views/MovieDetail/MovieDetail.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var MovieDetail = function MovieDetail(_ref) {
+  var movie = _ref.location.movie;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, movie.title));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MovieDetail);
 
 /***/ }),
 
@@ -21368,7 +21305,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/cjs/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme */ "./src/theme/index.js");
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App */ "./src/App.js");
 

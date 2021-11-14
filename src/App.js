@@ -4,8 +4,10 @@ import { Switch, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 
-import { Container } from './App.style'
 import Home from './views/Home/Home'
+import MovieDetail from './views/MovieDetail/MovieDetail'
+
+import { Container } from './App.style'
 
 const App = () => {
   return (
@@ -13,7 +15,8 @@ const App = () => {
       <Header />
       <main>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route path="/movie-detail" component={MovieDetail} />
+          <Route path="/" exact component={Home} />
         </Switch>
       </main>
       <Footer />

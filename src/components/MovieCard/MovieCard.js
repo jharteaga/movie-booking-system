@@ -4,13 +4,13 @@ import LikeButton from '../LikeButton/LikeButton'
 import Rating from '../Rating/Rating'
 import { Container } from './MovieCard.style'
 
-const MovieCard = ({ data }) => {
-  const handleMovieDetail = (data) => {
-    console.log('Movie info: ' + data.title)
+const MovieCard = ({ data, onSelect }) => {
+  const handleCardClick = (data) => {
+    onSelect(data)
   }
 
   return (
-    <Container backImg={data.imageUrl} onClick={() => handleMovieDetail(data)}>
+    <Container backImg={data.imageUrl} onClick={() => handleCardClick(data)}>
       <div className="card__like">
         <LikeButton />
       </div>
