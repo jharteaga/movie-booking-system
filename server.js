@@ -12,7 +12,5 @@ connection.once('open', () => {
 })
 
 app.use(express.static(__dirname + '/public'))
-
-app.get('/', (req, res) => {
-  res.send('Server up and running')
-})
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))

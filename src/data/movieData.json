@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Venom: Let there be Carnage",
+    "overview": "After finding a host body in investigative reporter Eddie Brock, the alien symbiote must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.",
+    "imageUrl": "https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=-ezfi6FQ8Ds",
+    "genres": ["Action", "Adventure", "Science Fiction"],
+    "rating": 3,
+    "releaseDate": "2021-09-30",
+    "kids": false
+  },
+  {
+    "title": "Dune",
+    "overview": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
+    "imageUrl": "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=8g18jFHCLXk",
+    "genres": ["Science Fiction", "Adventure"],
+    "rating": 4,
+    "releaseDate": "2021-09-15",
+    "kids": false
+  },
+  {
+    "title": "No Time to Die",
+    "overview": "Bond has left active service and is enjoying a tranquil life in Jamaica. His peace is short-lived when his old friend Felix Leiter from the CIA turns up asking for help. The mission to rescue a kidnapped scientist turns out to be far more treacherous than expected, leading Bond onto the trail of a mysterious villain armed with dangerous new technology.",
+    "imageUrl": "https://image.tmdb.org/t/p/w500/iUgygt3fscRoKWCV1d0C7FbM9TP.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=N_gD9-Oa0fg",
+    "genres": ["Adventure", "Action", "Thriller"],
+    "rating": 4,
+    "releaseDate": "2021-09-29",
+    "kids": false
+  },
+  {
+    "title": "Shang-Chi and the Legend of the Ten Rings",
+    "overview": "Shang-Chi must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization.",
+    "imageUrl": "https://image.tmdb.org/t/p/w500/xeItgLK9qcafxbd8kYgv7XnMEog.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=8YjFbMbfXaQ",
+    "genres": ["Action", "Adventure", "Fantasy"],
+    "rating": 5,
+    "releaseDate": "2021-09-01",
+    "kids": false
+  },
+  {
+    "title": "Black Widow",
+    "overview": "Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by a force that will stop at nothing to bring her down, Natasha must deal with her history as a spy and the broken relationships left in her wake long before she became an Avenger.",
+    "imageUrl": "https://image.tmdb.org/t/p/w500/",
+    "videoUrl": "https://image.tmdb.org/t/p/w500/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
+    "genres": ["Action", "Adventure", "Science Fiction"],
+    "rating": 7,
+    "releaseDate": "2021-07-07",
+    "kids": false
+  }
+]
