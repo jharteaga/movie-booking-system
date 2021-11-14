@@ -3,6 +3,7 @@ const Response = require('../utils/Response')
 
 const getMovies = (req, res) => {
   Movie.find({})
+    .select('-videoUrl -kids')
     .then((results) => res.status(200).json(new Response({}, results, [])))
     .catch((err) => res.status(500).json(new Response({}, {}, [err])))
 }

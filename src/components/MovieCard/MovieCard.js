@@ -6,7 +6,7 @@ import { Container } from './MovieCard.style'
 
 const MovieCard = ({ data, onSelect }) => {
   const handleCardClick = (data) => {
-    onSelect(data)
+    onSelect(data._id)
   }
 
   return (

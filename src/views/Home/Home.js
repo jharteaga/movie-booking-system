@@ -9,10 +9,10 @@ const Home = () => {
   const history = useHistory()
   const [movies, setMovies] = useState([])
 
-  const handleMovieDetail = (movie) => {
+  const handleMovieDetail = (movieId) => {
     history.push({
       pathname: '/movie-detail',
-      movie
+      movieId
     })
   }
 
@@ -20,7 +20,6 @@ const Home = () => {
     axios
       .get(api.movie)
       .then(({ data: res }) => {
-        console.log(res.data)
         setMovies(res.data)
       })
       .catch((err) => console.log(err))
