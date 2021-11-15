@@ -3,10 +3,13 @@ import styled from 'styled-components'
 export const Container = styled.div`
   margin-top: 1.5rem;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 
   .detail__header {
     display: grid;
-    grid-template-columns: 0.2fr 1fr;
+    grid-template-columns: 70px 1fr;
     column-gap: 1rem;
 
     &__back {
@@ -52,6 +55,7 @@ export const Container = styled.div`
     max-width: 90%;
     margin: 0 auto;
     margin-top: 1rem;
+    margin-bottom: 2rem;
 
     p {
       font-size: 0.9rem;
@@ -59,7 +63,8 @@ export const Container = styled.div`
 
     .releaseDate span,
     .genres span,
-    .overview p:first-child {
+    .overview p:first-child,
+    .rating p {
       font-size: 1rem;
       font-weight: 500;
     }
@@ -70,16 +75,96 @@ export const Container = styled.div`
       }
     }
 
-    .trailer {
+    .rating p {
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .trailer {
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+
+    p {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+
+  .cta-desk-tickets {
+    display: none;
+  }
+
+  .cta-mob-tickets {
+    position: fixed;
+    right: 2rem;
+    bottom: 3rem;
+
+    button {
+      padding: 0.2rem 0.8rem 0.6rem 0.8rem;
+      color: #ffffff;
+      font-size: 2.2rem;
+      border-radius: 50%;
+      border: none;
+    }
+  }
+
+  @media (min-width: 700px) {
+    max-width: 1000px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    margin-bottom: 5rem;
+    display: grid;
+    grid-template-areas:
+      'header header cta'
+      'poster info info'
+      'trailer trailer trailer';
+
+    .detail__header {
+      grid-area: header;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      justify-content: start;
+      max-width: 95%;
+      width: 100%;
+
+      &__back {
+        left: 100px;
+      }
+
+      & h2 {
+        font-size: 1.7rem;
+      }
+    }
+
+    .detail__image {
+      grid-area: poster;
+    }
+
+    .detail__info {
+      grid-area: info;
+      align-self: center;
 
       p {
         font-size: 1rem;
-        font-weight: 500;
-        align-self: start;
       }
+    }
+
+    .trailer {
+      grid-area: trailer;
+      padding-left: 1rem;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .cta-desk-tickets {
+      grid-area: cta;
+      display: block;
+      border: none;
+    }
+
+    .cta-mob-tickets {
+      display: none;
     }
   }
 `

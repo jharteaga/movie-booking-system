@@ -10,10 +10,8 @@ const Home = () => {
   const [movies, setMovies] = useState([])
 
   const handleMovieDetail = (movieId) => {
-    history.push({
-      pathname: '/movie-detail',
-      movieId
-    })
+    localStorage.setItem('movieIdSelected', movieId)
+    history.push('/movie-detail')
   }
 
   useEffect(() => {

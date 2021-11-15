@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Button from 'react-bootstrap/Button'
 import ReactPlayer from 'react-player/lazy'
+import Rating from '../../components/Rating/Rating'
 import { useHistory } from 'react-router-dom'
-import { FaAngleLeft } from 'react-icons/fa'
+import { FaAngleLeft, FaTicketAlt } from 'react-icons/fa'
 import { Container } from './MovieDetail.style'
 import { api } from '../../config'
 
-const MovieDetail = ({ location: { movieId } }) => {
+const MovieDetail = () => {
   const history = useHistory()
   const [movie, setMovie] = useState()
 
   useEffect(() => {
+    const movieId = localStorage.getItem('movieIdSelected')
     axios
       .get(`${api.movie}/${movieId}`)
       .then(({ data: res }) => {
@@ -33,6 +36,16 @@ const MovieDetail = ({ location: { movieId } }) => {
             </div>
             <h2>{movie.title}</h2>
           </div>
+          <div className="cta-desk-tickets">
+            <Button variant="danger" size="lg">
+              Book seats
+            </Button>
+          </div>
+          <div className="cta-mob-tickets">
+            <button className="bg-danger">
+              <FaTicketAlt />
+            </button>
+          </div>
           <div className="detail__image">
             <img src={movie.imageUrl} alt="" />
           </div>
@@ -49,15 +62,18 @@ const MovieDetail = ({ location: { movieId } }) => {
               <p>Overview:</p>
               <p>{movie.overview}</p>
             </div>
-            <div className="trailer">
-              <p>Watch the trailer:</p>
-              <ReactPlayer
-                className="trailer-video"
-                url={movie.videoUrl}
-                width="100%"
-                height="300px"
-              />
+            <div className="rating">
+              <p>Rating:</p>
+              <Rating review={movie.rating} />
             </div>
+          </div>
+          <div className="trailer">
+            <p>Watch the trailer:</p>
+            <ReactPlayer
+              className="trailer-video"
+              url={movie.videoUrl}
+              width="100%"
+            />
           </div>
         </>
       )}

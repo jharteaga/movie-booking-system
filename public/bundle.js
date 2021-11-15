@@ -23110,10 +23110,8 @@ var Home = function Home() {
       setMovies = _useState2[1];
 
   var handleMovieDetail = function handleMovieDetail(movieId) {
-    history.push({
-      pathname: '/movie-detail',
-      movieId: movieId
-    });
+    localStorage.setItem('movieIdSelected', movieId);
+    history.push('/movie-detail');
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -23174,11 +23172,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_player_lazy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-player/lazy */ "./node_modules/react-player/lazy/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
-/* harmony import */ var _MovieDetail_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MovieDetail.style */ "./src/views/MovieDetail/MovieDetail.style.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
+/* harmony import */ var _components_Rating_Rating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Rating/Rating */ "./src/components/Rating/Rating.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
+/* harmony import */ var _MovieDetail_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MovieDetail.style */ "./src/views/MovieDetail/MovieDetail.style.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -23199,9 +23199,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var MovieDetail = function MovieDetail(_ref) {
-  var movieId = _ref.location.movieId;
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
+
+
+var MovieDetail = function MovieDetail() {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -23209,8 +23210,9 @@ var MovieDetail = function MovieDetail(_ref) {
       setMovie = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_4__.api.movie, "/").concat(movieId)).then(function (_ref2) {
-      var res = _ref2.data;
+    var movieId = localStorage.getItem('movieIdSelected');
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_5__.api.movie, "/").concat(movieId)).then(function (_ref) {
+      var res = _ref.data;
       setMovie(res.data);
     })["catch"](function (err) {
       return console.log(err);
@@ -23221,12 +23223,21 @@ var MovieDetail = function MovieDetail(_ref) {
     history.push('/');
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MovieDetail_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, movie && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MovieDetail_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, movie && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "detail__header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "detail__header__back",
     onClick: handleGoBack
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_6__.FaAngleLeft, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, movie.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_7__.FaAngleLeft, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, movie.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "cta-desk-tickets"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    variant: "danger",
+    size: "lg"
+  }, "Book seats")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "cta-mob-tickets"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "bg-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_7__.FaTicketAlt, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "detail__image"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: movie.imageUrl,
@@ -23242,13 +23253,16 @@ var MovieDetail = function MovieDetail(_ref) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "overview"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Overview:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, movie.overview)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "rating"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Rating:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Rating_Rating__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    review: movie.rating
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "trailer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Watch the trailer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_player_lazy__WEBPACK_IMPORTED_MODULE_2__["default"], {
     className: "trailer-video",
     url: movie.videoUrl,
-    width: "100%",
-    height: "300px"
-  })))));
+    width: "100%"
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MovieDetail);
@@ -23272,7 +23286,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin-top: 1.5rem;\n  margin-bottom: 2rem;\n\n  .detail__header {\n    display: grid;\n    grid-template-columns: 0.2fr 1fr;\n    column-gap: 1rem;\n\n    &__back {\n      font-size: 1.8rem;\n      margin-left: 1rem;\n      padding: 0;\n      align-self: center;\n      justify-self: center;\n      background-color: rgba(255, 255, 255, 0.2);\n      padding: 0 8px 3px 6px;\n      border-radius: 10px;\n      cursor: pointer;\n      border: transparent;\n    }\n\n    & h2 {\n      justify-self: start;\n      align-self: center;\n      font-size: 1.4rem;\n      margin-bottom: 0;\n      font-weight: 600;\n    }\n  }\n\n  .detail__image {\n    margin: 0 auto;\n    max-width: 100%;\n    width: 100%;\n    margin-top: 1.5rem;\n    text-align: center;\n\n    & img {\n      object-fit: contain;\n      width: 100%;\n      max-width: 90%;\n      height: 500px;\n      border-radius: 10px;\n    }\n  }\n\n  .detail__info {\n    width: 100%;\n    max-width: 90%;\n    margin: 0 auto;\n    margin-top: 1rem;\n\n    p {\n      font-size: 0.9rem;\n    }\n\n    .releaseDate span,\n    .genres span,\n    .overview p:first-child {\n      font-size: 1rem;\n      font-weight: 500;\n    }\n\n    .overview {\n      & p:first-child {\n        margin-bottom: 0;\n      }\n    }\n\n    .trailer {\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n\n      p {\n        font-size: 1rem;\n        font-weight: 500;\n        align-self: start;\n      }\n    }\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin-top: 1.5rem;\n  margin-bottom: 2rem;\n  display: flex;\n  flex-direction: column;\n  align-items: start;\n\n  .detail__header {\n    display: grid;\n    grid-template-columns: 70px 1fr;\n    column-gap: 1rem;\n\n    &__back {\n      font-size: 1.8rem;\n      margin-left: 1rem;\n      padding: 0;\n      align-self: center;\n      justify-self: center;\n      background-color: rgba(255, 255, 255, 0.2);\n      padding: 0 8px 3px 6px;\n      border-radius: 10px;\n      cursor: pointer;\n      border: transparent;\n    }\n\n    & h2 {\n      justify-self: start;\n      align-self: center;\n      font-size: 1.4rem;\n      margin-bottom: 0;\n      font-weight: 600;\n    }\n  }\n\n  .detail__image {\n    margin: 0 auto;\n    max-width: 100%;\n    width: 100%;\n    margin-top: 1.5rem;\n    text-align: center;\n\n    & img {\n      object-fit: contain;\n      width: 100%;\n      max-width: 90%;\n      height: 500px;\n      border-radius: 10px;\n    }\n  }\n\n  .detail__info {\n    width: 100%;\n    max-width: 90%;\n    margin: 0 auto;\n    margin-top: 1rem;\n    margin-bottom: 2rem;\n\n    p {\n      font-size: 0.9rem;\n    }\n\n    .releaseDate span,\n    .genres span,\n    .overview p:first-child,\n    .rating p {\n      font-size: 1rem;\n      font-weight: 500;\n    }\n\n    .overview {\n      & p:first-child {\n        margin-bottom: 0;\n      }\n    }\n\n    .rating p {\n      margin-bottom: 0.3rem;\n    }\n  }\n\n  .trailer {\n    width: 100%;\n    max-width: 90%;\n    margin: 0 auto;\n\n    p {\n      font-size: 1rem;\n      font-weight: 500;\n    }\n  }\n\n  .cta-desk-tickets {\n    display: none;\n  }\n\n  .cta-mob-tickets {\n    position: fixed;\n    right: 2rem;\n    bottom: 3rem;\n\n    button {\n      padding: 0.2rem 0.8rem 0.6rem 0.8rem;\n      color: #ffffff;\n      font-size: 2.2rem;\n      border-radius: 50%;\n      border: none;\n    }\n  }\n\n  @media (min-width: 700px) {\n    max-width: 1000px;\n    width: 95%;\n    margin: 0 auto;\n    margin-top: 1.5rem;\n    margin-bottom: 5rem;\n    display: grid;\n    grid-template-areas:\n      'header header cta'\n      'poster info info'\n      'trailer trailer trailer';\n\n    .detail__header {\n      grid-area: header;\n      display: flex;\n      justify-content: start;\n      max-width: 95%;\n      width: 100%;\n\n      &__back {\n        left: 100px;\n      }\n\n      & h2 {\n        font-size: 1.7rem;\n      }\n    }\n\n    .detail__image {\n      grid-area: poster;\n    }\n\n    .detail__info {\n      grid-area: info;\n      align-self: center;\n\n      p {\n        font-size: 1rem;\n      }\n    }\n\n    .trailer {\n      grid-area: trailer;\n      padding-left: 1rem;\n      font-size: 1rem;\n      margin: 0;\n    }\n\n    .cta-desk-tickets {\n      grid-area: cta;\n      display: block;\n      border: none;\n    }\n\n    .cta-mob-tickets {\n      display: none;\n    }\n  }\n"])));
 
 /***/ }),
 
