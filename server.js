@@ -1,4 +1,5 @@
 const morgan = require('morgan')
+const path = require('path')
 const express = require('express')
 const app = express()
 
@@ -13,7 +14,7 @@ connection.once('open', () => {
 })
 
 app.use(morgan('dev'))
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -21,6 +22,10 @@ const router = require('./routes/index')
 app.use('/api/v1', router)
 
 app.use('/api/*', (req, res, next) => next('error'))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
 /**
  * Error Handler
