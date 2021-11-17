@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin-top: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -101,11 +101,14 @@ export const Container = styled.div`
     bottom: 3rem;
 
     button {
-      padding: 0.2rem 0.8rem 0.6rem 0.8rem;
+      width: 65px;
+      height: 65px;
       color: #ffffff;
-      font-size: 2.2rem;
+      font-size: 1.4rem;
+      font-weight: 500;
       border-radius: 50%;
       border: none;
+      padding-top: -10px;
     }
   }
 
@@ -120,6 +123,11 @@ export const Container = styled.div`
       'header header cta'
       'poster info info'
       'trailer trailer trailer';
+
+    button {
+      border-color: transparent;
+      border-width: 0;
+    }
 
     .detail__header {
       grid-area: header;

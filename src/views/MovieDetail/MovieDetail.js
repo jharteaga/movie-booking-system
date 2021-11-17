@@ -43,7 +43,8 @@ const MovieDetail = () => {
           </div>
           <div className="cta-mob-tickets">
             <button className="bg-danger">
-              <FaTicketAlt />
+              {/* <FaTicketAlt /> */}
+              Buy
             </button>
           </div>
           <div className="detail__image">
