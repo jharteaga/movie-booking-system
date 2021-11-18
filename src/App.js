@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer'
 
 import Home from './views/Home/Home'
 import MovieDetail from './views/MovieDetail/MovieDetail'
+import Showtime from './views/Showtime/Showtime'
 
 import { Container } from './App.style'
 
@@ -16,6 +17,7 @@ const App = () => {
       <main>
         <Switch>
           <Route path="/movie-detail" component={MovieDetail} />
+          <Route path="/showtime" component={Showtime} />
           <Route path="/" exact component={Home} />
         </Switch>
       </main>

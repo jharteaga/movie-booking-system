@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import ReactPlayer from 'react-player/lazy'
 import Rating from '../../components/Rating/Rating'
 import { useHistory } from 'react-router-dom'
-import { FaAngleLeft, FaTicketAlt } from 'react-icons/fa'
+import { FaAngleLeft } from 'react-icons/fa'
 import { Container } from './MovieDetail.style'
 import { api } from '../../config'
 
@@ -23,7 +23,12 @@ const MovieDetail = () => {
   }, [])
 
   const handleGoBack = () => {
+    localStorage.removeItem('movieIdSelected')
     history.push('/')
+  }
+
+  const handleBookSeats = () => {
+    history.push('/showtime')
   }
 
   return (
@@ -37,14 +42,13 @@ const MovieDetail = () => {
             <h2>{movie.title}</h2>
           </div>
           <div className="cta-desk-tickets">
-            <Button variant="danger" size="lg">
-              Book seats
+            <Button variant="danger" size="lg" onClick={handleBookSeats}>
+              Select seats
             </Button>
           </div>
           <div className="cta-mob-tickets">
-            <button className="bg-danger">
-              {/* <FaTicketAlt /> */}
-              Buy
+            <button className="bg-danger" onClick={handleBookSeats}>
+              Seats
             </button>
           </div>
           <div className="detail__image">

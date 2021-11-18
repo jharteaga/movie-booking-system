@@ -104,7 +104,7 @@ export const Container = styled.div`
       width: 65px;
       height: 65px;
       color: #ffffff;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 500;
       border-radius: 50%;
       border: none;
