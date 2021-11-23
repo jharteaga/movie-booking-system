@@ -22897,14 +22897,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Header_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.style */ "./src/components/Header/Header.style.js");
+
 
 
 
 var Header = function Header() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "logo"
-  }, "VanCinema"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.NavLink, {
+    to: "/"
+  }, "VanCinema")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "user-profile"
   }, "Hello! Santiago"));
 };
@@ -22930,7 +22934,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].header(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem 3rem;\n  max-width: 100%;\n  width: 100%;\n\n  h1,\n  p {\n    margin: 0;\n  }\n\n  .user-profile {\n    display: none;\n  }\n\n  @media (min-width: 500px) {\n    justify-content: space-between;\n\n    .user-profile {\n      display: block;\n    }\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].header(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 1rem 3rem;\n  max-width: 100%;\n  width: 100%;\n\n  a {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  h1,\n  p {\n    margin: 0;\n  }\n\n  .user-profile {\n    display: none;\n  }\n\n  @media (min-width: 500px) {\n    justify-content: space-between;\n\n    .user-profile {\n      display: block;\n    }\n  }\n"])));
 
 /***/ }),
 
@@ -23987,6 +23991,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ButtonGroup/ButtonGroup */ "./src/components/ButtonGroup/ButtonGroup.js");
 /* harmony import */ var _components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Cinema/Cinema */ "./src/components/Cinema/Cinema.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
 /* harmony import */ var _utils_datetime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/datetime */ "./src/utils/datetime.js");
 /* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
 /* harmony import */ var _Showtime_style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Showtime.style */ "./src/views/Showtime/Showtime.style.js");
@@ -24012,7 +24018,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Showtime = function Showtime() {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
+
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_5__.MovieContext),
       updateMovieDateTime = _useContext.updateMovieDateTime,
       movie = _useContext.movie,
@@ -24027,6 +24037,10 @@ var Showtime = function Showtime() {
       _useState4 = _slicedToArray(_useState3, 2),
       timeSelected = _useState4[0],
       setTimeSelected = _useState4[1];
+
+  var handleGoBack = function handleGoBack() {
+    history.push('/movie-detail');
+  };
 
   var handleChangeDate = function handleChangeDate(value) {
     setDateSelected(value);
@@ -24049,6 +24063,9 @@ var Showtime = function Showtime() {
     }
   }, [timeSelected, dateSelected]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Showtime_style__WEBPACK_IMPORTED_MODULE_6__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "detail__header__back",
+    onClick: handleGoBack
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_9__.FaAngleLeft, null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Go back")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "options-container date-picker"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "When do you want to come?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: (0,_utils_datetime__WEBPACK_IMPORTED_MODULE_4__.getDates)(),
@@ -24113,7 +24130,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 100%;\n  width: 100%;\n  position: relative;\n\n  h1 {\n    text-align: center;\n  }\n\n  .options-container {\n    margin-top: 2rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    text-align: center;\n  }\n\n  .cinema {\n    margin: 0 auto;\n    max-width: 95%;\n    width: 100%;\n    margin-bottom: 5rem;\n  }\n\n  .order-container {\n    display: none;\n  }\n\n  .mobile-order-container {\n    background-color: #eee;\n    max-width: 100%;\n    width: 100%;\n    color: #000;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 1rem;\n    position: fixed;\n    bottom: 3rem;\n    left: 0;\n    right: 0;\n    border-radius: 5px;\n\n    img {\n      width: 75px;\n      height: 90px;\n      border-radius: 8px;\n    }\n\n    p {\n      margin-bottom: 0;\n      font-size: 1rem;\n      font-weight: 600;\n\n      &:nth-of-type(1) {\n        font-size: 0.9rem;\n        /* color: dodgerblue; */\n      }\n\n      span {\n        font-size: 0.9rem;\n        font-weight: 400;\n      }\n    }\n\n    button {\n      border-width: 0;\n      padding: 0.7rem;\n      border-radius: 10px;\n      color: #fff;\n    }\n  }\n\n  @media (min-width: 1000px) {\n    max-width: 1100px;\n    width: 100%;\n    margin: auto;\n    display: grid;\n    grid-template-areas:\n      'datePicker datePicker order'\n      'timePicker timePicker order'\n      'cinema cinema order';\n\n    .mobile-order-container {\n      display: none;\n    }\n\n    .date-picker {\n      grid-area: datePicker;\n    }\n\n    .time-picker {\n      grid-area: timePicker;\n    }\n\n    .cinema {\n      grid-area: cinema;\n      margin-bottom: 1rem;\n    }\n\n    .order-container {\n      margin-top: 2rem;\n      grid-area: order;\n      display: block;\n      background-color: #eee;\n      max-width: 350px;\n      width: 100%;\n      color: #000;\n      padding: 1rem 1.2rem;\n      border-radius: 10px;\n      height: 610px;\n      /* height: 100%; */\n\n      img {\n        max-width: 100%;\n        width: 100%;\n        height: 400px;\n        object-fit: cover;\n        border-radius: 8px;\n      }\n\n      h2 {\n        margin: 1rem 0;\n        font-weight: 600;\n      }\n\n      .tickets {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n\n        p {\n          margin-bottom: 0;\n          font-size: 1.2rem;\n          font-weight: 600;\n\n          &:nth-of-type(1) {\n            font-size: 0.9rem;\n            /* color: dodgerblue; */\n          }\n\n          span {\n            font-size: 0.9rem;\n            color: #000;\n            font-weight: 400;\n          }\n        }\n\n        button {\n          align-self: flex-end;\n          border-width: 0;\n          padding: 1rem;\n          border-radius: 10px;\n          color: #fff;\n        }\n      }\n    }\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 100%;\n  width: 100%;\n  /* position: relative; */\n\n  .detail__header__back {\n    display: flex;\n    align-items: center;\n    justify-content: space-around;\n    margin-top: 1rem;\n    width: 105px;\n    font-size: 1.8rem;\n    margin-left: 1rem;\n    padding: 0;\n    background-color: rgba(255, 255, 255, 0.2);\n    padding: 4px 10px 3px 6px;\n    border-radius: 10px;\n    cursor: pointer;\n    border: transparent;\n\n    & span {\n      font-size: 0.9rem;\n    }\n  }\n\n  h1 {\n    text-align: center;\n  }\n\n  .options-container {\n    margin-top: 2rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    text-align: center;\n  }\n\n  .cinema {\n    margin: 0 auto;\n    max-width: 95%;\n    width: 100%;\n    margin-bottom: 5rem;\n  }\n\n  .order-container {\n    display: none;\n  }\n\n  .mobile-order-container {\n    background-color: #eee;\n    max-width: 100%;\n    width: 100%;\n    color: #000;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 1rem;\n    position: fixed;\n    bottom: 3rem;\n    left: 0;\n    right: 0;\n    border-radius: 5px;\n\n    img {\n      width: 75px;\n      height: 90px;\n      border-radius: 8px;\n    }\n\n    p {\n      margin-bottom: 0;\n      font-size: 1rem;\n      font-weight: 600;\n\n      &:nth-of-type(1) {\n        font-size: 0.9rem;\n        /* color: dodgerblue; */\n      }\n\n      span {\n        font-size: 0.9rem;\n        font-weight: 400;\n      }\n    }\n\n    button {\n      border-width: 0;\n      padding: 0.7rem;\n      border-radius: 10px;\n      color: #fff;\n    }\n  }\n\n  @media (min-width: 1000px) {\n    max-width: 1100px;\n    width: 100%;\n    margin: auto;\n    display: grid;\n    grid-template-areas:\n      'datePicker datePicker order'\n      'timePicker timePicker order'\n      'cinema cinema order';\n\n    .detail__header__back {\n      position: absolute;\n      left: 10rem;\n    }\n\n    .mobile-order-container {\n      display: none;\n    }\n\n    .date-picker {\n      grid-area: datePicker;\n    }\n\n    .time-picker {\n      grid-area: timePicker;\n    }\n\n    .cinema {\n      grid-area: cinema;\n      margin-bottom: 1rem;\n    }\n\n    .order-container {\n      margin-top: 2rem;\n      grid-area: order;\n      display: block;\n      background-color: #eee;\n      max-width: 350px;\n      width: 100%;\n      color: #000;\n      padding: 1rem 1.2rem;\n      border-radius: 10px;\n      height: 610px;\n      /* height: 100%; */\n\n      img {\n        max-width: 100%;\n        width: 100%;\n        height: 400px;\n        object-fit: cover;\n        border-radius: 8px;\n      }\n\n      h2 {\n        margin: 1rem 0;\n        font-weight: 600;\n      }\n\n      .tickets {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n\n        p {\n          margin-bottom: 0;\n          font-size: 1.2rem;\n          font-weight: 600;\n\n          &:nth-of-type(1) {\n            font-size: 0.9rem;\n            /* color: dodgerblue; */\n          }\n\n          span {\n            font-size: 0.9rem;\n            color: #000;\n            font-weight: 400;\n          }\n        }\n\n        button {\n          align-self: flex-end;\n          border-width: 0;\n          padding: 1rem;\n          border-radius: 10px;\n          color: #fff;\n        }\n      }\n    }\n  }\n"])));
 
 /***/ }),
 

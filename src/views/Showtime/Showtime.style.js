@@ -3,7 +3,27 @@ import styled from 'styled-components'
 export const Container = styled.div`
   max-width: 100%;
   width: 100%;
-  position: relative;
+  /* position: relative; */
+
+  .detail__header__back {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 1rem;
+    width: 105px;
+    font-size: 1.8rem;
+    margin-left: 1rem;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px 3px 6px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: transparent;
+
+    & span {
+      font-size: 0.9rem;
+    }
+  }
 
   h1 {
     text-align: center;
@@ -82,6 +102,11 @@ export const Container = styled.div`
       'datePicker datePicker order'
       'timePicker timePicker order'
       'cinema cinema order';
+
+    .detail__header__back {
+      position: absolute;
+      left: 10rem;
+    }
 
     .mobile-order-container {
       display: none;

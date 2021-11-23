@@ -8,6 +8,11 @@ export const Container = styled.header`
   max-width: 100%;
   width: 100%;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   h1,
   p {
     margin: 0;

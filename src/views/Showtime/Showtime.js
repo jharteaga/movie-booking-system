@@ -2,15 +2,22 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import DateButtonGroup from '../../components/ButtonGroup/ButtonGroup'
 import Cinema from '../../components/Cinema/Cinema'
+import { useHistory } from 'react-router-dom'
+import { FaAngleLeft } from 'react-icons/fa'
 import { getDates, times } from '../../utils/datetime'
 import { MovieContext } from '../../context/movie/MovieContext'
 import { Container } from './Showtime.style'
 import { api, initSeats } from '../../config'
 
 const Showtime = () => {
+  const history = useHistory()
   const { updateMovieDateTime, movie, seatsSelected } = useContext(MovieContext)
   const [dateSelected, setDateSelected] = useState()
   const [timeSelected, setTimeSelected] = useState()
+
+  const handleGoBack = () => {
+    history.push('/movie-detail')
+  }
 
   const handleChangeDate = (value) => {
     setDateSelected(value)
@@ -40,6 +47,9 @@ const Showtime = () => {
 
   return (
     <Container>
+      <div className="detail__header__back" onClick={handleGoBack}>
+        <FaAngleLeft /> <span>Go back</span>
+      </div>
       <div className="options-container date-picker">
         <p>When do you want to come?</p>
         <DateButtonGroup data={getDates()} onChange={handleChangeDate} />
