@@ -6,7 +6,8 @@ export const MovieReducer = (state, action) => {
         movieSelected: {
           ...state.movieSelected,
           id: action.payload?.movie?._id,
-          title: action.payload?.movie?.title
+          title: action.payload?.movie?.title,
+          imageUrl: action.payload?.movie?.imageUrl
         }
       }
 

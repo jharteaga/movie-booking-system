@@ -50,7 +50,7 @@ const times = [
 ]
 
 const Showtime = () => {
-  const { updateMovieDateTime, movieId } = useContext(MovieContext)
+  const { updateMovieDateTime, movie, seatsSelected } = useContext(MovieContext)
   const [dateSelected, setDateSelected] = useState()
   const [timeSelected, setTimeSelected] = useState()
   const [seats, setSeats] = useState([])
@@ -70,7 +70,7 @@ const Showtime = () => {
 
       axios
         .get(
-          `${api.movie}/${movieId}/seats?showDate=${showDate}&showTime=${showTime}`
+          `${api.movie}/${movie.id}/seats?showDate=${showDate}&showTime=${showTime}`
         )
         .then(({ data: { data } }) => {
           setSeats(data.allSeats)
@@ -82,12 +82,12 @@ const Showtime = () => {
 
   return (
     <Container>
-      <div className="options-container">
+      <div className="options-container date-picker">
         <p>When do you want to come?</p>
         <DateButtonGroup data={dates} onChange={handleChangeDate} />
       </div>
       {dateSelected && (
-        <div className="options-container">
+        <div className="options-container time-picker">
           <p>At what time?</p>
           <DateButtonGroup
             data={times}
@@ -97,9 +97,41 @@ const Showtime = () => {
         </div>
       )}
       {timeSelected && (
-        <div className="cinema">
-          <Cinema />
-        </div>
+        <>
+          <div className="order-container">
+            <div className="poster">
+              <img src={movie.imageUrl} alt="" />
+            </div>
+            <h2>Your tickets</h2>
+            <div className="tickets">
+              <div className="desktop-info">
+                <p>
+                  <span>Quantity:</span> {seatsSelected.length}
+                </p>
+                <p>
+                  <span>Total:</span> $0.00
+                </p>
+              </div>
+              <button className="bg-danger">Purchase</button>
+            </div>
+          </div>
+          <div className="cinema">
+            <Cinema />
+          </div>
+          <div className="mobile-order-container">
+            <div className="order-info">
+              <p>
+                <span>Quantity:</span> {seatsSelected.length}
+              </p>
+              <p>
+                <span>Total:</span> $0.00
+              </p>
+            </div>
+            <div className="purchase-action">
+              <button className="bg-danger">Purchase</button>
+            </div>
+          </div>
+        </>
       )}
     </Container>
   )

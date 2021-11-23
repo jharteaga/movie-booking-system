@@ -23487,20 +23487,11 @@ var MovieProvider = function MovieProvider(_ref) {
       state = _useReducer2[0],
       dispatch = _useReducer2[1];
 
-  var selectSeat = function selectSeat(seat) {
+  var updateMovieSelected = function updateMovieSelected(movie) {
     dispatch({
-      type: 'SELECT_SEAT',
+      type: 'SELECT_MOVIE',
       payload: {
-        seat: seat
-      }
-    });
-  };
-
-  var unselectSeat = function unselectSeat(seat) {
-    dispatch({
-      type: 'UNSELECT_SEAT',
-      payload: {
-        seat: seat
+        movie: movie
       }
     });
   };
@@ -23516,11 +23507,11 @@ var MovieProvider = function MovieProvider(_ref) {
     });
   };
 
-  var updateMovieSelected = function updateMovieSelected(movie) {
+  var selectSeat = function selectSeat(seat) {
     dispatch({
-      type: 'SELECT_MOVIE',
+      type: 'SELECT_SEAT',
       payload: {
-        movie: movie
+        seat: seat
       }
     });
   };
@@ -23538,12 +23529,11 @@ var MovieProvider = function MovieProvider(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(MovieContext.Provider, {
     value: {
       seatsSelected: state.seatsSelected,
-      movieId: state.movieSelected.id,
+      movie: state.movieSelected,
       seats: state.seats,
-      selectSeat: selectSeat,
-      unselectSeat: unselectSeat,
       updateMovieDateTime: updateMovieDateTime,
       updateMovieSelected: updateMovieSelected,
+      selectSeat: selectSeat,
       updateSeats: updateSeats
     }
   }, children);
@@ -23581,24 +23571,25 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var MovieReducer = function MovieReducer(state, action) {
-  var _action$payload, _action$payload$movie, _action$payload2, _action$payload2$movi, _action$payload3, _action$payload4, _action$payload5;
+  var _action$payload, _action$payload$movie, _action$payload2, _action$payload2$movi, _action$payload3, _action$payload3$movi, _action$payload4, _action$payload5, _action$payload6;
 
   switch (action.type) {
     case 'SELECT_MOVIE':
       return _objectSpread(_objectSpread({}, state), {}, {
         movieSelected: _objectSpread(_objectSpread({}, state.movieSelected), {}, {
           id: (_action$payload = action.payload) === null || _action$payload === void 0 ? void 0 : (_action$payload$movie = _action$payload.movie) === null || _action$payload$movie === void 0 ? void 0 : _action$payload$movie._id,
-          title: (_action$payload2 = action.payload) === null || _action$payload2 === void 0 ? void 0 : (_action$payload2$movi = _action$payload2.movie) === null || _action$payload2$movi === void 0 ? void 0 : _action$payload2$movi.title
+          title: (_action$payload2 = action.payload) === null || _action$payload2 === void 0 ? void 0 : (_action$payload2$movi = _action$payload2.movie) === null || _action$payload2$movi === void 0 ? void 0 : _action$payload2$movi.title,
+          imageUrl: (_action$payload3 = action.payload) === null || _action$payload3 === void 0 ? void 0 : (_action$payload3$movi = _action$payload3.movie) === null || _action$payload3$movi === void 0 ? void 0 : _action$payload3$movi.imageUrl
         })
       });
 
     case 'UPDATE_DATETIME':
       return _objectSpread(_objectSpread({}, state), {}, {
         movieSelected: _objectSpread(_objectSpread({}, state.movieSelected), {}, {
-          showDate: (_action$payload3 = action.payload) === null || _action$payload3 === void 0 ? void 0 : _action$payload3.movieDate,
-          showTime: (_action$payload4 = action.payload) === null || _action$payload4 === void 0 ? void 0 : _action$payload4.movieTime
+          showDate: (_action$payload4 = action.payload) === null || _action$payload4 === void 0 ? void 0 : _action$payload4.movieDate,
+          showTime: (_action$payload5 = action.payload) === null || _action$payload5 === void 0 ? void 0 : _action$payload5.movieTime
         }),
-        seats: (_action$payload5 = action.payload) === null || _action$payload5 === void 0 ? void 0 : _action$payload5.seats
+        seats: (_action$payload6 = action.payload) === null || _action$payload6 === void 0 ? void 0 : _action$payload6.seats
       });
 
     case 'SELECT_SEAT':
@@ -23963,7 +23954,8 @@ var times = [{
 var Showtime = function Showtime() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_4__.MovieContext),
       updateMovieDateTime = _useContext.updateMovieDateTime,
-      movieId = _useContext.movieId;
+      movie = _useContext.movie,
+      seatsSelected = _useContext.seatsSelected;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -23992,7 +23984,7 @@ var Showtime = function Showtime() {
     if (dateSelected && timeSelected) {
       var showDate = "".concat(dateSelected === null || dateSelected === void 0 ? void 0 : dateSelected.value3);
       var showTime = "".concat(timeSelected === null || timeSelected === void 0 ? void 0 : timeSelected.value1, " ").concat(timeSelected === null || timeSelected === void 0 ? void 0 : timeSelected.value2);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movieId, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
         var data = _ref.data.data;
         setSeats(data.allSeats);
         updateMovieDateTime(showDate, showTime, data.allSeats);
@@ -24002,19 +23994,40 @@ var Showtime = function Showtime() {
     }
   }, [timeSelected, dateSelected]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Showtime_style__WEBPACK_IMPORTED_MODULE_5__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "options-container"
+    className: "options-container date-picker"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "When do you want to come?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: dates,
     onChange: handleChangeDate
   })), dateSelected && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "options-container"
+    className: "options-container time-picker"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "At what time?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: times,
     onChange: handleChangeTime,
     borderColor: "dodgerblue"
-  })), timeSelected && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  })), timeSelected && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "order-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "poster"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: movie.imageUrl,
+    alt: ""
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your tickets"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "tickets"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "desktop-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $0.00")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "bg-danger"
+  }, "Purchase"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cinema"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "mobile-order-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "order-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $0.00")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "purchase-action"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "bg-danger"
+  }, "Purchase")))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Showtime);
@@ -24038,7 +24051,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 100%;\n  width: 100%;\n\n  h1 {\n    text-align: center;\n  }\n\n  .options-container {\n    margin-top: 2rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    text-align: center;\n  }\n\n  .cinema {\n    margin: 0 auto;\n    max-width: 95%;\n    width: 100%;\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 100%;\n  width: 100%;\n  position: relative;\n\n  h1 {\n    text-align: center;\n  }\n\n  .options-container {\n    margin-top: 2rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    text-align: center;\n  }\n\n  .cinema {\n    margin: 0 auto;\n    max-width: 95%;\n    width: 100%;\n    margin-bottom: 4rem;\n  }\n\n  .order-container {\n    display: none;\n  }\n\n  .mobile-order-container {\n    background-color: #fff;\n    max-width: 100%;\n    width: 100%;\n    color: #000;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 1rem;\n    position: fixed;\n    bottom: 3rem;\n    left: 0;\n    right: 0;\n    border-radius: 5px;\n\n    p {\n      margin-bottom: 0;\n      font-size: 1.3rem;\n\n      span {\n        font-weight: 600;\n        font-size: 0.9rem;\n      }\n    }\n\n    button {\n      border-width: 0;\n      padding: 0.7rem;\n      border-radius: 10px;\n      color: #fff;\n    }\n  }\n\n  @media (min-width: 1000px) {\n    max-width: 1100px;\n    width: 100%;\n    margin: auto;\n    display: grid;\n    grid-template-areas:\n      'datePicker datePicker order'\n      'timePicker timePicker order'\n      'cinema cinema order';\n\n    .mobile-order-container {\n      display: none;\n    }\n\n    .date-picker {\n      grid-area: datePicker;\n    }\n\n    .time-picker {\n      grid-area: timePicker;\n    }\n\n    .cinema {\n      grid-area: cinema;\n    }\n\n    .order-container {\n      margin-top: 2rem;\n      grid-area: order;\n      display: block;\n      background-color: #fff;\n      max-width: 350px;\n      width: 100%;\n      color: #000;\n      padding: 1rem;\n      border-radius: 10px;\n      height: 550px;\n\n      img {\n        max-width: 100%;\n        width: 100%;\n        height: 400px;\n        object-fit: cover;\n        border-radius: 8px;\n      }\n\n      h2 {\n        margin-top: 1rem;\n        font-weight: 600;\n      }\n\n      .tickets {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n\n        p {\n          margin-bottom: 0;\n          font-size: 1.3rem;\n          font-weight: 600;\n\n          span {\n            font-size: 0.9rem;\n          }\n        }\n\n        button {\n          border-width: 0;\n          padding: 1rem;\n          border-radius: 10px;\n          color: #fff;\n        }\n      }\n    }\n  }\n"])));
 
 /***/ }),
 

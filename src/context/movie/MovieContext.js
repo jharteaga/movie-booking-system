@@ -12,12 +12,8 @@ export const MovieContext = createContext(initialState)
 export const MovieProvider = ({ children }) => {
   const [state, dispatch] = useReducer(MovieReducer, initialState)
 
-  const selectSeat = (seat) => {
-    dispatch({ type: 'SELECT_SEAT', payload: { seat } })
-  }
-
-  const unselectSeat = (seat) => {
-    dispatch({ type: 'UNSELECT_SEAT', payload: { seat } })
+  const updateMovieSelected = (movie) => {
+    dispatch({ type: 'SELECT_MOVIE', payload: { movie } })
   }
 
   const updateMovieDateTime = (movieDate, movieTime, seats) => {
@@ -27,8 +23,8 @@ export const MovieProvider = ({ children }) => {
     })
   }
 
-  const updateMovieSelected = (movie) => {
-    dispatch({ type: 'SELECT_MOVIE', payload: { movie } })
+  const selectSeat = (seat) => {
+    dispatch({ type: 'SELECT_SEAT', payload: { seat } })
   }
 
   const updateSeats = (identifier, number) => {
@@ -39,12 +35,11 @@ export const MovieProvider = ({ children }) => {
     <MovieContext.Provider
       value={{
         seatsSelected: state.seatsSelected,
-        movieId: state.movieSelected.id,
+        movie: state.movieSelected,
         seats: state.seats,
-        selectSeat,
-        unselectSeat,
         updateMovieDateTime,
         updateMovieSelected,
+        selectSeat,
         updateSeats
       }}
     >
