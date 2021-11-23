@@ -106,6 +106,9 @@ export const Container = styled.div`
     .detail__header__back {
       position: absolute;
       left: 10rem;
+
+      span {
+      }
     }
 
     .mobile-order-container {
