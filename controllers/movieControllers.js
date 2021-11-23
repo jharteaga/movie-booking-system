@@ -9,7 +9,7 @@ const getMovies = (req, res) => {
 }
 
 const getMovie = (req, res) => {
-  Movie.findOne({ _id: req.params.id })
+  Movie.findOne({ _id: req.params.movieId })
     .then((result) => {
       res.status(200).json(new Response({}, result, []))
     })

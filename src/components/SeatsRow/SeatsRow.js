@@ -1,45 +1,73 @@
-import React from 'react'
-import { theme } from '../../theme'
+import React, { useContext } from 'react'
 import Seat from '../Seat/Seat'
+import { MovieContext } from '../../context/movie/MovieContext'
+import { theme } from '../../theme'
 import { Container } from './SeatsRow.style'
 
 // const row = [0, 0, 0, 0, 0, 0, 0, 0]
 
+const seatStatus = {
+  AVAILABLE: 0,
+  BOOKED: 1,
+  SELECTED: -1
+}
+
 const SeatsRow = ({ row, identifier = 'A' }) => {
-  const state = {
-    AVAILABLE: 0,
-    BOOKED: 1,
-    SELECTED: -1
+  const { selectSeat, updateSeats } = useContext(MovieContext)
+
+  const handleSelectSeat = (identifier, number) => {
+    console.log(identifier, number)
+    selectSeat(`${identifier}${number}`)
+    updateSeats(identifier, number)
   }
 
   return (
-    <Container>
-      <small>{identifier}</small>
-      {row.map((seat, index) => {
-        switch (seat) {
-          case state.AVAILABLE:
-            return (
-              <span className="seatRow-container" key={index}>
-                <Seat bgColor={theme.seatAvailable} />
-              </span>
-            )
+    <>
+      {row && (
+        <Container>
+          <small>{identifier}</small>
+          {row.map((seat, index) => {
+            switch (seat) {
+              case seatStatus.AVAILABLE:
+                return (
+                  <span className="seatRow-container" key={index}>
+                    <Seat
+                      bgColor={theme.seatAvailable}
+                      identifier={identifier}
+                      number={index + 1}
+                      onSelect={handleSelectSeat}
+                    />
+                  </span>
+                )
 
-          case state.BOOKED:
-            return (
-              <span className="seatRow-container" key={index}>
-                <Seat bgColor={theme.seatBooked} />
-              </span>
-            )
+              case seatStatus.BOOKED:
+                return (
+                  <span className="seatRow-container" key={index}>
+                    <Seat
+                      bgColor={theme.seatBooked}
+                      identifier={identifier}
+                      number={index + 1}
+                      // onSelect={handleSelectSeat}
+                    />
+                  </span>
+                )
 
-          case state.SELECTED:
-            return (
-              <span className="seatRow-container" key={index}>
-                <Seat bgColor={theme.seatSelected} />
-              </span>
-            )
-        }
-      })}
-    </Container>
+              case seatStatus.SELECTED:
+                return (
+                  <span className="seatRow-container" key={index}>
+                    <Seat
+                      bgColor={theme.seatSelected}
+                      identifier={identifier}
+                      number={index + 1}
+                      onSelect={handleSelectSeat}
+                    />
+                  </span>
+                )
+            }
+          })}
+        </Container>
+      )}
+    </>
   )
 }
 

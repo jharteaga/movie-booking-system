@@ -1,0 +1,28 @@
+[
+  {
+    "movieId": "6190689fba679222a49e5910",
+    "showDate": "2021-11-17",
+    "showTime": "7:00 PM",
+    "seats": [
+      { "identifier": "A", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "B", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "C", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "D", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "E", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "F", "row": [0, 0, 0, 0, 0, 0, 0, 0] }
+    ]
+  },
+  {
+    "movieId": "6190689fba679222a49e5911",
+    "showDate": "2021-11-18",
+    "showTime": "4:30 PM",
+    "seats": [
+      { "identifier": "A", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "B", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "C", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "D", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "E", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+      { "identifier": "F", "row": [0, 0, 0, 0, 0, 0, 0, 0] }
+    ]
+  }
+]

@@ -22786,49 +22786,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Seat_Seat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Seat/Seat */ "./src/components/Seat/Seat.js");
-/* harmony import */ var _SeatsLegend_SeatsLegend__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../SeatsLegend/SeatsLegend */ "./src/components/SeatsLegend/SeatsLegend.js");
-/* harmony import */ var _SeatsRow_SeatsRow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../SeatsRow/SeatsRow */ "./src/components/SeatsRow/SeatsRow.js");
+/* harmony import */ var _SeatsLegend_SeatsLegend__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SeatsLegend/SeatsLegend */ "./src/components/SeatsLegend/SeatsLegend.js");
+/* harmony import */ var _SeatsRow_SeatsRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../SeatsRow/SeatsRow */ "./src/components/SeatsRow/SeatsRow.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
 /* harmony import */ var _Cinema_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Cinema.style */ "./src/components/Cinema/Cinema.style.js");
 
 
 
 
-
-var seats = [{
-  identifier: 'A',
-  row: [0, 0, 0, 0, 0, 0, 0, 0]
-}, {
-  identifier: 'B',
-  row: [0, 0, 0, 0, 0, 0, 0, 0]
-}, {
-  identifier: 'C',
-  row: [0, 0, 0, 0, 0, 0, 0, 0]
-}, {
-  identifier: 'D',
-  row: [0, 0, 0, 0, 0, 0, 0, 0]
-}, {
-  identifier: 'E',
-  row: [0, 0, 0, 0, 0, 0, 0, 0]
-}, {
-  identifier: 'F',
-  row: [0, 0, 0, 0, 0, 0, 0, 0]
-}];
+ // const seats = [
+//   { identifier: 'A', row: [0, 0, 0, 0, 0, 0, 0, 0] },
+//   { identifier: 'B', row: [0, 0, 0, 0, 0, 0, 0, 0] },
+//   { identifier: 'C', row: [0, 0, 0, 0, 0, 0, 0, 0] },
+//   { identifier: 'D', row: [0, 0, 0, 0, 0, 0, 0, 0] },
+//   { identifier: 'E', row: [0, 0, 0, 0, 0, 0, 0, 0] },
+//   { identifier: 'F', row: [0, 0, 0, 0, 0, 0, 0, 0] }
+// ]
 
 var Cinema = function Cinema() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Cinema_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsLegend_SeatsLegend__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_3__.MovieContext),
+      seats = _useContext.seats;
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [seats]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Cinema_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, seats && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsLegend_SeatsLegend__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "screen"
   }, "Screen"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "seats__container"
   }, seats.map(function (_ref) {
     var identifier = _ref.identifier,
-        row = _ref.row;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsRow_SeatsRow__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      key: identifier,
+        row = _ref.row,
+        _id = _ref._id;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsRow_SeatsRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: _id,
       row: row,
       identifier: identifier
     });
-  })));
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Cinema);
@@ -23218,9 +23211,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Seat = function Seat(_ref) {
-  var bgColor = _ref.bgColor;
+  var bgColor = _ref.bgColor,
+      identifier = _ref.identifier,
+      number = _ref.number,
+      onSelect = _ref.onSelect;
+
+  var handleSeatSelection = function handleSeatSelection() {
+    if (onSelect) onSelect(identifier, number);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Seat_style__WEBPACK_IMPORTED_MODULE_1__.Container, {
-    bgColor: bgColor
+    bgColor: bgColor,
+    onClick: handleSeatSelection
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "seat__cushion"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -23330,50 +23332,73 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme */ "./src/theme/index.js");
-/* harmony import */ var _Seat_Seat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Seat/Seat */ "./src/components/Seat/Seat.js");
-/* harmony import */ var _SeatsRow_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SeatsRow.style */ "./src/components/SeatsRow/SeatsRow.style.js");
+/* harmony import */ var _Seat_Seat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Seat/Seat */ "./src/components/Seat/Seat.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../theme */ "./src/theme/index.js");
+/* harmony import */ var _SeatsRow_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SeatsRow.style */ "./src/components/SeatsRow/SeatsRow.style.js");
+
 
 
 
  // const row = [0, 0, 0, 0, 0, 0, 0, 0]
 
+var seatStatus = {
+  AVAILABLE: 0,
+  BOOKED: 1,
+  SELECTED: -1
+};
+
 var SeatsRow = function SeatsRow(_ref) {
   var row = _ref.row,
       _ref$identifier = _ref.identifier,
       identifier = _ref$identifier === void 0 ? 'A' : _ref$identifier;
-  var state = {
-    AVAILABLE: 0,
-    BOOKED: 1,
-    SELECTED: -1
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_2__.MovieContext),
+      selectSeat = _useContext.selectSeat,
+      updateSeats = _useContext.updateSeats;
+
+  var handleSelectSeat = function handleSelectSeat(identifier, number) {
+    console.log(identifier, number);
+    selectSeat("".concat(identifier).concat(number));
+    updateSeats(identifier, number);
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsRow_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", null, identifier), row.map(function (seat, index) {
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, row && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsRow_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", null, identifier), row.map(function (seat, index) {
     switch (seat) {
-      case state.AVAILABLE:
+      case seatStatus.AVAILABLE:
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
           className: "seatRow-container",
           key: index
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Seat_Seat__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          bgColor: _theme__WEBPACK_IMPORTED_MODULE_1__.theme.seatAvailable
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Seat_Seat__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          bgColor: _theme__WEBPACK_IMPORTED_MODULE_3__.theme.seatAvailable,
+          identifier: identifier,
+          number: index + 1,
+          onSelect: handleSelectSeat
         }));
 
-      case state.BOOKED:
+      case seatStatus.BOOKED:
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
           className: "seatRow-container",
           key: index
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Seat_Seat__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          bgColor: _theme__WEBPACK_IMPORTED_MODULE_1__.theme.seatBooked
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Seat_Seat__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          bgColor: _theme__WEBPACK_IMPORTED_MODULE_3__.theme.seatBooked,
+          identifier: identifier,
+          number: index + 1 // onSelect={handleSelectSeat}
+
         }));
 
-      case state.SELECTED:
+      case seatStatus.SELECTED:
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
           className: "seatRow-container",
           key: index
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Seat_Seat__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          bgColor: _theme__WEBPACK_IMPORTED_MODULE_1__.theme.seatSelected
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Seat_Seat__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          bgColor: _theme__WEBPACK_IMPORTED_MODULE_3__.theme.seatSelected,
+          identifier: identifier,
+          number: index + 1,
+          onSelect: handleSelectSeat
         }));
     }
-  }));
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SeatsRow);
@@ -23416,6 +23441,191 @@ var baseUri = '/api/v1';
 var api = {
   movie: "".concat(baseUri, "/movies"),
   user: "".concat(baseUri, "/users")
+};
+
+/***/ }),
+
+/***/ "./src/context/movie/MovieContext.js":
+/*!*******************************************!*\
+  !*** ./src/context/movie/MovieContext.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MovieContext": () => (/* binding */ MovieContext),
+/* harmony export */   "MovieProvider": () => (/* binding */ MovieProvider)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _MovieReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MovieReducer */ "./src/context/movie/MovieReducer.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var initialState = {
+  seatsSelected: [],
+  movieSelected: {},
+  seats: []
+};
+var MovieContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(initialState);
+var MovieProvider = function MovieProvider(_ref) {
+  var children = _ref.children;
+
+  var _useReducer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(_MovieReducer__WEBPACK_IMPORTED_MODULE_1__.MovieReducer, initialState),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      state = _useReducer2[0],
+      dispatch = _useReducer2[1];
+
+  var selectSeat = function selectSeat(seat) {
+    dispatch({
+      type: 'SELECT_SEAT',
+      payload: {
+        seat: seat
+      }
+    });
+  };
+
+  var unselectSeat = function unselectSeat(seat) {
+    dispatch({
+      type: 'UNSELECT_SEAT',
+      payload: {
+        seat: seat
+      }
+    });
+  };
+
+  var updateMovieDateTime = function updateMovieDateTime(movieDate, movieTime, seats) {
+    dispatch({
+      type: 'UPDATE_DATETIME',
+      payload: {
+        movieDate: movieDate,
+        movieTime: movieTime,
+        seats: seats
+      }
+    });
+  };
+
+  var updateMovieSelected = function updateMovieSelected(movie) {
+    dispatch({
+      type: 'SELECT_MOVIE',
+      payload: {
+        movie: movie
+      }
+    });
+  };
+
+  var updateSeats = function updateSeats(identifier, number) {
+    dispatch({
+      type: 'UPDATE_SEATS',
+      payload: {
+        identifier: identifier,
+        number: number
+      }
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(MovieContext.Provider, {
+    value: {
+      seatsSelected: state.seatsSelected,
+      movieId: state.movieSelected.id,
+      seats: state.seats,
+      selectSeat: selectSeat,
+      unselectSeat: unselectSeat,
+      updateMovieDateTime: updateMovieDateTime,
+      updateMovieSelected: updateMovieSelected,
+      updateSeats: updateSeats
+    }
+  }, children);
+};
+
+/***/ }),
+
+/***/ "./src/context/movie/MovieReducer.js":
+/*!*******************************************!*\
+  !*** ./src/context/movie/MovieReducer.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MovieReducer": () => (/* binding */ MovieReducer)
+/* harmony export */ });
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var MovieReducer = function MovieReducer(state, action) {
+  var _action$payload, _action$payload$movie, _action$payload2, _action$payload2$movi, _action$payload3, _action$payload4, _action$payload5;
+
+  switch (action.type) {
+    case 'SELECT_MOVIE':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        movieSelected: _objectSpread(_objectSpread({}, state.movieSelected), {}, {
+          id: (_action$payload = action.payload) === null || _action$payload === void 0 ? void 0 : (_action$payload$movie = _action$payload.movie) === null || _action$payload$movie === void 0 ? void 0 : _action$payload$movie._id,
+          title: (_action$payload2 = action.payload) === null || _action$payload2 === void 0 ? void 0 : (_action$payload2$movi = _action$payload2.movie) === null || _action$payload2$movi === void 0 ? void 0 : _action$payload2$movi.title
+        })
+      });
+
+    case 'UPDATE_DATETIME':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        movieSelected: _objectSpread(_objectSpread({}, state.movieSelected), {}, {
+          showDate: (_action$payload3 = action.payload) === null || _action$payload3 === void 0 ? void 0 : _action$payload3.movieDate,
+          showTime: (_action$payload4 = action.payload) === null || _action$payload4 === void 0 ? void 0 : _action$payload4.movieTime
+        }),
+        seats: (_action$payload5 = action.payload) === null || _action$payload5 === void 0 ? void 0 : _action$payload5.seats
+      });
+
+    case 'SELECT_SEAT':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        seatsSelected: state.seatsSelected.includes(action.payload.seat) ? state.seatsSelected.filter(function (item) {
+          return item !== action.payload.seat;
+        }) : [].concat(_toConsumableArray(state.seatsSelected), [action.payload.seat])
+      });
+
+    case 'UPDATE_SEATS':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        seats: state.seats.map(function (line) {
+          return _objectSpread(_objectSpread({}, line), {}, {
+            row: line.row.map(function (item, index) {
+              if (line.identifier === action.payload.identifier && index + 1 === action.payload.number && item !== 1) {
+                return item === 0 ? -1 : 0;
+              } else {
+                return item;
+              }
+            })
+          });
+        })
+      });
+
+    default:
+      return state;
+  }
 };
 
 /***/ }),
@@ -23549,13 +23759,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_player_lazy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-player/lazy */ "./node_modules/react-player/lazy/index.js");
 /* harmony import */ var _components_Rating_Rating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Rating/Rating */ "./src/components/Rating/Rating.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
-/* harmony import */ var _MovieDetail_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MovieDetail.style */ "./src/views/MovieDetail/MovieDetail.style.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
+/* harmony import */ var _MovieDetail_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MovieDetail.style */ "./src/views/MovieDetail/MovieDetail.style.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -23578,8 +23789,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var MovieDetail = function MovieDetail() {
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_4__.MovieContext),
+      updateMovieSelected = _useContext.updateMovieSelected;
+
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -23588,8 +23803,9 @@ var MovieDetail = function MovieDetail() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var movieId = localStorage.getItem('movieIdSelected');
-    axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_5__.api.movie, "/").concat(movieId)).then(function (_ref) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movieId)).then(function (_ref) {
       var res = _ref.data;
+      updateMovieSelected(res.data);
       setMovie(res.data);
     })["catch"](function (err) {
       return console.log(err);
@@ -23605,14 +23821,14 @@ var MovieDetail = function MovieDetail() {
     history.push('/showtime');
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MovieDetail_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, movie && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MovieDetail_style__WEBPACK_IMPORTED_MODULE_5__.Container, null, movie && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "detail__header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "detail__header__back",
     onClick: handleGoBack
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_7__.FaAngleLeft, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, movie.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_8__.FaAngleLeft, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, movie.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cta-desk-tickets"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_9__["default"], {
     variant: "danger",
     size: "lg",
     onClick: handleBookSeats
@@ -23686,9 +23902,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/ButtonGroup/ButtonGroup */ "./src/components/ButtonGroup/ButtonGroup.js");
-/* harmony import */ var _components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Cinema/Cinema */ "./src/components/Cinema/Cinema.js");
-/* harmony import */ var _Showtime_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Showtime.style */ "./src/views/Showtime/Showtime.style.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ButtonGroup/ButtonGroup */ "./src/components/ButtonGroup/ButtonGroup.js");
+/* harmony import */ var _components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Cinema/Cinema */ "./src/components/Cinema/Cinema.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
+/* harmony import */ var _Showtime_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Showtime.style */ "./src/views/Showtime/Showtime.style.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -23700,6 +23920,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -23727,10 +23950,10 @@ var dates = [{
   value3: '2021-11-21'
 }];
 var times = [{
-  value1: '4:00',
+  value1: '4:30',
   value2: 'PM'
 }, {
-  value1: '6:30',
+  value1: '7:00',
   value2: 'PM'
 }, {
   value1: '9:00',
@@ -23738,6 +23961,10 @@ var times = [{
 }];
 
 var Showtime = function Showtime() {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_4__.MovieContext),
+      updateMovieDateTime = _useContext.updateMovieDateTime,
+      movieId = _useContext.movieId;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
       dateSelected = _useState2[0],
@@ -23748,6 +23975,11 @@ var Showtime = function Showtime() {
       timeSelected = _useState4[0],
       setTimeSelected = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      seats = _useState6[0],
+      setSeats = _useState6[1];
+
   var handleChangeDate = function handleChangeDate(value) {
     setDateSelected(value);
   };
@@ -23756,20 +23988,33 @@ var Showtime = function Showtime() {
     setTimeSelected(value);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Showtime_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (dateSelected && timeSelected) {
+      var showDate = "".concat(dateSelected === null || dateSelected === void 0 ? void 0 : dateSelected.value3);
+      var showTime = "".concat(timeSelected === null || timeSelected === void 0 ? void 0 : timeSelected.value1, " ").concat(timeSelected === null || timeSelected === void 0 ? void 0 : timeSelected.value2);
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movieId, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
+        var data = _ref.data.data;
+        setSeats(data.allSeats);
+        updateMovieDateTime(showDate, showTime, data.allSeats);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
+  }, [timeSelected, dateSelected]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Showtime_style__WEBPACK_IMPORTED_MODULE_5__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "options-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "When do you want to come?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "When do you want to come?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: dates,
     onChange: handleChangeDate
   })), dateSelected && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "options-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "At what time?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "At what time?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
     data: times,
     onChange: handleChangeTime,
     borderColor: "dodgerblue"
   })), timeSelected && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cinema"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Showtime);
@@ -24571,10 +24816,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme */ "./src/theme/index.js");
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App */ "./src/App.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./theme */ "./src/theme/index.js");
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./App */ "./src/App.js");
 
 
 
@@ -24582,9 +24828,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(styled_components__WEBPACK_IMPORTED_MODULE_5__.ThemeProvider, {
-  theme: _theme__WEBPACK_IMPORTED_MODULE_3__.theme
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_App__WEBPACK_IMPORTED_MODULE_4__["default"], null))), document.getElementById('react-container'));
+
+react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_3__.MovieProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(styled_components__WEBPACK_IMPORTED_MODULE_6__.ThemeProvider, {
+  theme: _theme__WEBPACK_IMPORTED_MODULE_4__.theme
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_App__WEBPACK_IMPORTED_MODULE_5__["default"], null)))), document.getElementById('react-container'));
 })();
 
 /******/ })()

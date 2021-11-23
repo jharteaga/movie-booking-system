@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import ReactPlayer from 'react-player/lazy'
 import Rating from '../../components/Rating/Rating'
+import { MovieContext } from '../../context/movie/MovieContext'
 import { useHistory } from 'react-router-dom'
 import { FaAngleLeft } from 'react-icons/fa'
 import { Container } from './MovieDetail.style'
 import { api } from '../../config'
 
 const MovieDetail = () => {
+  const { updateMovieSelected } = useContext(MovieContext)
   const history = useHistory()
   const [movie, setMovie] = useState()
 
@@ -17,6 +19,7 @@ const MovieDetail = () => {
     axios
       .get(`${api.movie}/${movieId}`)
       .then(({ data: res }) => {
+        updateMovieSelected(res.data)
         setMovie(res.data)
       })
       .catch((err) => console.log(err))

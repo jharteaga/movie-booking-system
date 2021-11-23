@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import axios from 'axios'
 import DateButtonGroup from '../../components/ButtonGroup/ButtonGroup'
 import Cinema from '../../components/Cinema/Cinema'
+import { MovieContext } from '../../context/movie/MovieContext'
 import { Container } from './Showtime.style'
+import { api } from '../../config'
 
 const dates = [
   {
@@ -33,11 +36,11 @@ const dates = [
 
 const times = [
   {
-    value1: '4:00',
+    value1: '4:30',
     value2: 'PM'
   },
   {
-    value1: '6:30',
+    value1: '7:00',
     value2: 'PM'
   },
   {
@@ -47,8 +50,10 @@ const times = [
 ]
 
 const Showtime = () => {
+  const { updateMovieDateTime, movieId } = useContext(MovieContext)
   const [dateSelected, setDateSelected] = useState()
   const [timeSelected, setTimeSelected] = useState()
+  const [seats, setSeats] = useState([])
 
   const handleChangeDate = (value) => {
     setDateSelected(value)
@@ -57,6 +62,23 @@ const Showtime = () => {
   const handleChangeTime = (value) => {
     setTimeSelected(value)
   }
+
+  useEffect(() => {
+    if (dateSelected && timeSelected) {
+      const showDate = `${dateSelected?.value3}`
+      const showTime = `${timeSelected?.value1} ${timeSelected?.value2}`
+
+      axios
+        .get(
+          `${api.movie}/${movieId}/seats?showDate=${showDate}&showTime=${showTime}`
+        )
+        .then(({ data: { data } }) => {
+          setSeats(data.allSeats)
+          updateMovieDateTime(showDate, showTime, data.allSeats)
+        })
+        .catch((err) => console.log(err))
+    }
+  }, [timeSelected, dateSelected])
 
   return (
     <Container>

@@ -5,7 +5,12 @@ const {
   getMovie,
   postMovie
 } = require('../controllers/movieControllers')
+const seatsRouter = require('./seats')
 
-router.get('/', getMovies).get('/:id', getMovie).post('/', postMovie)
+router
+  .get('/', getMovies)
+  .get('/:movieId', getMovie)
+  .use('/:movieId/seats', seatsRouter)
+  .post('/', postMovie)
 
 module.exports = router
