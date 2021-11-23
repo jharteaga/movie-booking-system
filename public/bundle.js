@@ -23680,6 +23680,58 @@ var theme = {
 
 /***/ }),
 
+/***/ "./src/utils/datetime.js":
+/*!*******************************!*\
+  !*** ./src/utils/datetime.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "times": () => (/* binding */ times),
+/* harmony export */   "getDates": () => (/* binding */ getDates)
+/* harmony export */ });
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var times = [{
+  value1: '4:30',
+  value2: 'PM'
+}, {
+  value1: '7:00',
+  value2: 'PM'
+}, {
+  value1: '9:00',
+  value2: 'PM'
+}];
+var getDates = function getDates() {
+  var dates = [];
+  var dateObjects = [];
+
+  for (var i = 0; i < 5; i++) {
+    if (i === 0) {
+      var currentDate = new Date();
+      dateObjects.push(currentDate);
+      dates.push({
+        value1: currentDate.getDate().toString(),
+        value2: months[currentDate.getMonth()],
+        value3: "".concat(currentDate.getFullYear(), "-").concat(currentDate.getMonth() + 1, "-").concat(currentDate.getDate())
+      });
+    } else {
+      var newDate = new Date(dateObjects[i - 1].getTime() + 24 * 60 * 60 * 1000);
+      dateObjects.push(newDate);
+      dates.push({
+        value1: newDate.getDate().toString(),
+        value2: months[newDate.getMonth()],
+        value3: "".concat(newDate.getFullYear(), "-").concat(newDate.getMonth() + 1, "-").concat(newDate.getDate())
+      });
+    }
+  }
+
+  return dates;
+};
+
+/***/ }),
+
 /***/ "./src/views/Home/Home.js":
 /*!********************************!*\
   !*** ./src/views/Home/Home.js ***!
@@ -23935,9 +23987,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ButtonGroup/ButtonGroup */ "./src/components/ButtonGroup/ButtonGroup.js");
 /* harmony import */ var _components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Cinema/Cinema */ "./src/components/Cinema/Cinema.js");
-/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
-/* harmony import */ var _Showtime_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Showtime.style */ "./src/views/Showtime/Showtime.style.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
+/* harmony import */ var _utils_datetime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/datetime */ "./src/utils/datetime.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
+/* harmony import */ var _Showtime_style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Showtime.style */ "./src/views/Showtime/Showtime.style.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -23957,40 +24010,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var dates = [{
-  value1: '17',
-  value2: 'Nov',
-  value3: '2021-11-17'
-}, {
-  value1: '18',
-  value2: 'Nov',
-  value3: '2021-11-18'
-}, {
-  value1: '19',
-  value2: 'Nov',
-  value3: '2021-11-19'
-}, {
-  value1: '20',
-  value2: 'Nov',
-  value3: '2021-11-20'
-}, {
-  value1: '21',
-  value2: 'Nov',
-  value3: '2021-11-21'
-}];
-var times = [{
-  value1: '4:30',
-  value2: 'PM'
-}, {
-  value1: '7:00',
-  value2: 'PM'
-}, {
-  value1: '9:00',
-  value2: 'PM'
-}];
+
 
 var Showtime = function Showtime() {
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_4__.MovieContext),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_5__.MovieContext),
       updateMovieDateTime = _useContext.updateMovieDateTime,
       movie = _useContext.movie,
       seatsSelected = _useContext.seatsSelected;
@@ -24017,23 +24040,23 @@ var Showtime = function Showtime() {
     if (dateSelected && timeSelected) {
       var showDate = "".concat(dateSelected === null || dateSelected === void 0 ? void 0 : dateSelected.value3);
       var showTime = "".concat(timeSelected === null || timeSelected === void 0 ? void 0 : timeSelected.value1, " ").concat(timeSelected === null || timeSelected === void 0 ? void 0 : timeSelected.value2);
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_7__.api.movie, "/").concat(movie.id, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
         var data = _ref.data.data;
-        data !== null && data !== void 0 && data.allSeats ? updateMovieDateTime(showDate, showTime, data === null || data === void 0 ? void 0 : data.allSeats) : updateMovieDateTime(showDate, showTime, _config__WEBPACK_IMPORTED_MODULE_6__.initSeats);
+        data !== null && data !== void 0 && data.allSeats ? updateMovieDateTime(showDate, showTime, data === null || data === void 0 ? void 0 : data.allSeats) : updateMovieDateTime(showDate, showTime, _config__WEBPACK_IMPORTED_MODULE_7__.initSeats);
       })["catch"](function (err) {
         return console.log(err);
       });
     }
   }, [timeSelected, dateSelected]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Showtime_style__WEBPACK_IMPORTED_MODULE_5__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Showtime_style__WEBPACK_IMPORTED_MODULE_6__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "options-container date-picker"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "When do you want to come?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    data: dates,
+    data: (0,_utils_datetime__WEBPACK_IMPORTED_MODULE_4__.getDates)(),
     onChange: handleChangeDate
   })), dateSelected && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "options-container time-picker"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "At what time?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_ButtonGroup_ButtonGroup__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    data: times,
+    data: _utils_datetime__WEBPACK_IMPORTED_MODULE_4__.times,
     onChange: handleChangeTime,
     borderColor: "dodgerblue"
   })), timeSelected && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

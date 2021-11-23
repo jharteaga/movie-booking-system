@@ -2,52 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import DateButtonGroup from '../../components/ButtonGroup/ButtonGroup'
 import Cinema from '../../components/Cinema/Cinema'
+import { getDates, times } from '../../utils/datetime'
 import { MovieContext } from '../../context/movie/MovieContext'
 import { Container } from './Showtime.style'
 import { api, initSeats } from '../../config'
-
-const dates = [
-  {
-    value1: '17',
-    value2: 'Nov',
-    value3: '2021-11-17'
-  },
-  {
-    value1: '18',
-    value2: 'Nov',
-    value3: '2021-11-18'
-  },
-  {
-    value1: '19',
-    value2: 'Nov',
-    value3: '2021-11-19'
-  },
-  {
-    value1: '20',
-    value2: 'Nov',
-    value3: '2021-11-20'
-  },
-  {
-    value1: '21',
-    value2: 'Nov',
-    value3: '2021-11-21'
-  }
-]
-
-const times = [
-  {
-    value1: '4:30',
-    value2: 'PM'
-  },
-  {
-    value1: '7:00',
-    value2: 'PM'
-  },
-  {
-    value1: '9:00',
-    value2: 'PM'
-  }
-]
 
 const Showtime = () => {
   const { updateMovieDateTime, movie, seatsSelected } = useContext(MovieContext)
@@ -84,7 +42,7 @@ const Showtime = () => {
     <Container>
       <div className="options-container date-picker">
         <p>When do you want to come?</p>
-        <DateButtonGroup data={dates} onChange={handleChangeDate} />
+        <DateButtonGroup data={getDates()} onChange={handleChangeDate} />
       </div>
       {dateSelected && (
         <div className="options-container time-picker">
