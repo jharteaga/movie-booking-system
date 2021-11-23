@@ -21,7 +21,7 @@ export const Container = styled.div`
     margin: 0 auto;
     max-width: 95%;
     width: 100%;
-    margin-bottom: 4.5rem;
+    margin-bottom: 5rem;
   }
 
   .order-container {
@@ -29,7 +29,7 @@ export const Container = styled.div`
   }
 
   .mobile-order-container {
-    background-color: #fff;
+    background-color: #eee;
     max-width: 100%;
     width: 100%;
     color: #000;
@@ -44,18 +44,24 @@ export const Container = styled.div`
     border-radius: 5px;
 
     img {
-      width: 70px;
+      width: 75px;
       height: 90px;
       border-radius: 8px;
     }
 
     p {
       margin-bottom: 0;
-      font-size: 1.3rem;
+      font-size: 1rem;
       font-weight: 600;
+
+      &:nth-of-type(1) {
+        font-size: 0.9rem;
+        /* color: dodgerblue; */
+      }
 
       span {
         font-size: 0.9rem;
+        font-weight: 400;
       }
     }
 
@@ -91,19 +97,21 @@ export const Container = styled.div`
 
     .cinema {
       grid-area: cinema;
+      margin-bottom: 1rem;
     }
 
     .order-container {
       margin-top: 2rem;
       grid-area: order;
       display: block;
-      background-color: #fff;
+      background-color: #eee;
       max-width: 350px;
       width: 100%;
       color: #000;
-      padding: 1rem;
+      padding: 1rem 1.2rem;
       border-radius: 10px;
-      height: 560px;
+      height: 610px;
+      /* height: 100%; */
 
       img {
         max-width: 100%;
@@ -114,7 +122,7 @@ export const Container = styled.div`
       }
 
       h2 {
-        margin-top: 1rem;
+        margin: 1rem 0;
         font-weight: 600;
       }
 
@@ -125,15 +133,23 @@ export const Container = styled.div`
 
         p {
           margin-bottom: 0;
-          font-size: 1.3rem;
+          font-size: 1.2rem;
           font-weight: 600;
+
+          &:nth-of-type(1) {
+            font-size: 0.9rem;
+            /* color: dodgerblue; */
+          }
 
           span {
             font-size: 0.9rem;
+            color: #000;
+            font-weight: 400;
           }
         }
 
         button {
+          align-self: flex-end;
           border-width: 0;
           padding: 1rem;
           border-radius: 10px;

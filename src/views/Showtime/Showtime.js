@@ -64,6 +64,12 @@ const Showtime = () => {
             <div className="tickets">
               <div className="desktop-info">
                 <p>
+                  <span>Seats:</span>{' '}
+                  {seatsSelected.reduce((accum, current, index) => {
+                    return index === 0 ? `${current}` : `${accum}, ${current}`
+                  }, 'None')}
+                </p>
+                <p>
                   <span>Quantity:</span> {seatsSelected.length}
                 </p>
                 <p>
@@ -79,6 +85,12 @@ const Showtime = () => {
           <div className="mobile-order-container">
             <img src={movie.imageUrl} alt="" />
             <div className="order-info">
+              <p>
+                <span>Seats:</span>{' '}
+                {seatsSelected.reduce((accum, current, index) => {
+                  return index === 0 ? `${current}` : `${accum}, ${current}`
+                }, 'None')}
+              </p>
               <p>
                 <span>Quantity:</span> {seatsSelected.length}
               </p>
