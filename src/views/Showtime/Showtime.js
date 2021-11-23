@@ -4,7 +4,7 @@ import DateButtonGroup from '../../components/ButtonGroup/ButtonGroup'
 import Cinema from '../../components/Cinema/Cinema'
 import { MovieContext } from '../../context/movie/MovieContext'
 import { Container } from './Showtime.style'
-import { api } from '../../config'
+import { api, initSeats } from '../../config'
 
 const dates = [
   {
@@ -53,7 +53,6 @@ const Showtime = () => {
   const { updateMovieDateTime, movie, seatsSelected } = useContext(MovieContext)
   const [dateSelected, setDateSelected] = useState()
   const [timeSelected, setTimeSelected] = useState()
-  const [seats, setSeats] = useState([])
 
   const handleChangeDate = (value) => {
     setDateSelected(value)
@@ -73,8 +72,9 @@ const Showtime = () => {
           `${api.movie}/${movie.id}/seats?showDate=${showDate}&showTime=${showTime}`
         )
         .then(({ data: { data } }) => {
-          setSeats(data.allSeats)
-          updateMovieDateTime(showDate, showTime, data.allSeats)
+          data?.allSeats
+            ? updateMovieDateTime(showDate, showTime, data?.allSeats)
+            : updateMovieDateTime(showDate, showTime, initSeats)
         })
         .catch((err) => console.log(err))
     }
@@ -109,7 +109,7 @@ const Showtime = () => {
                   <span>Quantity:</span> {seatsSelected.length}
                 </p>
                 <p>
-                  <span>Total:</span> $0.00
+                  <span>Total:</span> ${(seatsSelected.length * 7.5).toFixed(2)}
                 </p>
               </div>
               <button className="bg-danger">Purchase</button>
@@ -119,12 +119,13 @@ const Showtime = () => {
             <Cinema />
           </div>
           <div className="mobile-order-container">
+            <img src={movie.imageUrl} alt="" />
             <div className="order-info">
               <p>
                 <span>Quantity:</span> {seatsSelected.length}
               </p>
               <p>
-                <span>Total:</span> $0.00
+                <span>Total:</span> ${(seatsSelected.length * 7.5).toFixed(2)}
               </p>
             </div>
             <div className="purchase-action">

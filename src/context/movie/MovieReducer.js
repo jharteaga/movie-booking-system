@@ -19,7 +19,8 @@ export const MovieReducer = (state, action) => {
           showDate: action.payload?.movieDate,
           showTime: action.payload?.movieTime
         },
-        seats: action.payload?.seats
+        seats: action.payload?.seats ? action.payload?.seats : [],
+        seatsSelected: []
       }
 
     case 'SELECT_SEAT':

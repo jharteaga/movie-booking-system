@@ -101,14 +101,15 @@ export const Container = styled.div`
     bottom: 3rem;
 
     button {
-      width: 65px;
-      height: 65px;
+      width: 70px;
+      height: 70px;
       color: #ffffff;
       font-size: 1.2rem;
       font-weight: 500;
-      border-radius: 50%;
+      border-radius: 10%;
       border: none;
       padding-top: -10px;
+      border: 2px solid white;
     }
   }
 

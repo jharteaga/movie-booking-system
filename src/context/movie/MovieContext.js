@@ -1,5 +1,7 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useEffect, useReducer } from 'react'
+import axios from 'axios'
 import { MovieReducer } from './MovieReducer'
+import { api } from '../../config'
 
 const initialState = {
   seatsSelected: [],
@@ -11,6 +13,10 @@ export const MovieContext = createContext(initialState)
 
 export const MovieProvider = ({ children }) => {
   const [state, dispatch] = useReducer(MovieReducer, initialState)
+
+  useEffect(() => {
+    refreshState()
+  }, [])
 
   const updateMovieSelected = (movie) => {
     dispatch({ type: 'SELECT_MOVIE', payload: { movie } })
@@ -29,6 +35,18 @@ export const MovieProvider = ({ children }) => {
 
   const updateSeats = (identifier, number) => {
     dispatch({ type: 'UPDATE_SEATS', payload: { identifier, number } })
+  }
+
+  const refreshState = () => {
+    const movieId = localStorage.getItem('movieIdSelected')
+    if (movieId) {
+      axios
+        .get(`${api.movie}/${movieId}`)
+        .then(({ data: res }) => {
+          dispatch({ type: 'SELECT_MOVIE', payload: { movie: res.data } })
+        })
+        .catch((err) => console.log(err))
+    }
   }
 
   return (

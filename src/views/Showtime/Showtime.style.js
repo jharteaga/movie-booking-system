@@ -21,7 +21,7 @@ export const Container = styled.div`
     margin: 0 auto;
     max-width: 95%;
     width: 100%;
-    margin-bottom: 4rem;
+    margin-bottom: 4.5rem;
   }
 
   .order-container {
@@ -43,12 +43,18 @@ export const Container = styled.div`
     right: 0;
     border-radius: 5px;
 
+    img {
+      width: 70px;
+      height: 90px;
+      border-radius: 8px;
+    }
+
     p {
       margin-bottom: 0;
       font-size: 1.3rem;
+      font-weight: 600;
 
       span {
-        font-weight: 600;
         font-size: 0.9rem;
       }
     }
@@ -97,7 +103,7 @@ export const Container = styled.div`
       color: #000;
       padding: 1rem;
       border-radius: 10px;
-      height: 550px;
+      height: 560px;
 
       img {
         max-width: 100%;

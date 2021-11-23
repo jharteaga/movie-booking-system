@@ -22794,30 +22794,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // const seats = [
-//   { identifier: 'A', row: [0, 0, 0, 0, 0, 0, 0, 0] },
-//   { identifier: 'B', row: [0, 0, 0, 0, 0, 0, 0, 0] },
-//   { identifier: 'C', row: [0, 0, 0, 0, 0, 0, 0, 0] },
-//   { identifier: 'D', row: [0, 0, 0, 0, 0, 0, 0, 0] },
-//   { identifier: 'E', row: [0, 0, 0, 0, 0, 0, 0, 0] },
-//   { identifier: 'F', row: [0, 0, 0, 0, 0, 0, 0, 0] }
-// ]
+
 
 var Cinema = function Cinema() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_3__.MovieContext),
       seats = _useContext.seats;
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, [seats]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Cinema_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, seats && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsLegend_SeatsLegend__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "screen"
   }, "Screen"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "seats__container"
   }, seats.map(function (_ref) {
     var identifier = _ref.identifier,
-        row = _ref.row,
-        _id = _ref._id;
+        row = _ref.row;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsRow_SeatsRow__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      key: _id,
+      key: identifier,
       row: row,
       identifier: identifier
     });
@@ -23358,7 +23349,6 @@ var SeatsRow = function SeatsRow(_ref) {
       updateSeats = _useContext.updateSeats;
 
   var handleSelectSeat = function handleSelectSeat(identifier, number) {
-    console.log(identifier, number);
     selectSeat("".concat(identifier).concat(number));
     updateSeats(identifier, number);
   };
@@ -23435,13 +23425,33 @@ var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_t
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "api": () => (/* binding */ api)
+/* harmony export */   "api": () => (/* binding */ api),
+/* harmony export */   "initSeats": () => (/* binding */ initSeats)
 /* harmony export */ });
 var baseUri = '/api/v1';
 var api = {
   movie: "".concat(baseUri, "/movies"),
   user: "".concat(baseUri, "/users")
 };
+var initSeats = [{
+  identifier: 'A',
+  row: [0, 0, 0, 0, 0, 0, 0, 0]
+}, {
+  identifier: 'B',
+  row: [0, 0, 0, 0, 0, 0, 0, 0]
+}, {
+  identifier: 'C',
+  row: [0, 0, 0, 0, 0, 0, 0, 0]
+}, {
+  identifier: 'D',
+  row: [0, 0, 0, 0, 0, 0, 0, 0]
+}, {
+  identifier: 'E',
+  row: [0, 0, 0, 0, 0, 0, 0, 0]
+}, {
+  identifier: 'F',
+  row: [0, 0, 0, 0, 0, 0, 0, 0]
+}];
 
 /***/ }),
 
@@ -23458,7 +23468,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MovieProvider": () => (/* binding */ MovieProvider)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _MovieReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MovieReducer */ "./src/context/movie/MovieReducer.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _MovieReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MovieReducer */ "./src/context/movie/MovieReducer.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -23473,6 +23486,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var initialState = {
   seatsSelected: [],
   movieSelected: {},
@@ -23482,10 +23497,14 @@ var MovieContext = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.createCont
 var MovieProvider = function MovieProvider(_ref) {
   var children = _ref.children;
 
-  var _useReducer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(_MovieReducer__WEBPACK_IMPORTED_MODULE_1__.MovieReducer, initialState),
+  var _useReducer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(_MovieReducer__WEBPACK_IMPORTED_MODULE_2__.MovieReducer, initialState),
       _useReducer2 = _slicedToArray(_useReducer, 2),
       state = _useReducer2[0],
       dispatch = _useReducer2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    refreshState();
+  }, []);
 
   var updateMovieSelected = function updateMovieSelected(movie) {
     dispatch({
@@ -23524,6 +23543,24 @@ var MovieProvider = function MovieProvider(_ref) {
         number: number
       }
     });
+  };
+
+  var refreshState = function refreshState() {
+    var movieId = localStorage.getItem('movieIdSelected');
+
+    if (movieId) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_3__.api.movie, "/").concat(movieId)).then(function (_ref2) {
+        var res = _ref2.data;
+        dispatch({
+          type: 'SELECT_MOVIE',
+          payload: {
+            movie: res.data
+          }
+        });
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(MovieContext.Provider, {
@@ -23571,7 +23608,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var MovieReducer = function MovieReducer(state, action) {
-  var _action$payload, _action$payload$movie, _action$payload2, _action$payload2$movi, _action$payload3, _action$payload3$movi, _action$payload4, _action$payload5, _action$payload6;
+  var _action$payload, _action$payload$movie, _action$payload2, _action$payload2$movi, _action$payload3, _action$payload3$movi, _action$payload4, _action$payload5, _action$payload6, _action$payload7;
 
   switch (action.type) {
     case 'SELECT_MOVIE':
@@ -23589,7 +23626,8 @@ var MovieReducer = function MovieReducer(state, action) {
           showDate: (_action$payload4 = action.payload) === null || _action$payload4 === void 0 ? void 0 : _action$payload4.movieDate,
           showTime: (_action$payload5 = action.payload) === null || _action$payload5 === void 0 ? void 0 : _action$payload5.movieTime
         }),
-        seats: (_action$payload6 = action.payload) === null || _action$payload6 === void 0 ? void 0 : _action$payload6.seats
+        seats: (_action$payload6 = action.payload) !== null && _action$payload6 !== void 0 && _action$payload6.seats ? (_action$payload7 = action.payload) === null || _action$payload7 === void 0 ? void 0 : _action$payload7.seats : [],
+        seatsSelected: []
       });
 
     case 'SELECT_SEAT':
@@ -23877,7 +23915,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin-top: 1.5rem;\n  margin-bottom: 5rem;\n  display: flex;\n  flex-direction: column;\n  align-items: start;\n\n  .detail__header {\n    display: grid;\n    grid-template-columns: 70px 1fr;\n    column-gap: 1rem;\n\n    &__back {\n      font-size: 1.8rem;\n      margin-left: 1rem;\n      padding: 0;\n      align-self: center;\n      justify-self: center;\n      background-color: rgba(255, 255, 255, 0.2);\n      padding: 0 8px 3px 6px;\n      border-radius: 10px;\n      cursor: pointer;\n      border: transparent;\n    }\n\n    & h2 {\n      justify-self: start;\n      align-self: center;\n      font-size: 1.4rem;\n      margin-bottom: 0;\n      font-weight: 600;\n    }\n  }\n\n  .detail__image {\n    margin: 0 auto;\n    max-width: 100%;\n    width: 100%;\n    margin-top: 1.5rem;\n    text-align: center;\n\n    & img {\n      object-fit: contain;\n      width: 100%;\n      max-width: 90%;\n      height: 500px;\n      border-radius: 10px;\n    }\n  }\n\n  .detail__info {\n    width: 100%;\n    max-width: 90%;\n    margin: 0 auto;\n    margin-top: 1rem;\n    margin-bottom: 2rem;\n\n    p {\n      font-size: 0.9rem;\n    }\n\n    .releaseDate span,\n    .genres span,\n    .overview p:first-child,\n    .rating p {\n      font-size: 1rem;\n      font-weight: 500;\n    }\n\n    .overview {\n      & p:first-child {\n        margin-bottom: 0;\n      }\n    }\n\n    .rating p {\n      margin-bottom: 0.3rem;\n    }\n  }\n\n  .trailer {\n    width: 100%;\n    max-width: 90%;\n    margin: 0 auto;\n\n    p {\n      font-size: 1rem;\n      font-weight: 500;\n    }\n  }\n\n  .cta-desk-tickets {\n    display: none;\n  }\n\n  .cta-mob-tickets {\n    position: fixed;\n    right: 2rem;\n    bottom: 3rem;\n\n    button {\n      width: 65px;\n      height: 65px;\n      color: #ffffff;\n      font-size: 1.2rem;\n      font-weight: 500;\n      border-radius: 50%;\n      border: none;\n      padding-top: -10px;\n    }\n  }\n\n  @media (min-width: 700px) {\n    max-width: 1000px;\n    width: 95%;\n    margin: 0 auto;\n    margin-top: 1.5rem;\n    margin-bottom: 5rem;\n    display: grid;\n    grid-template-areas:\n      'header header cta'\n      'poster info info'\n      'trailer trailer trailer';\n\n    button {\n      border-color: transparent;\n      border-width: 0;\n    }\n\n    .detail__header {\n      grid-area: header;\n      display: flex;\n      justify-content: start;\n      max-width: 95%;\n      width: 100%;\n\n      &__back {\n        left: 100px;\n      }\n\n      & h2 {\n        font-size: 1.7rem;\n      }\n    }\n\n    .detail__image {\n      grid-area: poster;\n    }\n\n    .detail__info {\n      grid-area: info;\n      align-self: center;\n\n      p {\n        font-size: 1rem;\n      }\n    }\n\n    .trailer {\n      grid-area: trailer;\n      padding-left: 1rem;\n      font-size: 1rem;\n      margin: 0;\n    }\n\n    .cta-desk-tickets {\n      grid-area: cta;\n      display: block;\n      border: none;\n    }\n\n    .cta-mob-tickets {\n      display: none;\n    }\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin-top: 1.5rem;\n  margin-bottom: 5rem;\n  display: flex;\n  flex-direction: column;\n  align-items: start;\n\n  .detail__header {\n    display: grid;\n    grid-template-columns: 70px 1fr;\n    column-gap: 1rem;\n\n    &__back {\n      font-size: 1.8rem;\n      margin-left: 1rem;\n      padding: 0;\n      align-self: center;\n      justify-self: center;\n      background-color: rgba(255, 255, 255, 0.2);\n      padding: 0 8px 3px 6px;\n      border-radius: 10px;\n      cursor: pointer;\n      border: transparent;\n    }\n\n    & h2 {\n      justify-self: start;\n      align-self: center;\n      font-size: 1.4rem;\n      margin-bottom: 0;\n      font-weight: 600;\n    }\n  }\n\n  .detail__image {\n    margin: 0 auto;\n    max-width: 100%;\n    width: 100%;\n    margin-top: 1.5rem;\n    text-align: center;\n\n    & img {\n      object-fit: contain;\n      width: 100%;\n      max-width: 90%;\n      height: 500px;\n      border-radius: 10px;\n    }\n  }\n\n  .detail__info {\n    width: 100%;\n    max-width: 90%;\n    margin: 0 auto;\n    margin-top: 1rem;\n    margin-bottom: 2rem;\n\n    p {\n      font-size: 0.9rem;\n    }\n\n    .releaseDate span,\n    .genres span,\n    .overview p:first-child,\n    .rating p {\n      font-size: 1rem;\n      font-weight: 500;\n    }\n\n    .overview {\n      & p:first-child {\n        margin-bottom: 0;\n      }\n    }\n\n    .rating p {\n      margin-bottom: 0.3rem;\n    }\n  }\n\n  .trailer {\n    width: 100%;\n    max-width: 90%;\n    margin: 0 auto;\n\n    p {\n      font-size: 1rem;\n      font-weight: 500;\n    }\n  }\n\n  .cta-desk-tickets {\n    display: none;\n  }\n\n  .cta-mob-tickets {\n    position: fixed;\n    right: 2rem;\n    bottom: 3rem;\n\n    button {\n      width: 70px;\n      height: 70px;\n      color: #ffffff;\n      font-size: 1.2rem;\n      font-weight: 500;\n      border-radius: 10%;\n      border: none;\n      padding-top: -10px;\n      border: 2px solid white;\n    }\n  }\n\n  @media (min-width: 700px) {\n    max-width: 1000px;\n    width: 95%;\n    margin: 0 auto;\n    margin-top: 1.5rem;\n    margin-bottom: 5rem;\n    display: grid;\n    grid-template-areas:\n      'header header cta'\n      'poster info info'\n      'trailer trailer trailer';\n\n    button {\n      border-color: transparent;\n      border-width: 0;\n    }\n\n    .detail__header {\n      grid-area: header;\n      display: flex;\n      justify-content: start;\n      max-width: 95%;\n      width: 100%;\n\n      &__back {\n        left: 100px;\n      }\n\n      & h2 {\n        font-size: 1.7rem;\n      }\n    }\n\n    .detail__image {\n      grid-area: poster;\n    }\n\n    .detail__info {\n      grid-area: info;\n      align-self: center;\n\n      p {\n        font-size: 1rem;\n      }\n    }\n\n    .trailer {\n      grid-area: trailer;\n      padding-left: 1rem;\n      font-size: 1rem;\n      margin: 0;\n    }\n\n    .cta-desk-tickets {\n      grid-area: cta;\n      display: block;\n      border: none;\n    }\n\n    .cta-mob-tickets {\n      display: none;\n    }\n  }\n"])));
 
 /***/ }),
 
@@ -23967,11 +24005,6 @@ var Showtime = function Showtime() {
       timeSelected = _useState4[0],
       setTimeSelected = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      seats = _useState6[0],
-      setSeats = _useState6[1];
-
   var handleChangeDate = function handleChangeDate(value) {
     setDateSelected(value);
   };
@@ -23986,8 +24019,7 @@ var Showtime = function Showtime() {
       var showTime = "".concat(timeSelected === null || timeSelected === void 0 ? void 0 : timeSelected.value1, " ").concat(timeSelected === null || timeSelected === void 0 ? void 0 : timeSelected.value2);
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
         var data = _ref.data.data;
-        setSeats(data.allSeats);
-        updateMovieDateTime(showDate, showTime, data.allSeats);
+        data !== null && data !== void 0 && data.allSeats ? updateMovieDateTime(showDate, showTime, data === null || data === void 0 ? void 0 : data.allSeats) : updateMovieDateTime(showDate, showTime, _config__WEBPACK_IMPORTED_MODULE_6__.initSeats);
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -24015,15 +24047,18 @@ var Showtime = function Showtime() {
     className: "tickets"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "desktop-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $0.00")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", (seatsSelected.length * 7.5).toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "bg-danger"
   }, "Purchase"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cinema"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "mobile-order-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: movie.imageUrl,
+    alt: ""
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "order-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $0.00")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", (seatsSelected.length * 7.5).toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "purchase-action"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "bg-danger"
@@ -24051,7 +24086,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 100%;\n  width: 100%;\n  position: relative;\n\n  h1 {\n    text-align: center;\n  }\n\n  .options-container {\n    margin-top: 2rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    text-align: center;\n  }\n\n  .cinema {\n    margin: 0 auto;\n    max-width: 95%;\n    width: 100%;\n    margin-bottom: 4rem;\n  }\n\n  .order-container {\n    display: none;\n  }\n\n  .mobile-order-container {\n    background-color: #fff;\n    max-width: 100%;\n    width: 100%;\n    color: #000;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 1rem;\n    position: fixed;\n    bottom: 3rem;\n    left: 0;\n    right: 0;\n    border-radius: 5px;\n\n    p {\n      margin-bottom: 0;\n      font-size: 1.3rem;\n\n      span {\n        font-weight: 600;\n        font-size: 0.9rem;\n      }\n    }\n\n    button {\n      border-width: 0;\n      padding: 0.7rem;\n      border-radius: 10px;\n      color: #fff;\n    }\n  }\n\n  @media (min-width: 1000px) {\n    max-width: 1100px;\n    width: 100%;\n    margin: auto;\n    display: grid;\n    grid-template-areas:\n      'datePicker datePicker order'\n      'timePicker timePicker order'\n      'cinema cinema order';\n\n    .mobile-order-container {\n      display: none;\n    }\n\n    .date-picker {\n      grid-area: datePicker;\n    }\n\n    .time-picker {\n      grid-area: timePicker;\n    }\n\n    .cinema {\n      grid-area: cinema;\n    }\n\n    .order-container {\n      margin-top: 2rem;\n      grid-area: order;\n      display: block;\n      background-color: #fff;\n      max-width: 350px;\n      width: 100%;\n      color: #000;\n      padding: 1rem;\n      border-radius: 10px;\n      height: 550px;\n\n      img {\n        max-width: 100%;\n        width: 100%;\n        height: 400px;\n        object-fit: cover;\n        border-radius: 8px;\n      }\n\n      h2 {\n        margin-top: 1rem;\n        font-weight: 600;\n      }\n\n      .tickets {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n\n        p {\n          margin-bottom: 0;\n          font-size: 1.3rem;\n          font-weight: 600;\n\n          span {\n            font-size: 0.9rem;\n          }\n        }\n\n        button {\n          border-width: 0;\n          padding: 1rem;\n          border-radius: 10px;\n          color: #fff;\n        }\n      }\n    }\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 100%;\n  width: 100%;\n  position: relative;\n\n  h1 {\n    text-align: center;\n  }\n\n  .options-container {\n    margin-top: 2rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    text-align: center;\n  }\n\n  .cinema {\n    margin: 0 auto;\n    max-width: 95%;\n    width: 100%;\n    margin-bottom: 4.5rem;\n  }\n\n  .order-container {\n    display: none;\n  }\n\n  .mobile-order-container {\n    background-color: #fff;\n    max-width: 100%;\n    width: 100%;\n    color: #000;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 1rem;\n    position: fixed;\n    bottom: 3rem;\n    left: 0;\n    right: 0;\n    border-radius: 5px;\n\n    img {\n      width: 70px;\n      height: 90px;\n      border-radius: 8px;\n    }\n\n    p {\n      margin-bottom: 0;\n      font-size: 1.3rem;\n      font-weight: 600;\n\n      span {\n        font-size: 0.9rem;\n      }\n    }\n\n    button {\n      border-width: 0;\n      padding: 0.7rem;\n      border-radius: 10px;\n      color: #fff;\n    }\n  }\n\n  @media (min-width: 1000px) {\n    max-width: 1100px;\n    width: 100%;\n    margin: auto;\n    display: grid;\n    grid-template-areas:\n      'datePicker datePicker order'\n      'timePicker timePicker order'\n      'cinema cinema order';\n\n    .mobile-order-container {\n      display: none;\n    }\n\n    .date-picker {\n      grid-area: datePicker;\n    }\n\n    .time-picker {\n      grid-area: timePicker;\n    }\n\n    .cinema {\n      grid-area: cinema;\n    }\n\n    .order-container {\n      margin-top: 2rem;\n      grid-area: order;\n      display: block;\n      background-color: #fff;\n      max-width: 350px;\n      width: 100%;\n      color: #000;\n      padding: 1rem;\n      border-radius: 10px;\n      height: 560px;\n\n      img {\n        max-width: 100%;\n        width: 100%;\n        height: 400px;\n        object-fit: cover;\n        border-radius: 8px;\n      }\n\n      h2 {\n        margin-top: 1rem;\n        font-weight: 600;\n      }\n\n      .tickets {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n\n        p {\n          margin-bottom: 0;\n          font-size: 1.3rem;\n          font-weight: 600;\n\n          span {\n            font-size: 0.9rem;\n          }\n        }\n\n        button {\n          border-width: 0;\n          padding: 1rem;\n          border-radius: 10px;\n          color: #fff;\n        }\n      }\n    }\n  }\n"])));
 
 /***/ }),
 

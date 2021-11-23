@@ -16,7 +16,6 @@ const SeatsRow = ({ row, identifier = 'A' }) => {
   const { selectSeat, updateSeats } = useContext(MovieContext)
 
   const handleSelectSeat = (identifier, number) => {
-    console.log(identifier, number)
     selectSeat(`${identifier}${number}`)
     updateSeats(identifier, number)
   }
