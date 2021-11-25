@@ -27,6 +27,10 @@ const Showtime = () => {
     setTimeSelected(value)
   }
 
+  const handlePurchase = () => {
+    history.push('/payment')
+  }
+
   useEffect(() => {
     if (dateSelected && timeSelected) {
       const showDate = `${dateSelected?.value3}`
@@ -86,7 +90,9 @@ const Showtime = () => {
                   <span>Total:</span> ${(seatsSelected.length * 7.5).toFixed(2)}
                 </p>
               </div>
-              <button className="bg-danger">Purchase</button>
+              <button className="bg-danger" onClick={handlePurchase}>
+                Purchase
+              </button>
             </div>
           </div>
           <div className="cinema">
@@ -109,7 +115,9 @@ const Showtime = () => {
               </p>
             </div>
             <div className="purchase-action">
-              <button className="bg-danger">Purchase</button>
+              <button className="bg-danger" onClick={handlePurchase}>
+                Purchase
+              </button>
             </div>
           </div>
         </>
