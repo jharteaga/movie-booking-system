@@ -30855,14 +30855,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_Header_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Header/Header */ "./src/components/Header/Header.js");
 /* harmony import */ var _components_Footer_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Footer/Footer */ "./src/components/Footer/Footer.js");
 /* harmony import */ var _views_Home_Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/Home/Home */ "./src/views/Home/Home.js");
 /* harmony import */ var _views_MovieDetail_MovieDetail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/MovieDetail/MovieDetail */ "./src/views/MovieDetail/MovieDetail.js");
 /* harmony import */ var _views_Showtime_Showtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Showtime/Showtime */ "./src/views/Showtime/Showtime.js");
 /* harmony import */ var _views_Purchase_Purchase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/Purchase/Purchase */ "./src/views/Purchase/Purchase.js");
-/* harmony import */ var _App_style__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./App.style */ "./src/App.style.js");
+/* harmony import */ var _views_Confirmation_Confirmation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/Confirmation/Confirmation */ "./src/views/Confirmation/Confirmation.js");
+/* harmony import */ var _App_style__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./App.style */ "./src/App.style.js");
+
 
 
 
@@ -30874,16 +30876,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App_style__WEBPACK_IMPORTED_MODULE_7__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App_style__WEBPACK_IMPORTED_MODULE_8__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+    path: "/Confirmation",
+    component: _views_Confirmation_Confirmation__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/payment",
     component: _views_Purchase_Purchase__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/movie-detail",
     component: _views_MovieDetail_MovieDetail__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/showtime",
     component: _views_Showtime_Showtime__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
     path: "/",
     exact: true,
     component: _views_Home_Home__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -31378,7 +31383,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var PaymentForm = function PaymentForm() {
+var PaymentForm = function PaymentForm(_ref) {
+  var onSubmit = _ref.onSubmit;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     cardNumber: '',
     cardHolder: '',
@@ -31397,7 +31404,8 @@ var PaymentForm = function PaymentForm() {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PaymentForm_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Payment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    id: "form"
+    id: "form",
+    onSubmit: onSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
     className: "mb-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -32226,6 +32234,101 @@ var getDates = function getDates() {
 
 /***/ }),
 
+/***/ "./src/views/Confirmation/Confirmation.js":
+/*!************************************************!*\
+  !*** ./src/views/Confirmation/Confirmation.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
+/* harmony import */ var _Confirmation_style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Confirmation.style */ "./src/views/Confirmation/Confirmation.style.js");
+
+
+
+
+
+
+var Confirmation = function Confirmation() {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_1__.MovieContext),
+      movie = _useContext.movie;
+
+  var handleGoHome = function handleGoHome() {
+    localStorage.clear();
+    history.push('/');
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Confirmation_style__WEBPACK_IMPORTED_MODULE_2__.Container, {
+    image: movie.imageUrl
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "confirmation-message"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "check"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_4__.FaCheck, {
+    size: 16,
+    color: 'green'
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Your purchase was successful")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ticket"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ticket__image"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ticket__information"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "ticket__title"
+  }, movie.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ticket__datetime"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, localStorage.getItem('showDate'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Time"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, localStorage.getItem('showTime'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "$20.00"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "ticket__seats"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Seats"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, JSON.parse(localStorage.getItem('seatsSelected')).reduce(function (accum, current, index) {
+    return index === 0 ? "".concat(current) : "".concat(accum, ", ").concat(current);
+  }, ''))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "btn btn-danger",
+    onClick: handleGoHome
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_4__.FaHome, null), "Go back Home"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Confirmation);
+
+/***/ }),
+
+/***/ "./src/views/Confirmation/Confirmation.style.js":
+/*!******************************************************!*\
+  !*** ./src/views/Confirmation/Confirmation.style.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Container": () => (/* binding */ Container)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+var _templateObject;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin: 0 auto;\n  margin-top: 3rem;\n  max-width: 90%;\n  width: 100%;\n\n  .confirmation-message {\n    margin: 0 auto;\n    max-width: 400px;\n    width: 100%;\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    border: 2px solid green;\n    border-radius: 10px;\n    padding: 0.5rem;\n    margin-bottom: 2rem;\n\n    p {\n      margin-bottom: 0;\n    }\n\n    .check {\n      margin-right: 1rem;\n      border: 1px solid #fff;\n      padding: 5px 9px;\n      border-radius: 50%;\n    }\n  }\n\n  .ticket {\n    max-width: 320px;\n    width: 100%;\n    margin: 0 auto;\n    box-shadow: 1px 1px 8px 1px #aaa;\n    border-radius: 8px;\n\n    &__image {\n      width: 320px;\n      height: 300px;\n      background-image: url(", ");\n      background-position: top;\n      border-top-left-radius: 8px;\n      border-top-right-radius: 8px;\n    }\n\n    &__title {\n      font-weight: 600;\n      font-size: 1.2rem;\n    }\n\n    &__information {\n      padding: 1rem;\n      border-bottom-left-radius: 8px;\n      border-bottom-right-radius: 8px;\n    }\n\n    &__datetime {\n      display: flex;\n      justify-content: space-between;\n\n      .group {\n        p {\n          margin-bottom: 0;\n\n          &:nth-of-type(1) {\n            font-weight: 600;\n          }\n        }\n      }\n    }\n\n    &__seats {\n      margin-top: 1rem;\n\n      p {\n        margin-bottom: 0;\n\n        &:nth-of-type(1) {\n          font-weight: 600;\n        }\n      }\n    }\n  }\n\n  .btn {\n    margin-top: 3rem;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 0.5rem;\n    border: none;\n    padding: 1rem;\n  }\n"])), function (props) {
+  return props.image;
+});
+
+/***/ }),
+
 /***/ "./src/views/Home/Home.js":
 /*!********************************!*\
   !*** ./src/views/Home/Home.js ***!
@@ -32477,6 +32580,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PaymentForm/PaymentForm */ "./src/components/PaymentForm/PaymentForm.js");
 /* harmony import */ var _components_Summary_Summary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Summary/Summary */ "./src/components/Summary/Summary.js");
 /* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
@@ -32485,8 +32589,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var Purchase = function Purchase() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useHistory)();
+
+  var handleSubmit = function handleSubmit(data) {
+    history.push('/confirmation');
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    onSubmit: handleSubmit
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Purchase);
@@ -32590,7 +32703,7 @@ var Showtime = function Showtime() {
   };
 
   var handlePurchase = function handlePurchase() {
-    localStorage.setItem('seatsSelected', seatsSelected);
+    localStorage.setItem('seatsSelected', JSON.stringify(seatsSelected));
     history.push('/payment');
   };
 
@@ -32626,7 +32739,7 @@ var Showtime = function Showtime() {
     className: "poster"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: movie.imageUrl,
-    alt: ""
+    alt: "".concat(movie.title, " poster")
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Your tickets"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "tickets"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

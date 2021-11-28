@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Form, Row } from 'react-bootstrap'
 import { Container } from './PaymentForm.style'
 
-const PaymentForm = () => {
+const PaymentForm = ({ onSubmit }) => {
   const [paymentInfo, setPaymentInfo] = useState({
     cardNumber: '',
     cardHolder: '',
@@ -20,7 +20,7 @@ const PaymentForm = () => {
   return (
     <Container>
       <h2>Payment</h2>
-      <Form id="form">
+      <Form id="form" onSubmit={onSubmit}>
         <Form.Group className="mb-4">
           <label htmlFor="cardNumber">Card Number</label>
           <input

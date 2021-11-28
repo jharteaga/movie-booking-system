@@ -28,7 +28,7 @@ const Showtime = () => {
   }
 
   const handlePurchase = () => {
-    localStorage.setItem('seatsSelected', seatsSelected)
+    localStorage.setItem('seatsSelected', JSON.stringify(seatsSelected))
     history.push('/payment')
   }
 
@@ -73,7 +73,7 @@ const Showtime = () => {
         <>
           <div className="order-container">
             <div className="poster">
-              <img src={movie.imageUrl} alt="" />
+              <img src={movie.imageUrl} alt={`${movie.title} poster`} />
             </div>
             <h2>Your tickets</h2>
             <div className="tickets">
