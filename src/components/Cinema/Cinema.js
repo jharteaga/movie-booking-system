@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import SeatsLegend from '../SeatsLegend/SeatsLegend'
 import SeatsRow from '../SeatsRow/SeatsRow'
 import { MovieContext } from '../../context/movie/MovieContext'

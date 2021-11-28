@@ -19,6 +19,7 @@ const PaymentForm = () => {
 
   return (
     <Container>
+      <h2>Payment</h2>
       <Form id="form">
         <Form.Group className="mb-4">
           <label htmlFor="cardNumber">Card Number</label>
@@ -26,7 +27,6 @@ const PaymentForm = () => {
             type="text"
             id="cardNumber"
             className="form-control"
-            placeholder="5555 5555 5555 5555"
             inputMode="numeric"
             onChange={handleChange}
             name="cardNumber"
@@ -38,7 +38,6 @@ const PaymentForm = () => {
             type="text"
             className="form-control"
             id="cardHolder"
-            placeholder="John Doe"
             name="cardHolder"
             onChange={handleChange}
           />
@@ -86,14 +85,13 @@ const PaymentForm = () => {
               <option value="28">2028</option>
             </select>
           </Form.Group>
-          <Form.Group className="form-group col-md-4">
+          <Form.Group className="form-group col-md-4 cvv">
             <label htmlFor="cvv">CVV</label>
             <input
               type="text"
               inputMode="numeric"
               className="form-control"
               id="cvv"
-              placeholder="123"
               name="cvv"
               onChange={handleChange}
             />

@@ -31396,7 +31396,7 @@ var PaymentForm = function PaymentForm() {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PaymentForm_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PaymentForm_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Payment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "form"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
     className: "mb-4"
@@ -31406,7 +31406,6 @@ var PaymentForm = function PaymentForm() {
     type: "text",
     id: "cardNumber",
     className: "form-control",
-    placeholder: "5555 5555 5555 5555",
     inputMode: "numeric",
     onChange: handleChange,
     name: "cardNumber"
@@ -31418,7 +31417,6 @@ var PaymentForm = function PaymentForm() {
     type: "text",
     className: "form-control",
     id: "cardHolder",
-    placeholder: "John Doe",
     name: "cardHolder",
     onChange: handleChange
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -31486,7 +31484,7 @@ var PaymentForm = function PaymentForm() {
   }, "2027"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "28"
   }, "2028"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
-    className: "form-group col-md-4"
+    className: "form-group col-md-4 cvv"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "cvv"
   }, "CVV"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
@@ -31494,7 +31492,6 @@ var PaymentForm = function PaymentForm() {
     inputMode: "numeric",
     className: "form-control",
     id: "cvv",
-    placeholder: "123",
     name: "cvv",
     onChange: handleChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -31524,7 +31521,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin: auto;\n  max-width: 500px;\n  width: 100%;\n  box-shadow: -1px 2px 10px 2px rgba(138, 135, 135, 0.81);\n  padding: 8em 2em 2em 2em;\n  margin-bottom: 12em;\n  border-radius: 15px;\n\n  .form {\n    &__row {\n      margin: 0.5rem auto;\n    }\n\n    &__submit {\n    }\n  }\n\n  button {\n    width: 100%;\n    height: 2.6em;\n    font-size: 1.2rem;\n    border-radius: 5px;\n    /* background-color: rgb(50, 88, 212); */\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin: auto;\n  max-width: 500px;\n  width: 100%;\n  box-shadow: -1px 2px 10px 2px rgba(138, 135, 135, 0.81);\n  /* padding: 8em 2em 2em 2em; */\n  padding: 2em 2em 2em 2em;\n  margin-bottom: 12em;\n  border-radius: 15px;\n\n  h2 {\n    margin-bottom: 2rem;\n    font-weight: 600;\n  }\n\n  #form {\n    &__row {\n      margin: 0.5rem auto;\n    }\n\n    &__submit {\n    }\n\n    .cvv {\n      margin-top: 1rem;\n\n      @media (min-width: 768px) {\n        margin-top: 0;\n      }\n    }\n  }\n\n  button {\n    width: 100%;\n    height: 2.6em;\n    font-size: 1.2rem;\n    border-radius: 5px;\n  }\n"])));
 
 /***/ }),
 
@@ -31850,6 +31847,66 @@ var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_t
 
 /***/ }),
 
+/***/ "./src/components/Summary/Summary.js":
+/*!*******************************************!*\
+  !*** ./src/components/Summary/Summary.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
+/* harmony import */ var _Summary_style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Summary.style */ "./src/components/Summary/Summary.style.js");
+
+
+
+
+var Summary = function Summary() {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_1__.MovieContext),
+      movie = _useContext.movie,
+      seatsSelected = _useContext.seatsSelected;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Summary_style__WEBPACK_IMPORTED_MODULE_2__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Purchase Summary"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "summary"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "summary__info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "title"
+  }, movie.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Date: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('showDate'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Time: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('showTime'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Seats: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('seatsSelected')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: movie.imageUrl,
+    alt: "".concat(movie.title, " image")
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Summary);
+
+/***/ }),
+
+/***/ "./src/components/Summary/Summary.style.js":
+/*!*************************************************!*\
+  !*** ./src/components/Summary/Summary.style.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Container": () => (/* binding */ Container)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+var _templateObject;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin: 0 auto;\n  max-width: 650px;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  margin-bottom: 2.5rem;\n\n  h2 {\n    margin-bottom: 1.5rem;\n    font-weight: 600;\n    border: 2px solid #fff;\n    padding: 0.5rem;\n    text-align: center;\n    border-radius: 8px;\n    font-size: 1.3rem;\n  }\n\n  .summary {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    gap: 0.5rem;\n    padding: 0 0.5rem;\n\n    .title {\n      font-size: 1.1rem;\n    }\n\n    p {\n      font-weight: 600;\n\n      span {\n        font-weight: 400;\n      }\n    }\n\n    img {\n      width: 150px;\n      max-width: 100%;\n      object-fit: cover;\n      height: 200px;\n      border-radius: 8px;\n    }\n  }\n"])));
+
+/***/ }),
+
 /***/ "./src/config/index.js":
 /*!*****************************!*\
   !*** ./src/config/index.js ***!
@@ -31950,6 +32007,9 @@ var MovieProvider = function MovieProvider(_ref) {
   };
 
   var updateMovieDateTime = function updateMovieDateTime(movieDate, movieTime, seats) {
+    localStorage.setItem('showDate', movieDate);
+    localStorage.setItem('showTime', movieTime);
+    localStorage.setItem('seats', seats);
     dispatch({
       type: 'UPDATE_DATETIME',
       payload: {
@@ -32418,13 +32478,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PaymentForm/PaymentForm */ "./src/components/PaymentForm/PaymentForm.js");
-/* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
+/* harmony import */ var _components_Summary_Summary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Summary/Summary */ "./src/components/Summary/Summary.js");
+/* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
+
 
 
 
 
 var Purchase = function Purchase() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_2__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Purchase);
@@ -32448,7 +32510,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin: auto;\n  max-width: 90%;\n  width: 100%;\n  margin-top: 2rem;\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin: auto;\n  max-width: 90%;\n  width: 100%;\n  margin-top: 3rem;\n\n  @media (min-width: 900px) {\n    max-width: 1500px;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    align-items: flex-start;\n    column-gap: 0.5rem;\n  }\n"])));
 
 /***/ }),
 
@@ -32528,6 +32590,7 @@ var Showtime = function Showtime() {
   };
 
   var handlePurchase = function handlePurchase() {
+    localStorage.setItem('seatsSelected', seatsSelected);
     history.push('/payment');
   };
 
@@ -32572,7 +32635,8 @@ var Showtime = function Showtime() {
     return index === 0 ? "".concat(current) : "".concat(accum, ", ").concat(current);
   }, 'None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", (seatsSelected.length * 7.5).toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "bg-danger",
-    onClick: handlePurchase
+    onClick: handlePurchase,
+    disabled: seatsSelected.length === 0
   }, "Purchase"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cinema"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Cinema_Cinema__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -32588,7 +32652,8 @@ var Showtime = function Showtime() {
     className: "purchase-action"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "bg-danger",
-    onClick: handlePurchase
+    onClick: handlePurchase,
+    disabled: seatsSelected.length === 0
   }, "Purchase")))));
 };
 

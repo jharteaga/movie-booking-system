@@ -7,5 +7,3 @@ router.use('/movies', movieRouter)
 router.use('/users', userRouter)
 
 module.exports = router
-
-//movies/:movieId/seats

@@ -23,6 +23,9 @@ export const MovieProvider = ({ children }) => {
   }
 
   const updateMovieDateTime = (movieDate, movieTime, seats) => {
+    localStorage.setItem('showDate', movieDate)
+    localStorage.setItem('showTime', movieTime)
+    localStorage.setItem('seats', seats)
     dispatch({
       type: 'UPDATE_DATETIME',
       payload: { movieDate, movieTime, seats }

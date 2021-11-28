@@ -28,6 +28,7 @@ const Showtime = () => {
   }
 
   const handlePurchase = () => {
+    localStorage.setItem('seatsSelected', seatsSelected)
     history.push('/payment')
   }
 
@@ -90,7 +91,11 @@ const Showtime = () => {
                   <span>Total:</span> ${(seatsSelected.length * 7.5).toFixed(2)}
                 </p>
               </div>
-              <button className="bg-danger" onClick={handlePurchase}>
+              <button
+                className="bg-danger"
+                onClick={handlePurchase}
+                disabled={seatsSelected.length === 0}
+              >
                 Purchase
               </button>
             </div>
@@ -115,7 +120,11 @@ const Showtime = () => {
               </p>
             </div>
             <div className="purchase-action">
-              <button className="bg-danger" onClick={handlePurchase}>
+              <button
+                className="bg-danger"
+                onClick={handlePurchase}
+                disabled={seatsSelected.length === 0}
+              >
                 Purchase
               </button>
             </div>
