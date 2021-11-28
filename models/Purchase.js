@@ -24,6 +24,22 @@ const purchaseSchema = new mongoose.Schema({
   purchaseTotal: {
     type: Number,
     required: [true, 'Provide the purchase total']
+  },
+  cardNumber: {
+    type: String,
+    required: [true, 'Provide a card number']
+  },
+  cardHolder: {
+    type: String,
+    required: [true, 'Provide card holder name']
+  },
+  expirationDate: {
+    type: String,
+    required: [true, 'Provide expiration date']
+  },
+  cvv: {
+    type: String,
+    required: [true, 'Provide cvv']
   }
 })
 

@@ -18,7 +18,15 @@ const Summary = () => {
             Time: <span>{localStorage.getItem('showTime')}</span>
           </p>
           <p>
-            Seats: <span>{localStorage.getItem('seatsSelected')}</span>
+            Seats:{' '}
+            <span>
+              {JSON.parse(localStorage.getItem('seatsSelected')).reduce(
+                (accum, current, index) => {
+                  return index === 0 ? `${current}` : `${accum}, ${current}`
+                },
+                ''
+              )}
+            </span>
           </p>
         </div>
         <img src={movie.imageUrl} alt={`${movie.title} image`} />

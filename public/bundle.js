@@ -31358,9 +31358,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var _PaymentForm_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaymentForm.style */ "./src/components/PaymentForm/PaymentForm.style.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Form.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
+/* harmony import */ var _utils_validations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/validations */ "./src/utils/validations.js");
+/* harmony import */ var _PaymentForm_style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PaymentForm.style */ "./src/components/PaymentForm/PaymentForm.style.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -31383,19 +31384,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var PaymentForm = function PaymentForm(_ref) {
-  var onSubmit = _ref.onSubmit;
+  var errors = _ref.errors,
+      onSubmit = _ref.onSubmit;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     cardNumber: '',
     cardHolder: '',
-    monthExp: '',
-    yearExp: '',
+    expirationMonth: '',
+    expirationYear: '',
     cvv: ''
   }),
       _useState2 = _slicedToArray(_useState, 2),
       paymentInfo = _useState2[0],
       setPaymentInfo = _useState2[1];
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(paymentInfo);
+  };
 
   var handleChange = function handleChange(e) {
     setPaymentInfo(function (prev) {
@@ -31403,41 +31411,47 @@ var PaymentForm = function PaymentForm(_ref) {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PaymentForm_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Payment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_PaymentForm_style__WEBPACK_IMPORTED_MODULE_2__.Container, {
+    errors: errors
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Payment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     id: "form",
-    onSubmit: onSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    onSubmit: function onSubmit(e) {
+      return handleSubmit(e);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Group, {
     className: "mb-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "cardNumber"
-  }, "Card Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, "Card Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", null, errors === null || errors === void 0 ? void 0 : errors.cardNumber), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
     id: "cardNumber",
-    className: "form-control",
+    className: "form-control cardNumber",
     inputMode: "numeric",
     onChange: handleChange,
-    name: "cardNumber"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+    name: "cardNumber",
+    value: paymentInfo.cardNumber
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Group, {
     className: "mb-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "cardHolder"
-  }, "Card Holder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, "Card Holder"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", null, errors === null || errors === void 0 ? void 0 : errors.cardHolder), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
-    className: "form-control",
+    className: "form-control cardHolder",
     id: "cardHolder",
     name: "cardHolder",
+    value: paymentInfo.cardHolder,
     onChange: handleChange
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
     className: "mb-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
-    className: "form-group col-md-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "expirationDate"
-  }, "Expiration Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+  }, "Expiration Date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Group, {
+    className: "form-group col-md-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", null, errors.expirationMonth), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     id: "month",
-    className: "form-control",
+    className: "form-control expirationMonth",
     onChange: handleChange,
-    name: "monthExp"
+    name: "expirationMonth"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "MM"
   }, "Month"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
@@ -31464,15 +31478,15 @@ var PaymentForm = function PaymentForm(_ref) {
     value: "11"
   }, "11"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "12"
-  }, "12"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
+  }, "12"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Group, {
     className: "form-group col-md-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    htmlFor: "cvv"
-  }, "\xA0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    htmlFor: "year"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", null, errors.expirationYear), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
     id: "year",
-    className: "form-control",
+    className: "form-control expirationYear",
     onChange: handleChange,
-    name: "yearExp"
+    name: "expirationYear"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "YY"
   }, "Year"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
@@ -31491,16 +31505,17 @@ var PaymentForm = function PaymentForm(_ref) {
     value: "27"
   }, "2027"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
     value: "28"
-  }, "2028"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"].Group, {
-    className: "form-group col-md-4 cvv"
+  }, "2028"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Group, {
+    className: "form-group col-md-4 cvv-form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "cvv"
-  }, "CVV"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, "CVV"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", null, errors === null || errors === void 0 ? void 0 : errors.cvv), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "text",
     inputMode: "numeric",
-    className: "form-control",
+    className: "form-control cvv",
     id: "cvv",
     name: "cvv",
+    value: paymentInfo.cvv,
     onChange: handleChange
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "submit",
@@ -31529,7 +31544,17 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin: auto;\n  max-width: 500px;\n  width: 100%;\n  box-shadow: -1px 2px 10px 2px rgba(138, 135, 135, 0.81);\n  /* padding: 8em 2em 2em 2em; */\n  padding: 2em 2em 2em 2em;\n  margin-bottom: 12em;\n  border-radius: 15px;\n\n  h2 {\n    margin-bottom: 2rem;\n    font-weight: 600;\n  }\n\n  #form {\n    &__row {\n      margin: 0.5rem auto;\n    }\n\n    &__submit {\n    }\n\n    .cvv {\n      margin-top: 1rem;\n\n      @media (min-width: 768px) {\n        margin-top: 0;\n      }\n    }\n  }\n\n  button {\n    width: 100%;\n    height: 2.6em;\n    font-size: 1.2rem;\n    border-radius: 5px;\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  margin: auto;\n  max-width: 500px;\n  width: 100%;\n  box-shadow: -1px 2px 10px 2px rgba(138, 135, 135, 0.81);\n  /* padding: 8em 2em 2em 2em; */\n  padding: 2em 2em 2em 2em;\n  margin-bottom: 12em;\n  border-radius: 15px;\n\n  h2 {\n    margin-bottom: 2rem;\n    font-weight: 600;\n  }\n\n  #form {\n    &__row {\n      margin: 0.5rem auto;\n    }\n\n    &__submit {\n    }\n\n    .cvv-form-group {\n      margin-top: 1rem;\n\n      @media (min-width: 768px) {\n        margin-top: 0;\n      }\n    }\n  }\n\n  button {\n    width: 100%;\n    height: 2.6em;\n    font-size: 1.2rem;\n    border-radius: 5px;\n  }\n\n  small {\n    color: tomato;\n    margin-left: 5px;\n    font-size: 0.7rem;\n  }\n\n  .cardNumber {\n    border: ", ";\n  }\n  .cardHolder {\n    border: ", ";\n  }\n  .expirationMonth {\n    border: ", ";\n  }\n  .expirationYear {\n    border: ", ";\n  }\n  .cvv {\n    border: ", ";\n  }\n"])), function (props) {
+  return props.errors.cardNumber ? '3px solid red' : 'none';
+}, function (props) {
+  return props.errors.cardHolder ? '3px solid red' : 'none';
+}, function (props) {
+  return props.errors.expirationMonth ? '3px solid red' : 'none';
+}, function (props) {
+  return props.errors.expirationYear ? '3px solid red' : 'none';
+}, function (props) {
+  return props.errors.cvv ? '3px solid red' : 'none';
+});
 
 /***/ }),
 
@@ -31884,7 +31909,9 @@ var Summary = function Summary() {
     className: "summary__info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "title"
-  }, movie.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Date: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('showDate'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Time: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('showTime'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Seats: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('seatsSelected')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+  }, movie.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Date: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('showDate'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Time: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('showTime'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Seats:", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, JSON.parse(localStorage.getItem('seatsSelected')).reduce(function (accum, current, index) {
+    return index === 0 ? "".concat(current) : "".concat(accum, ", ").concat(current);
+  }, '')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: movie.imageUrl,
     alt: "".concat(movie.title, " image")
   })));
@@ -32230,6 +32257,51 @@ var getDates = function getDates() {
   }
 
   return dates;
+};
+
+/***/ }),
+
+/***/ "./src/utils/validations.js":
+/*!**********************************!*\
+  !*** ./src/utils/validations.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkCreditCard": () => (/* binding */ checkCreditCard),
+/* harmony export */   "checkCardHolder": () => (/* binding */ checkCardHolder),
+/* harmony export */   "checkCvv": () => (/* binding */ checkCvv)
+/* harmony export */ });
+//Validate whether or not is a number
+var isNumber = function isNumber(value) {
+  var character = String(value.charAt(value.length - 1));
+  return /^[0-9]$/.test(character);
+};
+
+var checkCreditCard = function checkCreditCard(value) {
+  var isValid = true;
+
+  if (value.length > 0) {
+    isValid = isNumber(value);
+  }
+
+  if (value.length > 16) isValid = false;
+  return isValid;
+};
+var checkCardHolder = function checkCardHolder(value) {
+  return value.length >= 0 && value.length <= 30;
+};
+var checkCvv = function checkCvv(value) {
+  var isValid = true;
+
+  if (value.length > 0) {
+    isValid = isNumber(value);
+  }
+
+  if (value.length > 3) isValid = false;
+  return isValid;
 };
 
 /***/ }),
@@ -32580,10 +32652,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PaymentForm/PaymentForm */ "./src/components/PaymentForm/PaymentForm.js");
-/* harmony import */ var _components_Summary_Summary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Summary/Summary */ "./src/components/Summary/Summary.js");
-/* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PaymentForm/PaymentForm */ "./src/components/PaymentForm/PaymentForm.js");
+/* harmony import */ var _components_Summary_Summary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Summary/Summary */ "./src/components/Summary/Summary.js");
+/* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -32591,14 +32678,55 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Purchase = function Purchase() {
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useHistory)();
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
 
-  var handleSubmit = function handleSubmit(data) {
-    history.push('/confirmation');
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      errors = _useState2[0],
+      setErrors = _useState2[1];
+
+  var handleSubmit = function handleSubmit(paymentInfo) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/v1/purchase', paymentInfo).then(function (res) {
+      return history.push('/confirmation');
+    })["catch"](function (err) {
+      var error = {
+        cardNumber: '',
+        cardHolder: '',
+        expirationMonth: '',
+        expirationYear: '',
+        cvv: ''
+      };
+      err.response.data.errors.forEach(function (_ref) {
+        var message = _ref.message,
+            path = _ref.path;
+
+        if (path[0] === 'cardNumber') {
+          return error.cardNumber = message;
+        }
+
+        if (path[0] === 'cardHolder') {
+          return error.cardHolder = message;
+        }
+
+        if (path[0] === 'expirationMonth') {
+          return error.expirationMonth = message;
+        }
+
+        if (path[0] === 'expirationYear') {
+          return error.expirationYear = message;
+        }
+
+        if (path[0] === 'cvv') {
+          return error.cvv = message;
+        }
+      });
+      setErrors(error);
+    });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    onSubmit: handleSubmit
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    onSubmit: handleSubmit,
+    errors: errors
   }));
 };
 

@@ -23,7 +23,7 @@ export const Container = styled.div`
     &__submit {
     }
 
-    .cvv {
+    .cvv-form-group {
       margin-top: 1rem;
 
       @media (min-width: 768px) {
@@ -37,5 +37,29 @@ export const Container = styled.div`
     height: 2.6em;
     font-size: 1.2rem;
     border-radius: 5px;
+  }
+
+  small {
+    color: tomato;
+    margin-left: 5px;
+    font-size: 0.7rem;
+  }
+
+  .cardNumber {
+    border: ${(props) => (props.errors.cardNumber ? '3px solid red' : 'none')};
+  }
+  .cardHolder {
+    border: ${(props) => (props.errors.cardHolder ? '3px solid red' : 'none')};
+  }
+  .expirationMonth {
+    border: ${(props) =>
+      props.errors.expirationMonth ? '3px solid red' : 'none'};
+  }
+  .expirationYear {
+    border: ${(props) =>
+      props.errors.expirationYear ? '3px solid red' : 'none'};
+  }
+  .cvv {
+    border: ${(props) => (props.errors.cvv ? '3px solid red' : 'none')};
   }
 `

@@ -1,15 +1,25 @@
 import React, { useState } from 'react'
 import { Form, Row } from 'react-bootstrap'
+import {
+  checkCreditCard,
+  checkCardHolder,
+  checkCvv
+} from '../../utils/validations'
 import { Container } from './PaymentForm.style'
 
-const PaymentForm = ({ onSubmit }) => {
+const PaymentForm = ({ errors, onSubmit }) => {
   const [paymentInfo, setPaymentInfo] = useState({
     cardNumber: '',
     cardHolder: '',
-    monthExp: '',
-    yearExp: '',
+    expirationMonth: '',
+    expirationYear: '',
     cvv: ''
   })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSubmit(paymentInfo)
+  }
 
   const handleChange = (e) => {
     setPaymentInfo((prev) => {
@@ -18,38 +28,43 @@ const PaymentForm = ({ onSubmit }) => {
   }
 
   return (
-    <Container>
+    <Container errors={errors}>
       <h2>Payment</h2>
-      <Form id="form" onSubmit={onSubmit}>
+      <Form id="form" onSubmit={(e) => handleSubmit(e)}>
         <Form.Group className="mb-4">
           <label htmlFor="cardNumber">Card Number</label>
+          <small>{errors?.cardNumber}</small>
           <input
             type="text"
             id="cardNumber"
-            className="form-control"
+            className="form-control cardNumber"
             inputMode="numeric"
             onChange={handleChange}
             name="cardNumber"
+            value={paymentInfo.cardNumber}
           />
         </Form.Group>
         <Form.Group className="mb-4">
           <label htmlFor="cardHolder">Card Holder</label>
+          <small>{errors?.cardHolder}</small>
           <input
             type="text"
-            className="form-control"
+            className="form-control cardHolder"
             id="cardHolder"
             name="cardHolder"
+            value={paymentInfo.cardHolder}
             onChange={handleChange}
           />
         </Form.Group>
         <Row className="mb-4">
+          <label htmlFor="expirationDate">Expiration Date</label>
           <Form.Group className="form-group col-md-4">
-            <label htmlFor="expirationDate">Expiration Date</label>
+            <small>{errors.expirationMonth}</small>
             <select
               id="month"
-              className="form-control"
+              className="form-control expirationMonth"
               onChange={handleChange}
-              name="monthExp"
+              name="expirationMonth"
             >
               <option value="MM">Month</option>
               <option value="01">01</option>
@@ -67,12 +82,13 @@ const PaymentForm = ({ onSubmit }) => {
             </select>
           </Form.Group>
           <Form.Group className="form-group col-md-4">
-            <label htmlFor="cvv">&nbsp;</label>
+            <label htmlFor="year"></label>
+            <small>{errors.expirationYear}</small>
             <select
               id="year"
-              className="form-control"
+              className="form-control expirationYear"
               onChange={handleChange}
-              name="yearExp"
+              name="expirationYear"
             >
               <option value="YY">Year</option>
               <option value="21">2021</option>
@@ -85,14 +101,16 @@ const PaymentForm = ({ onSubmit }) => {
               <option value="28">2028</option>
             </select>
           </Form.Group>
-          <Form.Group className="form-group col-md-4 cvv">
+          <Form.Group className="form-group col-md-4 cvv-form-group">
             <label htmlFor="cvv">CVV</label>
+            <small>{errors?.cvv}</small>
             <input
               type="text"
               inputMode="numeric"
-              className="form-control"
+              className="form-control cvv"
               id="cvv"
               name="cvv"
+              value={paymentInfo.cvv}
               onChange={handleChange}
             />
           </Form.Group>
