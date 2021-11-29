@@ -33620,7 +33620,7 @@ var Purchase = function Purchase(_ref) {
     };
     axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/purchase"), purchaseReq).then(function (res) {
       setErrors(error);
-      seatsId ? axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
+      seatsId !== undefined ? axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
         return history.push('/confirmation');
       }) : axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
         return history.push('/confirmation');

@@ -46,7 +46,7 @@ const Purchase = ({ location }) => {
       .then((res) => {
         setErrors(error)
 
-        seatsId
+        seatsId !== undefined
           ? axios
               .put(`${api.movie}/${movie.id}/seats`, seatsReq)
               .then((res) => history.push('/confirmation'))
