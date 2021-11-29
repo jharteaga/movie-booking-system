@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
-import ReactPlayer from 'react-player/lazy'
+import ReactPlayer from 'react-player/youtube'
 import Rating from '../../components/Rating/Rating'
 import { MovieContext } from '../../context/movie/MovieContext'
 import { useHistory } from 'react-router-dom'

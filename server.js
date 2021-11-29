@@ -7,9 +7,7 @@ const connection = require('./db/connection.js')
 
 connection.once('open', () => {
   app.listen(process.env.PORT, () => {
-    console.log(
-      `Server listening on http://${process.env.HOST}:${process.env.PORT}`
-    )
+    console.log(`Server listening on port ${process.env.PORT}`)
   })
 })
 

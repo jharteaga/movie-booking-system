@@ -20716,10 +20716,10 @@ function polyfill(Component) {
 
 /***/ }),
 
-/***/ "./node_modules/react-player/lazy/Player.js":
-/*!**************************************************!*\
-  !*** ./node_modules/react-player/lazy/Player.js ***!
-  \**************************************************/
+/***/ "./node_modules/react-player/lib/Player.js":
+/*!*************************************************!*\
+  !*** ./node_modules/react-player/lib/Player.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -20750,7 +20750,7 @@ var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_mo
 
 var _reactFastCompare = _interopRequireDefault(__webpack_require__(/*! react-fast-compare */ "./node_modules/react-fast-compare/index.js"));
 
-var _props = __webpack_require__(/*! ./props */ "./node_modules/react-player/lazy/props.js");
+var _props = __webpack_require__(/*! ./props */ "./node_modules/react-player/lib/props.js");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
@@ -21315,10 +21315,10 @@ _defineProperty(Player, "defaultProps", _props.defaultProps);
 
 /***/ }),
 
-/***/ "./node_modules/react-player/lazy/ReactPlayer.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/react-player/lazy/ReactPlayer.js ***!
-  \*******************************************************/
+/***/ "./node_modules/react-player/lib/Preview.js":
+/*!**************************************************!*\
+  !*** ./node_modules/react-player/lib/Preview.js ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -21343,27 +21343,9 @@ function _typeof(obj) {
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.createReactPlayer = void 0;
+exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _deepmerge = _interopRequireDefault(__webpack_require__(/*! deepmerge */ "./node_modules/deepmerge/dist/cjs.js"));
-
-var _memoizeOne = _interopRequireDefault(__webpack_require__(/*! memoize-one */ "./node_modules/memoize-one/dist/memoize-one.esm.js"));
-
-var _reactFastCompare = _interopRequireDefault(__webpack_require__(/*! react-fast-compare */ "./node_modules/react-fast-compare/index.js"));
-
-var _props = __webpack_require__(/*! ./props */ "./node_modules/react-player/lazy/props.js");
-
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/react-player/lazy/utils.js");
-
-var _Player3 = _interopRequireDefault(__webpack_require__(/*! ./Player */ "./node_modules/react-player/lazy/Player.js"));
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
 
 function _getRequireWildcardCache() {
   if (typeof WeakMap !== "function") return null;
@@ -21415,6 +21397,362 @@ function _interopRequireWildcard(obj) {
   }
 
   return newObj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var ICON_SIZE = '64px';
+var cache = {};
+
+var Preview = /*#__PURE__*/function (_Component) {
+  _inherits(Preview, _Component);
+
+  var _super = _createSuper(Preview);
+
+  function Preview() {
+    var _this;
+
+    _classCallCheck(this, Preview);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "mounted", false);
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      image: null
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleKeyPress", function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        _this.props.onClick();
+      }
+    });
+
+    return _this;
+  }
+
+  _createClass(Preview, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.mounted = true;
+      this.fetchImage(this.props);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var _this$props = this.props,
+          url = _this$props.url,
+          light = _this$props.light;
+
+      if (prevProps.url !== url || prevProps.light !== light) {
+        this.fetchImage(this.props);
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.mounted = false;
+    }
+  }, {
+    key: "fetchImage",
+    value: function fetchImage(_ref) {
+      var _this2 = this;
+
+      var url = _ref.url,
+          light = _ref.light;
+
+      if (typeof light === 'string') {
+        this.setState({
+          image: light
+        });
+        return;
+      }
+
+      if (cache[url]) {
+        this.setState({
+          image: cache[url]
+        });
+        return;
+      }
+
+      this.setState({
+        image: null
+      });
+      return window.fetch("https://noembed.com/embed?url=".concat(url)).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        if (data.thumbnail_url && _this2.mounted) {
+          var image = data.thumbnail_url.replace('height=100', 'height=480');
+
+          _this2.setState({
+            image: image
+          });
+
+          cache[url] = image;
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props2 = this.props,
+          onClick = _this$props2.onClick,
+          playIcon = _this$props2.playIcon,
+          previewTabIndex = _this$props2.previewTabIndex;
+      var image = this.state.image;
+      var flexCenter = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      };
+      var styles = {
+        preview: _objectSpread({
+          width: '100%',
+          height: '100%',
+          backgroundImage: image ? "url(".concat(image, ")") : undefined,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          cursor: 'pointer'
+        }, flexCenter),
+        shadow: _objectSpread({
+          background: 'radial-gradient(rgb(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 60%)',
+          borderRadius: ICON_SIZE,
+          width: ICON_SIZE,
+          height: ICON_SIZE
+        }, flexCenter),
+        playIcon: {
+          borderStyle: 'solid',
+          borderWidth: '16px 0 16px 26px',
+          borderColor: 'transparent transparent transparent white',
+          marginLeft: '7px'
+        }
+      };
+
+      var defaultPlayIcon = /*#__PURE__*/_react["default"].createElement("div", {
+        style: styles.shadow,
+        className: "react-player__shadow"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        style: styles.playIcon,
+        className: "react-player__play-icon"
+      }));
+
+      return /*#__PURE__*/_react["default"].createElement("div", {
+        style: styles.preview,
+        className: "react-player__preview",
+        onClick: onClick,
+        tabIndex: previewTabIndex,
+        onKeyPress: this.handleKeyPress
+      }, playIcon || defaultPlayIcon);
+    }
+  }]);
+
+  return Preview;
+}(_react.Component);
+
+exports["default"] = Preview;
+
+/***/ }),
+
+/***/ "./node_modules/react-player/lib/ReactPlayer.js":
+/*!******************************************************!*\
+  !*** ./node_modules/react-player/lib/ReactPlayer.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.createReactPlayer = void 0;
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _deepmerge = _interopRequireDefault(__webpack_require__(/*! deepmerge */ "./node_modules/deepmerge/dist/cjs.js"));
+
+var _memoizeOne = _interopRequireDefault(__webpack_require__(/*! memoize-one */ "./node_modules/memoize-one/dist/memoize-one.esm.js"));
+
+var _reactFastCompare = _interopRequireDefault(__webpack_require__(/*! react-fast-compare */ "./node_modules/react-fast-compare/index.js"));
+
+var _props = __webpack_require__(/*! ./props */ "./node_modules/react-player/lib/props.js");
+
+var _utils = __webpack_require__(/*! ./utils */ "./node_modules/react-player/lib/utils.js");
+
+var _Player3 = _interopRequireDefault(__webpack_require__(/*! ./Player */ "./node_modules/react-player/lib/Player.js"));
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
 }
 
 function ownKeys(object, enumerableOnly) {
@@ -21620,8 +21958,62 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function _getRequireWildcardCache() {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
 var Preview = /*#__PURE__*/(0, _react.lazy)(function () {
-  return __webpack_require__.e(/*! import() | reactPlayerPreview */ "reactPlayerPreview").then(__webpack_require__.bind(__webpack_require__, /*! ./Preview */ "./node_modules/react-player/lazy/Preview.js"));
+  return Promise.resolve().then(function () {
+    return _interopRequireWildcard(__webpack_require__(/*! ./Preview */ "./node_modules/react-player/lib/Preview.js"));
+  });
 });
 var IS_BROWSER = typeof window !== 'undefined' && window.document;
 var IS_GLOBAL = typeof __webpack_require__.g !== 'undefined' && __webpack_require__.g.window && __webpack_require__.g.window.document;
@@ -21850,43 +22242,10 @@ exports.createReactPlayer = createReactPlayer;
 
 /***/ }),
 
-/***/ "./node_modules/react-player/lazy/index.js":
-/*!*************************************************!*\
-  !*** ./node_modules/react-player/lazy/index.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-
-var _players = _interopRequireDefault(__webpack_require__(/*! ./players */ "./node_modules/react-player/lazy/players/index.js"));
-
-var _ReactPlayer = __webpack_require__(/*! ./ReactPlayer */ "./node_modules/react-player/lazy/ReactPlayer.js");
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-} // Fall back to FilePlayer if nothing else can play the URL
-
-
-var fallback = _players["default"][_players["default"].length - 1];
-
-var _default = (0, _ReactPlayer.createReactPlayer)(_players["default"], fallback);
-
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "./node_modules/react-player/lazy/patterns.js":
-/*!****************************************************!*\
-  !*** ./node_modules/react-player/lazy/patterns.js ***!
-  \****************************************************/
+/***/ "./node_modules/react-player/lib/patterns.js":
+/*!***************************************************!*\
+  !*** ./node_modules/react-player/lib/patterns.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -21897,7 +22256,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports.canPlay = exports.FLV_EXTENSIONS = exports.DASH_EXTENSIONS = exports.HLS_EXTENSIONS = exports.VIDEO_EXTENSIONS = exports.AUDIO_EXTENSIONS = exports.MATCH_URL_KALTURA = exports.MATCH_URL_VIDYARD = exports.MATCH_URL_MIXCLOUD = exports.MATCH_URL_DAILYMOTION = exports.MATCH_URL_TWITCH_CHANNEL = exports.MATCH_URL_TWITCH_VIDEO = exports.MATCH_URL_WISTIA = exports.MATCH_URL_STREAMABLE = exports.MATCH_URL_FACEBOOK_WATCH = exports.MATCH_URL_FACEBOOK = exports.MATCH_URL_VIMEO = exports.MATCH_URL_SOUNDCLOUD = exports.MATCH_URL_YOUTUBE = void 0;
 
-var _utils = __webpack_require__(/*! ./utils */ "./node_modules/react-player/lazy/utils.js");
+var _utils = __webpack_require__(/*! ./utils */ "./node_modules/react-player/lib/utils.js");
 
 function _createForOfIteratorHelper(o, allowArrayLike) {
   var it;
@@ -22091,122 +22450,594 @@ exports.canPlay = canPlay;
 
 /***/ }),
 
-/***/ "./node_modules/react-player/lazy/players/index.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/react-player/lazy/players/index.js ***!
-  \*********************************************************/
+/***/ "./node_modules/react-player/lib/players/YouTube.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-player/lib/players/YouTube.js ***!
+  \**********************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
 
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var _utils = __webpack_require__(/*! ../utils */ "./node_modules/react-player/lazy/utils.js");
+var _utils = __webpack_require__(/*! ../utils */ "./node_modules/react-player/lib/utils.js");
 
-var _patterns = __webpack_require__(/*! ../patterns */ "./node_modules/react-player/lazy/patterns.js");
+var _patterns = __webpack_require__(/*! ../patterns */ "./node_modules/react-player/lib/patterns.js");
 
-var _default = [{
-  key: 'youtube',
-  name: 'YouTube',
-  canPlay: _patterns.canPlay.youtube,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerYouTube */ "reactPlayerYouTube").then(__webpack_require__.bind(__webpack_require__, /*! ./YouTube */ "./node_modules/react-player/lazy/players/YouTube.js"));
-  })
-}, {
-  key: 'soundcloud',
-  name: 'SoundCloud',
-  canPlay: _patterns.canPlay.soundcloud,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerSoundCloud */ "reactPlayerSoundCloud").then(__webpack_require__.bind(__webpack_require__, /*! ./SoundCloud */ "./node_modules/react-player/lazy/players/SoundCloud.js"));
-  })
-}, {
-  key: 'vimeo',
-  name: 'Vimeo',
-  canPlay: _patterns.canPlay.vimeo,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerVimeo */ "reactPlayerVimeo").then(__webpack_require__.bind(__webpack_require__, /*! ./Vimeo */ "./node_modules/react-player/lazy/players/Vimeo.js"));
-  })
-}, {
-  key: 'facebook',
-  name: 'Facebook',
-  canPlay: _patterns.canPlay.facebook,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerFacebook */ "reactPlayerFacebook").then(__webpack_require__.bind(__webpack_require__, /*! ./Facebook */ "./node_modules/react-player/lazy/players/Facebook.js"));
-  })
-}, {
-  key: 'streamable',
-  name: 'Streamable',
-  canPlay: _patterns.canPlay.streamable,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerStreamable */ "reactPlayerStreamable").then(__webpack_require__.bind(__webpack_require__, /*! ./Streamable */ "./node_modules/react-player/lazy/players/Streamable.js"));
-  })
-}, {
-  key: 'wistia',
-  name: 'Wistia',
-  canPlay: _patterns.canPlay.wistia,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerWistia */ "reactPlayerWistia").then(__webpack_require__.bind(__webpack_require__, /*! ./Wistia */ "./node_modules/react-player/lazy/players/Wistia.js"));
-  })
-}, {
-  key: 'twitch',
-  name: 'Twitch',
-  canPlay: _patterns.canPlay.twitch,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerTwitch */ "reactPlayerTwitch").then(__webpack_require__.bind(__webpack_require__, /*! ./Twitch */ "./node_modules/react-player/lazy/players/Twitch.js"));
-  })
-}, {
-  key: 'dailymotion',
-  name: 'DailyMotion',
-  canPlay: _patterns.canPlay.dailymotion,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerDailyMotion */ "reactPlayerDailyMotion").then(__webpack_require__.bind(__webpack_require__, /*! ./DailyMotion */ "./node_modules/react-player/lazy/players/DailyMotion.js"));
-  })
-}, {
-  key: 'mixcloud',
-  name: 'Mixcloud',
-  canPlay: _patterns.canPlay.mixcloud,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerMixcloud */ "reactPlayerMixcloud").then(__webpack_require__.bind(__webpack_require__, /*! ./Mixcloud */ "./node_modules/react-player/lazy/players/Mixcloud.js"));
-  })
-}, {
-  key: 'vidyard',
-  name: 'Vidyard',
-  canPlay: _patterns.canPlay.vidyard,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerVidyard */ "reactPlayerVidyard").then(__webpack_require__.bind(__webpack_require__, /*! ./Vidyard */ "./node_modules/react-player/lazy/players/Vidyard.js"));
-  })
-}, {
-  key: 'kaltura',
-  name: 'Kaltura',
-  canPlay: _patterns.canPlay.kaltura,
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerKaltura */ "reactPlayerKaltura").then(__webpack_require__.bind(__webpack_require__, /*! ./Kaltura */ "./node_modules/react-player/lazy/players/Kaltura.js"));
-  })
-}, {
-  key: 'file',
-  name: 'FilePlayer',
-  canPlay: _patterns.canPlay.file,
-  canEnablePIP: function canEnablePIP(url) {
-    return _patterns.canPlay.file(url) && (document.pictureInPictureEnabled || (0, _utils.supportsWebKitPresentationMode)()) && !_patterns.AUDIO_EXTENSIONS.test(url);
-  },
-  lazyPlayer: /*#__PURE__*/(0, _react.lazy)(function () {
-    return __webpack_require__.e(/*! import() | reactPlayerFilePlayer */ "reactPlayerFilePlayer").then(__webpack_require__.bind(__webpack_require__, /*! ./FilePlayer */ "./node_modules/react-player/lazy/players/FilePlayer.js"));
-  })
-}];
-exports["default"] = _default;
+function _getRequireWildcardCache() {
+  if (typeof WeakMap !== "function") return null;
+  var cache = new WeakMap();
+
+  _getRequireWildcardCache = function _getRequireWildcardCache() {
+    return cache;
+  };
+
+  return cache;
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache();
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var SDK_URL = 'https://www.youtube.com/iframe_api';
+var SDK_GLOBAL = 'YT';
+var SDK_GLOBAL_READY = 'onYouTubeIframeAPIReady';
+var MATCH_PLAYLIST = /[?&](?:list|channel)=([a-zA-Z0-9_-]+)/;
+var MATCH_USER_UPLOADS = /user\/([a-zA-Z0-9_-]+)\/?/;
+var MATCH_NOCOOKIE = /youtube-nocookie\.com/;
+var NOCOOKIE_HOST = 'https://www.youtube-nocookie.com';
+
+var YouTube = /*#__PURE__*/function (_Component) {
+  _inherits(YouTube, _Component);
+
+  var _super = _createSuper(YouTube);
+
+  function YouTube() {
+    var _this;
+
+    _classCallCheck(this, YouTube);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "callPlayer", _utils.callPlayer);
+
+    _defineProperty(_assertThisInitialized(_this), "parsePlaylist", function (url) {
+      if (url instanceof Array) {
+        return {
+          listType: 'playlist',
+          playlist: url.map(_this.getID).join(',')
+        };
+      }
+
+      if (MATCH_PLAYLIST.test(url)) {
+        var _url$match = url.match(MATCH_PLAYLIST),
+            _url$match2 = _slicedToArray(_url$match, 2),
+            playlistId = _url$match2[1];
+
+        return {
+          listType: 'playlist',
+          list: playlistId.replace(/^UC/, 'UU')
+        };
+      }
+
+      if (MATCH_USER_UPLOADS.test(url)) {
+        var _url$match3 = url.match(MATCH_USER_UPLOADS),
+            _url$match4 = _slicedToArray(_url$match3, 2),
+            username = _url$match4[1];
+
+        return {
+          listType: 'user_uploads',
+          list: username
+        };
+      }
+
+      return {};
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onStateChange", function (event) {
+      var data = event.data;
+      var _this$props = _this.props,
+          onPlay = _this$props.onPlay,
+          onPause = _this$props.onPause,
+          onBuffer = _this$props.onBuffer,
+          onBufferEnd = _this$props.onBufferEnd,
+          onEnded = _this$props.onEnded,
+          onReady = _this$props.onReady,
+          loop = _this$props.loop,
+          _this$props$config = _this$props.config,
+          playerVars = _this$props$config.playerVars,
+          onUnstarted = _this$props$config.onUnstarted;
+      var _window$SDK_GLOBAL$Pl = window[SDK_GLOBAL].PlayerState,
+          UNSTARTED = _window$SDK_GLOBAL$Pl.UNSTARTED,
+          PLAYING = _window$SDK_GLOBAL$Pl.PLAYING,
+          PAUSED = _window$SDK_GLOBAL$Pl.PAUSED,
+          BUFFERING = _window$SDK_GLOBAL$Pl.BUFFERING,
+          ENDED = _window$SDK_GLOBAL$Pl.ENDED,
+          CUED = _window$SDK_GLOBAL$Pl.CUED;
+      if (data === UNSTARTED) onUnstarted();
+
+      if (data === PLAYING) {
+        onPlay();
+        onBufferEnd();
+      }
+
+      if (data === PAUSED) onPause();
+      if (data === BUFFERING) onBuffer();
+
+      if (data === ENDED) {
+        var isPlaylist = !!_this.callPlayer('getPlaylist'); // Only loop manually if not playing a playlist
+
+        if (loop && !isPlaylist) {
+          if (playerVars.start) {
+            _this.seekTo(playerVars.start);
+          } else {
+            _this.play();
+          }
+        }
+
+        onEnded();
+      }
+
+      if (data === CUED) onReady();
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "mute", function () {
+      _this.callPlayer('mute');
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "unmute", function () {
+      _this.callPlayer('unMute');
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "ref", function (container) {
+      _this.container = container;
+    });
+
+    return _this;
+  }
+
+  _createClass(YouTube, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.onMount && this.props.onMount(this);
+    }
+  }, {
+    key: "getID",
+    value: function getID(url) {
+      if (!url || url instanceof Array || MATCH_PLAYLIST.test(url)) {
+        return null;
+      }
+
+      return url.match(_patterns.MATCH_URL_YOUTUBE)[1];
+    }
+  }, {
+    key: "load",
+    value: function load(url, isReady) {
+      var _this2 = this;
+
+      var _this$props2 = this.props,
+          playing = _this$props2.playing,
+          muted = _this$props2.muted,
+          playsinline = _this$props2.playsinline,
+          controls = _this$props2.controls,
+          loop = _this$props2.loop,
+          config = _this$props2.config,
+          _onError = _this$props2.onError;
+      var playerVars = config.playerVars,
+          embedOptions = config.embedOptions;
+      var id = this.getID(url);
+
+      if (isReady) {
+        if (MATCH_PLAYLIST.test(url) || MATCH_USER_UPLOADS.test(url) || url instanceof Array) {
+          this.player.loadPlaylist(this.parsePlaylist(url));
+          return;
+        }
+
+        this.player.cueVideoById({
+          videoId: id,
+          startSeconds: (0, _utils.parseStartTime)(url) || playerVars.start,
+          endSeconds: (0, _utils.parseEndTime)(url) || playerVars.end
+        });
+        return;
+      }
+
+      (0, _utils.getSDK)(SDK_URL, SDK_GLOBAL, SDK_GLOBAL_READY, function (YT) {
+        return YT.loaded;
+      }).then(function (YT) {
+        if (!_this2.container) return;
+        _this2.player = new YT.Player(_this2.container, _objectSpread({
+          width: '100%',
+          height: '100%',
+          videoId: id,
+          playerVars: _objectSpread(_objectSpread({
+            autoplay: playing ? 1 : 0,
+            mute: muted ? 1 : 0,
+            controls: controls ? 1 : 0,
+            start: (0, _utils.parseStartTime)(url),
+            end: (0, _utils.parseEndTime)(url),
+            origin: window.location.origin,
+            playsinline: playsinline ? 1 : 0
+          }, _this2.parsePlaylist(url)), playerVars),
+          events: {
+            onReady: function onReady() {
+              if (loop) {
+                _this2.player.setLoop(true); // Enable playlist looping
+
+              }
+
+              _this2.props.onReady();
+            },
+            onStateChange: _this2.onStateChange,
+            onError: function onError(event) {
+              return _onError(event.data);
+            }
+          },
+          host: MATCH_NOCOOKIE.test(url) ? NOCOOKIE_HOST : undefined
+        }, embedOptions));
+      }, _onError);
+
+      if (embedOptions.events) {
+        console.warn('Using `embedOptions.events` will likely break things. Use ReactPlayer’s callback props instead, eg onReady, onPlay, onPause');
+      }
+    }
+  }, {
+    key: "play",
+    value: function play() {
+      this.callPlayer('playVideo');
+    }
+  }, {
+    key: "pause",
+    value: function pause() {
+      this.callPlayer('pauseVideo');
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      if (!document.body.contains(this.callPlayer('getIframe'))) return;
+      this.callPlayer('stopVideo');
+    }
+  }, {
+    key: "seekTo",
+    value: function seekTo(amount) {
+      this.callPlayer('seekTo', amount);
+
+      if (!this.props.playing) {
+        this.pause();
+      }
+    }
+  }, {
+    key: "setVolume",
+    value: function setVolume(fraction) {
+      this.callPlayer('setVolume', fraction * 100);
+    }
+  }, {
+    key: "setPlaybackRate",
+    value: function setPlaybackRate(rate) {
+      this.callPlayer('setPlaybackRate', rate);
+    }
+  }, {
+    key: "setLoop",
+    value: function setLoop(loop) {
+      this.callPlayer('setLoop', loop);
+    }
+  }, {
+    key: "getDuration",
+    value: function getDuration() {
+      return this.callPlayer('getDuration');
+    }
+  }, {
+    key: "getCurrentTime",
+    value: function getCurrentTime() {
+      return this.callPlayer('getCurrentTime');
+    }
+  }, {
+    key: "getSecondsLoaded",
+    value: function getSecondsLoaded() {
+      return this.callPlayer('getVideoLoadedFraction') * this.getDuration();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var display = this.props.display;
+      var style = {
+        width: '100%',
+        height: '100%',
+        display: display
+      };
+      return /*#__PURE__*/_react["default"].createElement("div", {
+        style: style
+      }, /*#__PURE__*/_react["default"].createElement("div", {
+        ref: this.ref
+      }));
+    }
+  }]);
+
+  return YouTube;
+}(_react.Component);
+
+exports["default"] = YouTube;
+
+_defineProperty(YouTube, "displayName", 'YouTube');
+
+_defineProperty(YouTube, "canPlay", _patterns.canPlay.youtube);
 
 /***/ }),
 
-/***/ "./node_modules/react-player/lazy/props.js":
-/*!*************************************************!*\
-  !*** ./node_modules/react-player/lazy/props.js ***!
-  \*************************************************/
+/***/ "./node_modules/react-player/lib/props.js":
+/*!************************************************!*\
+  !*** ./node_modules/react-player/lib/props.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -22437,10 +23268,10 @@ exports.defaultProps = defaultProps;
 
 /***/ }),
 
-/***/ "./node_modules/react-player/lazy/utils.js":
-/*!*************************************************!*\
-  !*** ./node_modules/react-player/lazy/utils.js ***!
-  \*************************************************/
+/***/ "./node_modules/react-player/lib/utils.js":
+/*!************************************************!*\
+  !*** ./node_modules/react-player/lib/utils.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -22741,6 +23572,24 @@ function supportsWebKitPresentationMode() {
   var notMobile = /iPhone|iPod/.test(navigator.userAgent) === false;
   return video.webkitSupportsPresentationMode && typeof video.webkitSetPresentationMode === 'function' && notMobile;
 }
+
+/***/ }),
+
+/***/ "./node_modules/react-player/youtube.js":
+/*!**********************************************!*\
+  !*** ./node_modules/react-player/youtube.js ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var createReactPlayer = (__webpack_require__(/*! ./lib/ReactPlayer */ "./node_modules/react-player/lib/ReactPlayer.js").createReactPlayer);
+
+var Player = (__webpack_require__(/*! ./lib/players/YouTube */ "./node_modules/react-player/lib/players/YouTube.js")["default"]);
+
+module.exports = createReactPlayer([{
+  key: 'youtube',
+  canPlay: Player.canPlay,
+  lazyPlayer: Player
+}]);
 
 /***/ }),
 
@@ -32536,7 +33385,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var react_player_lazy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-player/lazy */ "./node_modules/react-player/lazy/index.js");
+/* harmony import */ var react_player_youtube__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-player/youtube */ "./node_modules/react-player/youtube.js");
+/* harmony import */ var react_player_youtube__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_player_youtube__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Rating_Rating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Rating/Rating */ "./src/components/Rating/Rating.js");
 /* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
@@ -32634,7 +33484,7 @@ var MovieDetail = function MovieDetail() {
     review: movie.rating
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "trailer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Watch the trailer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_player_lazy__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Watch the trailer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_player_youtube__WEBPACK_IMPORTED_MODULE_2___default()), {
     className: "trailer-video",
     url: movie.videoUrl,
     width: "100%"
@@ -33668,9 +34518,6 @@ function dequal(foo, bar) {
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/amd options */
 /******/ 	(() => {
@@ -33701,28 +34548,6 @@ function dequal(foo, bar) {
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/ensure chunk */
-/******/ 	(() => {
-/******/ 		__webpack_require__.f = {};
-/******/ 		// This file contains only the entry chunk.
-/******/ 		// The chunk loading function for additional chunks
-/******/ 		__webpack_require__.e = (chunkId) => {
-/******/ 			return Promise.all(Object.keys(__webpack_require__.f).reduce((promises, key) => {
-/******/ 				__webpack_require__.f[key](chunkId, promises);
-/******/ 				return promises;
-/******/ 			}, []));
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/get javascript chunk filename */
-/******/ 	(() => {
-/******/ 		// This function allow to reference async chunks
-/******/ 		__webpack_require__.u = (chunkId) => {
-/******/ 			// return url for filenames based on template
-/******/ 			return "" + chunkId + ".bundle.js";
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -33740,52 +34565,6 @@ function dequal(foo, bar) {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/load script */
-/******/ 	(() => {
-/******/ 		var inProgress = {};
-/******/ 		var dataWebpackPrefix = "project-jose-arteaga:";
-/******/ 		// loadScript function to load a script via script tag
-/******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
-/******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
-/******/ 			var script, needAttach;
-/******/ 			if(key !== undefined) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				for(var i = 0; i < scripts.length; i++) {
-/******/ 					var s = scripts[i];
-/******/ 					if(s.getAttribute("src") == url || s.getAttribute("data-webpack") == dataWebpackPrefix + key) { script = s; break; }
-/******/ 				}
-/******/ 			}
-/******/ 			if(!script) {
-/******/ 				needAttach = true;
-/******/ 				script = document.createElement('script');
-/******/ 		
-/******/ 				script.charset = 'utf-8';
-/******/ 				script.timeout = 120;
-/******/ 				if (__webpack_require__.nc) {
-/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
-/******/ 				}
-/******/ 				script.setAttribute("data-webpack", dataWebpackPrefix + key);
-/******/ 				script.src = url;
-/******/ 			}
-/******/ 			inProgress[url] = [done];
-/******/ 			var onScriptComplete = (prev, event) => {
-/******/ 				// avoid mem leaks in IE.
-/******/ 				script.onerror = script.onload = null;
-/******/ 				clearTimeout(timeout);
-/******/ 				var doneFns = inProgress[url];
-/******/ 				delete inProgress[url];
-/******/ 				script.parentNode && script.parentNode.removeChild(script);
-/******/ 				doneFns && doneFns.forEach((fn) => (fn(event)));
-/******/ 				if(prev) return prev(event);
-/******/ 			}
-/******/ 			;
-/******/ 			var timeout = setTimeout(onScriptComplete.bind(null, undefined, { type: 'timeout', target: script }), 120000);
-/******/ 			script.onerror = onScriptComplete.bind(null, script.onerror);
-/******/ 			script.onload = onScriptComplete.bind(null, script.onload);
-/******/ 			needAttach && document.head.appendChild(script);
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -33795,116 +34574,6 @@ function dequal(foo, bar) {
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		var scriptUrl;
-/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
-/******/ 		var document = __webpack_require__.g.document;
-/******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
-/******/ 				scriptUrl = document.currentScript.src
-/******/ 			if (!scriptUrl) {
-/******/ 				var scripts = document.getElementsByTagName("script");
-/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
-/******/ 			}
-/******/ 		}
-/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
-/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
-/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
-/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
-/******/ 		__webpack_require__.p = scriptUrl;
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"main": 0
-/******/ 		};
-/******/ 		
-/******/ 		__webpack_require__.f.j = (chunkId, promises) => {
-/******/ 				// JSONP chunk loading for javascript
-/******/ 				var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
-/******/ 				if(installedChunkData !== 0) { // 0 means "already installed".
-/******/ 		
-/******/ 					// a Promise means "currently loading".
-/******/ 					if(installedChunkData) {
-/******/ 						promises.push(installedChunkData[2]);
-/******/ 					} else {
-/******/ 						if(true) { // all chunks have JS
-/******/ 							// setup Promise in chunk cache
-/******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
-/******/ 							promises.push(installedChunkData[2] = promise);
-/******/ 		
-/******/ 							// start chunk loading
-/******/ 							var url = __webpack_require__.p + __webpack_require__.u(chunkId);
-/******/ 							// create error before stack unwound to get useful stacktrace later
-/******/ 							var error = new Error();
-/******/ 							var loadingEnded = (event) => {
-/******/ 								if(__webpack_require__.o(installedChunks, chunkId)) {
-/******/ 									installedChunkData = installedChunks[chunkId];
-/******/ 									if(installedChunkData !== 0) installedChunks[chunkId] = undefined;
-/******/ 									if(installedChunkData) {
-/******/ 										var errorType = event && (event.type === 'load' ? 'missing' : event.type);
-/******/ 										var realSrc = event && event.target && event.target.src;
-/******/ 										error.message = 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
-/******/ 										error.name = 'ChunkLoadError';
-/******/ 										error.type = errorType;
-/******/ 										error.request = realSrc;
-/******/ 										installedChunkData[1](error);
-/******/ 									}
-/******/ 								}
-/******/ 							};
-/******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
-/******/ 						} else installedChunks[chunkId] = 0;
-/******/ 					}
-/******/ 				}
-/******/ 		};
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		// no on chunks loaded
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
-/******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
-/******/ 			}
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkIds[i]] = 0;
-/******/ 			}
-/******/ 		
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkproject_jose_arteaga"] = self["webpackChunkproject_jose_arteaga"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
 /******/ 	
 /************************************************************************/
