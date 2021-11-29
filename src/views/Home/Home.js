@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { MovieContext } from '../../context/movie/MovieContext'
 import MovieCard from '../../components/MovieCard/MovieCard'
 import { api } from '../../config'
 import { Container } from './Home.style'
 
 const Home = () => {
+  const { reset } = useContext(MovieContext)
   const history = useHistory()
   const [movies, setMovies] = useState([])
 
@@ -15,6 +17,7 @@ const Home = () => {
   }
 
   useEffect(() => {
+    reset()
     axios
       .get(api.movie)
       .then(({ data: res }) => {

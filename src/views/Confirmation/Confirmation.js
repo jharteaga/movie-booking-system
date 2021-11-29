@@ -6,7 +6,7 @@ import { Container } from './Confirmation.style'
 
 const Confirmation = () => {
   const history = useHistory()
-  const { movie, reset } = useContext(MovieContext)
+  const { movie, seatsSelected } = useContext(MovieContext)
 
   const handleGoHome = () => {
     history.push('/')
@@ -14,7 +14,6 @@ const Confirmation = () => {
 
   useEffect(() => {
     localStorage.clear()
-    reset()
   }, [])
 
   return (
@@ -33,26 +32,23 @@ const Confirmation = () => {
           <div className="ticket__datetime">
             <div className="group">
               <p>Date</p>
-              <p>{localStorage.getItem('showDate')}</p>
+              <p>{movie.showDate}</p>
             </div>
             <div className="group">
               <p>Time</p>
-              <p>{localStorage.getItem('showTime')}</p>
+              <p>{movie.showTime}</p>
             </div>
             <div className="group">
               <p>Price</p>
-              <p>$20.00</p>
+              <p>{seatsSelected.length * 7.5}</p>
             </div>
           </div>
           <div className="ticket__seats">
             <p>Seats</p>
             <p>
-              {JSON.parse(localStorage.getItem('seatsSelected')).reduce(
-                (accum, current, index) => {
-                  return index === 0 ? `${current}` : `${accum}, ${current}`
-                },
-                ''
-              )}
+              {seatsSelected.reduce((accum, current, index) => {
+                return index === 0 ? `${current}` : `${accum}, ${current}`
+              }, '')}
             </p>
           </div>
         </div>
