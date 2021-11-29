@@ -2,12 +2,15 @@ const morgan = require('morgan')
 const path = require('path')
 const express = require('express')
 const app = express()
+const dotenv = require('dotenv')
 
 const connection = require('./db/connection.js')
 
+dotenv.config()
+
 connection.once('open', () => {
-  app.listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}`)
+  app.listen(process.env.PORT || 8080, () => {
+    console.log(`Server listening on port ${process.env.PORT || 8080}`)
   })
 })
 
