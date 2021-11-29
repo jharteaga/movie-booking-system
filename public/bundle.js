@@ -33779,7 +33779,7 @@ var Showtime = function Showtime() {
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_7__.api.movie, "/").concat(movie.id, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
         var data = _ref.data.data;
         data !== null && data !== void 0 && data.allSeats ? updateMovieDateTime(showDate, showTime, data === null || data === void 0 ? void 0 : data.allSeats) : updateMovieDateTime(showDate, showTime, _config__WEBPACK_IMPORTED_MODULE_7__.initSeats);
-        if (data !== null && data !== void 0 && data.allSeats) setSeatsId(data._id);
+        setSeatsId(data === null || data === void 0 ? void 0 : data._id);
       })["catch"](function (err) {
         return console.log(err);
       });

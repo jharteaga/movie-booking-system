@@ -48,7 +48,7 @@ const Showtime = () => {
             ? updateMovieDateTime(showDate, showTime, data?.allSeats)
             : updateMovieDateTime(showDate, showTime, initSeats)
 
-          if (data?.allSeats) setSeatsId(data._id)
+          setSeatsId(data?._id)
         })
         .catch((err) => console.log(err))
     }
