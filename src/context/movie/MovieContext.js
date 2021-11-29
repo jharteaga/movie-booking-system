@@ -69,6 +69,10 @@ export const MovieProvider = ({ children }) => {
     }
   }
 
+  const reset = () => {
+    dispatch({ type: 'RESET' })
+  }
+
   return (
     <MovieContext.Provider
       value={{
@@ -78,7 +82,8 @@ export const MovieProvider = ({ children }) => {
         updateMovieDateTime,
         updateMovieSelected,
         selectSeat,
-        updateSeats
+        updateSeats,
+        reset
       }}
     >
       {children}

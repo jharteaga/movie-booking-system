@@ -67,6 +67,14 @@ export const MovieReducer = (state, action) => {
         seatsSelected: action.payload?.selection?.seatsSelected
       }
 
+    case 'RESET':
+      return {
+        ...state,
+        seatsSelected: [],
+        movieSelected: {},
+        seats: []
+      }
+
     default:
       return state
   }

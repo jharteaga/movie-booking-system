@@ -32952,6 +32952,12 @@ var MovieProvider = function MovieProvider(_ref) {
     }
   };
 
+  var reset = function reset() {
+    dispatch({
+      type: 'RESET'
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(MovieContext.Provider, {
     value: {
       seatsSelected: state.seatsSelected,
@@ -32960,7 +32966,8 @@ var MovieProvider = function MovieProvider(_ref) {
       updateMovieDateTime: updateMovieDateTime,
       updateMovieSelected: updateMovieSelected,
       selectSeat: selectSeat,
-      updateSeats: updateSeats
+      updateSeats: updateSeats,
+      reset: reset
     }
   }, children);
 };
@@ -33052,6 +33059,13 @@ var MovieReducer = function MovieReducer(state, action) {
         }),
         seats: (_action$payload13 = action.payload) === null || _action$payload13 === void 0 ? void 0 : (_action$payload13$sel = _action$payload13.selection) === null || _action$payload13$sel === void 0 ? void 0 : _action$payload13$sel.allSeats,
         seatsSelected: (_action$payload14 = action.payload) === null || _action$payload14 === void 0 ? void 0 : (_action$payload14$sel = _action$payload14.selection) === null || _action$payload14$sel === void 0 ? void 0 : _action$payload14$sel.seatsSelected
+      });
+
+    case 'RESET':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        seatsSelected: [],
+        movieSelected: {},
+        seats: []
       });
 
     default:
@@ -33205,7 +33219,8 @@ var Confirmation = function Confirmation() {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
 
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_1__.MovieContext),
-      movie = _useContext.movie;
+      movie = _useContext.movie,
+      reset = _useContext.reset;
 
   var handleGoHome = function handleGoHome() {
     history.push('/');
@@ -33213,6 +33228,7 @@ var Confirmation = function Confirmation() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     localStorage.clear();
+    reset();
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Confirmation_style__WEBPACK_IMPORTED_MODULE_2__.Container, {
     image: movie.imageUrl

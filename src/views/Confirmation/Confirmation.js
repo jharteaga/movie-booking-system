@@ -6,7 +6,7 @@ import { Container } from './Confirmation.style'
 
 const Confirmation = () => {
   const history = useHistory()
-  const { movie } = useContext(MovieContext)
+  const { movie, reset } = useContext(MovieContext)
 
   const handleGoHome = () => {
     history.push('/')
@@ -14,6 +14,7 @@ const Confirmation = () => {
 
   useEffect(() => {
     localStorage.clear()
+    reset()
   }, [])
 
   return (
