@@ -31037,7 +31037,7 @@ var Cinema = function Cinema() {
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_3__.MovieContext),
       seats = _useContext.seats;
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Cinema_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, seats && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsLegend_SeatsLegend__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Cinema_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, seats.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_SeatsLegend_SeatsLegend__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "screen"
   }, "Screen"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "seats__container"
@@ -31909,7 +31909,7 @@ var Summary = function Summary() {
     className: "summary__info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "title"
-  }, movie.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Date: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('showDate'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Time: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, localStorage.getItem('showTime'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Seats:", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, JSON.parse(localStorage.getItem('seatsSelected')).reduce(function (accum, current, index) {
+  }, movie.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Date: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, movie.showDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Time: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, movie.showTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Seats:", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, seatsSelected.reduce(function (accum, current, index) {
     return index === 0 ? "".concat(current) : "".concat(accum, ", ").concat(current);
   }, '')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     src: movie.imageUrl,
@@ -32044,7 +32044,8 @@ var MovieProvider = function MovieProvider(_ref) {
   var updateMovieDateTime = function updateMovieDateTime(movieDate, movieTime, seats) {
     localStorage.setItem('showDate', movieDate);
     localStorage.setItem('showTime', movieTime);
-    localStorage.setItem('seats', seats);
+    localStorage.setItem('seats', JSON.stringify(seats));
+    localStorage.removeItem('seatsSelected');
     dispatch({
       type: 'UPDATE_DATETIME',
       payload: {
@@ -32076,14 +32077,24 @@ var MovieProvider = function MovieProvider(_ref) {
 
   var refreshState = function refreshState() {
     var movieId = localStorage.getItem('movieIdSelected');
+    var movieDate = localStorage.getItem('showDate');
+    var movieTime = localStorage.getItem('showTime');
+    var allSeats = localStorage.getItem('seats') ? JSON.parse(localStorage.getItem('seats')) : [];
+    var seatsSelected = localStorage.getItem('seatsSelected') ? JSON.parse(localStorage.getItem('seatsSelected')) : [];
 
     if (movieId) {
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_3__.api.movie, "/").concat(movieId)).then(function (_ref2) {
         var res = _ref2.data;
         dispatch({
-          type: 'SELECT_MOVIE',
+          type: 'REFRESH',
           payload: {
-            movie: res.data
+            movie: res.data,
+            selection: {
+              movieDate: movieDate,
+              movieTime: movieTime,
+              allSeats: allSeats,
+              seatsSelected: seatsSelected
+            }
           }
         });
       })["catch"](function (err) {
@@ -32137,7 +32148,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var MovieReducer = function MovieReducer(state, action) {
-  var _action$payload, _action$payload$movie, _action$payload2, _action$payload2$movi, _action$payload3, _action$payload3$movi, _action$payload4, _action$payload5, _action$payload6, _action$payload7;
+  var _action$payload, _action$payload$movie, _action$payload2, _action$payload2$movi, _action$payload3, _action$payload3$movi, _action$payload4, _action$payload5, _action$payload6, _action$payload7, _action$payload8, _action$payload8$movi, _action$payload9, _action$payload9$movi, _action$payload10, _action$payload10$mov, _action$payload11, _action$payload11$sel, _action$payload12, _action$payload12$sel, _action$payload13, _action$payload13$sel, _action$payload14, _action$payload14$sel;
 
   switch (action.type) {
     case 'SELECT_MOVIE':
@@ -32179,6 +32190,19 @@ var MovieReducer = function MovieReducer(state, action) {
             })
           });
         })
+      });
+
+    case 'REFRESH':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        movieSelected: _objectSpread(_objectSpread({}, state.movieSelected), {}, {
+          id: (_action$payload8 = action.payload) === null || _action$payload8 === void 0 ? void 0 : (_action$payload8$movi = _action$payload8.movie) === null || _action$payload8$movi === void 0 ? void 0 : _action$payload8$movi._id,
+          title: (_action$payload9 = action.payload) === null || _action$payload9 === void 0 ? void 0 : (_action$payload9$movi = _action$payload9.movie) === null || _action$payload9$movi === void 0 ? void 0 : _action$payload9$movi.title,
+          imageUrl: (_action$payload10 = action.payload) === null || _action$payload10 === void 0 ? void 0 : (_action$payload10$mov = _action$payload10.movie) === null || _action$payload10$mov === void 0 ? void 0 : _action$payload10$mov.imageUrl,
+          showDate: (_action$payload11 = action.payload) === null || _action$payload11 === void 0 ? void 0 : (_action$payload11$sel = _action$payload11.selection) === null || _action$payload11$sel === void 0 ? void 0 : _action$payload11$sel.movieDate,
+          showTime: (_action$payload12 = action.payload) === null || _action$payload12 === void 0 ? void 0 : (_action$payload12$sel = _action$payload12.selection) === null || _action$payload12$sel === void 0 ? void 0 : _action$payload12$sel.movieTime
+        }),
+        seats: (_action$payload13 = action.payload) === null || _action$payload13 === void 0 ? void 0 : (_action$payload13$sel = _action$payload13.selection) === null || _action$payload13$sel === void 0 ? void 0 : _action$payload13$sel.allSeats,
+        seatsSelected: (_action$payload14 = action.payload) === null || _action$payload14 === void 0 ? void 0 : (_action$payload14$sel = _action$payload14.selection) === null || _action$payload14$sel === void 0 ? void 0 : _action$payload14$sel.seatsSelected
       });
 
     default:
@@ -32335,10 +32359,12 @@ var Confirmation = function Confirmation() {
       movie = _useContext.movie;
 
   var handleGoHome = function handleGoHome() {
-    localStorage.clear();
     history.push('/');
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    localStorage.clear();
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Confirmation_style__WEBPACK_IMPORTED_MODULE_2__.Container, {
     image: movie.imageUrl
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -32654,10 +32680,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PaymentForm/PaymentForm */ "./src/components/PaymentForm/PaymentForm.js");
-/* harmony import */ var _components_Summary_Summary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Summary/Summary */ "./src/components/Summary/Summary.js");
-/* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
+/* harmony import */ var _components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/PaymentForm/PaymentForm */ "./src/components/PaymentForm/PaymentForm.js");
+/* harmony import */ var _components_Summary_Summary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Summary/Summary */ "./src/components/Summary/Summary.js");
+/* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -32677,8 +32705,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Purchase = function Purchase() {
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
+
+
+var Purchase = function Purchase(_ref) {
+  var location = _ref.location;
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_2__.MovieContext),
+      movie = _useContext.movie,
+      seatsSelected = _useContext.seatsSelected,
+      seats = _useContext.seats;
+
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
@@ -32686,19 +32723,42 @@ var Purchase = function Purchase() {
       setErrors = _useState2[1];
 
   var handleSubmit = function handleSubmit(paymentInfo) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/v1/purchase', paymentInfo).then(function (res) {
-      return history.push('/confirmation');
+    var error = {
+      cardNumber: '',
+      cardHolder: '',
+      expirationMonth: '',
+      expirationYear: '',
+      cvv: ''
+    };
+    var purchaseReq = {
+      userId: '6190699eba679222a49e5916',
+      movie: {
+        date: movie.showDate,
+        time: movie.showTime,
+        seats: seatsSelected,
+        total: seatsSelected.length * 7.5
+      },
+      payment: paymentInfo
+    };
+    var seatsId = localStorage.getItem('seatsId');
+    var seatsReq = {
+      showDate: movie.showDate,
+      showTime: movie.showTime,
+      allSeats: seats,
+      seatId: seatsId
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/purchase"), purchaseReq).then(function (res) {
+      setErrors(error);
+      seatsId ? axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
+        return history.push('/confirmation');
+      }) : axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
+        return history.push('/confirmation');
+      });
     })["catch"](function (err) {
-      var error = {
-        cardNumber: '',
-        cardHolder: '',
-        expirationMonth: '',
-        expirationYear: '',
-        cvv: ''
-      };
-      err.response.data.errors.forEach(function (_ref) {
-        var message = _ref.message,
-            path = _ref.path;
+      console.log('ERROR', err.response);
+      err.response.data.errors.forEach(function (_ref2) {
+        var message = _ref2.message,
+            path = _ref2.path;
 
         if (path[0] === 'cardNumber') {
           return error.cardNumber = message;
@@ -32724,7 +32784,7 @@ var Purchase = function Purchase() {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_5__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onSubmit: handleSubmit,
     errors: errors
   }));
@@ -32818,6 +32878,11 @@ var Showtime = function Showtime() {
       timeSelected = _useState4[0],
       setTimeSelected = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      seatsId = _useState6[0],
+      setSeatsId = _useState6[1];
+
   var handleGoBack = function handleGoBack() {
     history.push('/movie-detail');
   };
@@ -32832,6 +32897,7 @@ var Showtime = function Showtime() {
 
   var handlePurchase = function handlePurchase() {
     localStorage.setItem('seatsSelected', JSON.stringify(seatsSelected));
+    localStorage.setItem('seatsId', seatsId);
     history.push('/payment');
   };
 
@@ -32842,6 +32908,7 @@ var Showtime = function Showtime() {
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_7__.api.movie, "/").concat(movie.id, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
         var data = _ref.data.data;
         data !== null && data !== void 0 && data.allSeats ? updateMovieDateTime(showDate, showTime, data === null || data === void 0 ? void 0 : data.allSeats) : updateMovieDateTime(showDate, showTime, _config__WEBPACK_IMPORTED_MODULE_7__.initSeats);
+        if (data !== null && data !== void 0 && data.allSeats) setSeatsId(data._id);
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -32874,7 +32941,7 @@ var Showtime = function Showtime() {
     className: "desktop-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Seats:"), ' ', seatsSelected.reduce(function (accum, current, index) {
     return index === 0 ? "".concat(current) : "".concat(accum, ", ").concat(current);
-  }, 'None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", (seatsSelected.length * 7.5).toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, 'None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected && seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", seatsSelected && (seatsSelected.length * 7.5).toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "bg-danger",
     onClick: handlePurchase,
     disabled: seatsSelected.length === 0
@@ -32887,7 +32954,7 @@ var Showtime = function Showtime() {
     alt: ""
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "order-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Seats:"), ' ', seatsSelected.reduce(function (accum, current, index) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Seats:"), ' ', seatsSelected !== null && seatsSelected !== void 0 ? seatsSelected : seatsSelected.reduce(function (accum, current, index) {
     return index === 0 ? "".concat(current) : "".concat(accum, ", ").concat(current);
   }, 'None')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Quantity:"), " ", seatsSelected.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", (seatsSelected.length * 7.5).toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "purchase-action"

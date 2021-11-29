@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { FaCheck, FaHome } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom'
 import { MovieContext } from '../../context/movie/MovieContext'
@@ -9,9 +9,12 @@ const Confirmation = () => {
   const { movie } = useContext(MovieContext)
 
   const handleGoHome = () => {
-    localStorage.clear()
     history.push('/')
   }
+
+  useEffect(() => {
+    localStorage.clear()
+  }, [])
 
   return (
     <Container image={movie.imageUrl}>

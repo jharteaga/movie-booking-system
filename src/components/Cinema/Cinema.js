@@ -9,7 +9,7 @@ const Cinema = () => {
 
   return (
     <Container>
-      {seats && (
+      {seats.length && (
         <>
           <SeatsLegend />
           <div className="screen">Screen</div>

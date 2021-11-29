@@ -6,11 +6,13 @@ const {
   postMovie
 } = require('../controllers/movieControllers')
 const seatsRouter = require('./seats')
+const purchaseRouter = require('./purchase')
 
 router
   .get('/', getMovies)
   .get('/:movieId', getMovie)
-  .use('/:movieId/seats', seatsRouter)
   .post('/', postMovie)
+  .use('/:movieId/seats', seatsRouter)
+  .use('/:movieId/purchase', purchaseRouter)
 
 module.exports = router

@@ -14,6 +14,7 @@ const Showtime = () => {
   const { updateMovieDateTime, movie, seatsSelected } = useContext(MovieContext)
   const [dateSelected, setDateSelected] = useState()
   const [timeSelected, setTimeSelected] = useState()
+  const [seatsId, setSeatsId] = useState()
 
   const handleGoBack = () => {
     history.push('/movie-detail')
@@ -29,6 +30,7 @@ const Showtime = () => {
 
   const handlePurchase = () => {
     localStorage.setItem('seatsSelected', JSON.stringify(seatsSelected))
+    localStorage.setItem('seatsId', seatsId)
     history.push('/payment')
   }
 
@@ -45,6 +47,8 @@ const Showtime = () => {
           data?.allSeats
             ? updateMovieDateTime(showDate, showTime, data?.allSeats)
             : updateMovieDateTime(showDate, showTime, initSeats)
+
+          if (data?.allSeats) setSeatsId(data._id)
         })
         .catch((err) => console.log(err))
     }
@@ -85,10 +89,11 @@ const Showtime = () => {
                   }, 'None')}
                 </p>
                 <p>
-                  <span>Quantity:</span> {seatsSelected.length}
+                  <span>Quantity:</span> {seatsSelected && seatsSelected.length}
                 </p>
                 <p>
-                  <span>Total:</span> ${(seatsSelected.length * 7.5).toFixed(2)}
+                  <span>Total:</span> $
+                  {seatsSelected && (seatsSelected.length * 7.5).toFixed(2)}
                 </p>
               </div>
               <button
@@ -108,9 +113,10 @@ const Showtime = () => {
             <div className="order-info">
               <p>
                 <span>Seats:</span>{' '}
-                {seatsSelected.reduce((accum, current, index) => {
-                  return index === 0 ? `${current}` : `${accum}, ${current}`
-                }, 'None')}
+                {seatsSelected ??
+                  seatsSelected.reduce((accum, current, index) => {
+                    return index === 0 ? `${current}` : `${accum}, ${current}`
+                  }, 'None')}
               </p>
               <p>
                 <span>Quantity:</span> {seatsSelected.length}

@@ -1,7 +1,11 @@
 const router = require('express').Router({ mergeParams: true })
 
-const { getSeats } = require('../controllers/seatControllers')
+const {
+  getSeats,
+  postSeats,
+  putSeats
+} = require('../controllers/seatControllers')
 
-router.get('/', getSeats)
+router.get('/', getSeats).post('/', postSeats).put('/', putSeats)
 
 module.exports = router

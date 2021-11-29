@@ -70,14 +70,16 @@ const schemas = {
 
 const validate = (schema) => {
   return function (req, res, next) {
-    const { value, error } = schemas[schema].validate(req.body, {
+    const { value, error } = schemas[schema].validate(req.body[schema], {
       abortEarly: false
     })
 
     if (error) {
       res.status(400).json(new Response({}, {}, error.details))
     } else {
-      res.status(201).json(new Response({}, value, []))
+      // res.status(201).json(new Response({}, req.body, []))
+      // req.body.payment = value
+      next()
     }
   }
 }

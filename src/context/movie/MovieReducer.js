@@ -52,6 +52,21 @@ export const MovieReducer = (state, action) => {
         })
       }
 
+    case 'REFRESH':
+      return {
+        ...state,
+        movieSelected: {
+          ...state.movieSelected,
+          id: action.payload?.movie?._id,
+          title: action.payload?.movie?.title,
+          imageUrl: action.payload?.movie?.imageUrl,
+          showDate: action.payload?.selection?.movieDate,
+          showTime: action.payload?.selection?.movieTime
+        },
+        seats: action.payload?.selection?.allSeats,
+        seatsSelected: action.payload?.selection?.seatsSelected
+      }
+
     default:
       return state
   }

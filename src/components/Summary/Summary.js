@@ -12,20 +12,17 @@ const Summary = () => {
         <div className="summary__info">
           <p className="title">{movie.title}</p>
           <p>
-            Date: <span>{localStorage.getItem('showDate')}</span>
+            Date: <span>{movie.showDate}</span>
           </p>
           <p>
-            Time: <span>{localStorage.getItem('showTime')}</span>
+            Time: <span>{movie.showTime}</span>
           </p>
           <p>
             Seats:{' '}
             <span>
-              {JSON.parse(localStorage.getItem('seatsSelected')).reduce(
-                (accum, current, index) => {
-                  return index === 0 ? `${current}` : `${accum}, ${current}`
-                },
-                ''
-              )}
+              {seatsSelected.reduce((accum, current, index) => {
+                return index === 0 ? `${current}` : `${accum}, ${current}`
+              }, '')}
             </span>
           </p>
         </div>

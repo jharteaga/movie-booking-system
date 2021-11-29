@@ -25,7 +25,9 @@ export const MovieProvider = ({ children }) => {
   const updateMovieDateTime = (movieDate, movieTime, seats) => {
     localStorage.setItem('showDate', movieDate)
     localStorage.setItem('showTime', movieTime)
-    localStorage.setItem('seats', seats)
+    localStorage.setItem('seats', JSON.stringify(seats))
+    localStorage.removeItem('seatsSelected')
+
     dispatch({
       type: 'UPDATE_DATETIME',
       payload: { movieDate, movieTime, seats }
@@ -42,11 +44,26 @@ export const MovieProvider = ({ children }) => {
 
   const refreshState = () => {
     const movieId = localStorage.getItem('movieIdSelected')
+    const movieDate = localStorage.getItem('showDate')
+    const movieTime = localStorage.getItem('showTime')
+    const allSeats = localStorage.getItem('seats')
+      ? JSON.parse(localStorage.getItem('seats'))
+      : []
+    const seatsSelected = localStorage.getItem('seatsSelected')
+      ? JSON.parse(localStorage.getItem('seatsSelected'))
+      : []
+
     if (movieId) {
       axios
         .get(`${api.movie}/${movieId}`)
         .then(({ data: res }) => {
-          dispatch({ type: 'SELECT_MOVIE', payload: { movie: res.data } })
+          dispatch({
+            type: 'REFRESH',
+            payload: {
+              movie: res.data,
+              selection: { movieDate, movieTime, allSeats, seatsSelected }
+            }
+          })
         })
         .catch((err) => console.log(err))
     }

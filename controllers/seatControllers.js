@@ -8,10 +8,36 @@ const getSeats = (req, res) => {
     showTime: req.query.showTime
   })
     .then((results) => {
-      console.log(results)
       res.status(200).json(new Response({}, results, []))
     })
     .catch((err) => res.status(500).json(new Response({}, {}, [err])))
 }
 
-module.exports = { getSeats }
+const postSeats = (req, res) => {
+  const seatData = {
+    movieId: req.params.movieId,
+    showDate: req.body.showDate,
+    showTime: req.body.showTime,
+    allSeats: req.body.allSeats
+  }
+
+  Seat.create(seatData)
+    .then((result) =>
+      res.status(201).json(new Response({}, result ? result : {}, []))
+    )
+    .catch((err) => res.status(500).json(new Response({}, {}, [err.response])))
+}
+
+const putSeats = (req, res) => {
+  const seatsUpdated = {
+    allSeats: req.body.allSeats
+  }
+  Seat.findByIdAndUpdate({ _id: req.body.seatId }, seatsUpdated)
+    .exec()
+    .then((results) => {
+      res.status(204).json(new Response({}, results ? results : {}, []))
+    })
+    .catch((err) => res.status(500).json(new Response({}, {}, [err])))
+}
+
+module.exports = { getSeats, postSeats, putSeats }
