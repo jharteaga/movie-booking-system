@@ -46,13 +46,15 @@ const Purchase = ({ location }) => {
       .then((res) => {
         setErrors(error)
 
-        seatsId !== undefined
-          ? axios
-              .put(`${api.movie}/${movie.id}/seats`, seatsReq)
-              .then((res) => history.push('/confirmation'))
-          : axios
-              .post(`${api.movie}/${movie.id}/seats`, seatsReq)
-              .then((res) => history.push('/confirmation'))
+        if (seatsId.length) {
+          axios
+            .put(`${api.movie}/${movie.id}/seats`, seatsReq)
+            .then((res) => history.push('/confirmation'))
+        } else {
+          axios
+            .post(`${api.movie}/${movie.id}/seats`, seatsReq)
+            .then((res) => history.push('/confirmation'))
+        }
       })
       .catch((err) => {
         console.log('ERROR', err.response)

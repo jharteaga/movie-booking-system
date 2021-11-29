@@ -14,7 +14,7 @@ const Showtime = () => {
   const { updateMovieDateTime, movie, seatsSelected } = useContext(MovieContext)
   const [dateSelected, setDateSelected] = useState()
   const [timeSelected, setTimeSelected] = useState()
-  const [seatsId, setSeatsId] = useState()
+  const [seatsId, setSeatsId] = useState('')
 
   const handleGoBack = () => {
     history.push('/movie-detail')
@@ -48,7 +48,8 @@ const Showtime = () => {
             ? updateMovieDateTime(showDate, showTime, data?.allSeats)
             : updateMovieDateTime(showDate, showTime, initSeats)
 
-          setSeatsId(data?._id)
+          if (data?._id) setSeatsId(data._id)
+          else setSeatsId('')
         })
         .catch((err) => console.log(err))
     }

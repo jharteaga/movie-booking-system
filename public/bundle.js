@@ -33620,11 +33620,16 @@ var Purchase = function Purchase(_ref) {
     };
     axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/purchase"), purchaseReq).then(function (res) {
       setErrors(error);
-      seatsId !== undefined ? axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
-        return history.push('/confirmation');
-      }) : axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
-        return history.push('/confirmation');
-      });
+
+      if (seatsId.length) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
+          return history.push('/confirmation');
+        });
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
+          return history.push('/confirmation');
+        });
+      }
     })["catch"](function (err) {
       console.log('ERROR', err.response);
       err.response.data.errors.forEach(function (_ref2) {
@@ -33749,7 +33754,7 @@ var Showtime = function Showtime() {
       timeSelected = _useState4[0],
       setTimeSelected = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       seatsId = _useState6[0],
       setSeatsId = _useState6[1];
@@ -33779,7 +33784,7 @@ var Showtime = function Showtime() {
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_7__.api.movie, "/").concat(movie.id, "/seats?showDate=").concat(showDate, "&showTime=").concat(showTime)).then(function (_ref) {
         var data = _ref.data.data;
         data !== null && data !== void 0 && data.allSeats ? updateMovieDateTime(showDate, showTime, data === null || data === void 0 ? void 0 : data.allSeats) : updateMovieDateTime(showDate, showTime, _config__WEBPACK_IMPORTED_MODULE_7__.initSeats);
-        setSeatsId(data === null || data === void 0 ? void 0 : data._id);
+        if (data !== null && data !== void 0 && data._id) setSeatsId(data._id);else setSeatsId('');
       })["catch"](function (err) {
         return console.log(err);
       });
