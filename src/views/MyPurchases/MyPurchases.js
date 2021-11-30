@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import Accordion from 'react-bootstrap/Accordion'
+import { formatDate } from '../../utils/datetime'
 import { UserContext } from '../../context/user/UserContext'
 import { Container } from './MyPurchases.style'
 import { api } from '../../config'
@@ -38,7 +39,30 @@ const MyPurchases = () => {
           {purchases.map((purchase, index) => (
             <Accordion.Item key={purchase._id} eventKey={index}>
               <Accordion.Header>{purchase.movie.title}</Accordion.Header>
-              <Accordion.Body></Accordion.Body>
+              <Accordion.Body>
+                <div className="purchase-detail">
+                  <p>
+                    <span>Purchase Datetime:</span>{' '}
+                    {formatDate(purchase.createdAt, 'datetime')}
+                  </p>
+                  <p>
+                    <span>Movie date:</span>{' '}
+                    {formatDate(purchase.movieDate, 'date')}
+                  </p>
+                  <p>
+                    <span>Movie time:</span> {purchase.movieTime}
+                  </p>
+                  <p>
+                    <span>Seats:</span>{' '}
+                    {purchase.seats.reduce(
+                      (accum, current, index) => `${accum}, ${current}`
+                    )}
+                  </p>
+                  <p>
+                    <span>Total:</span> ${purchase.total.toFixed(2)}
+                  </p>
+                </div>
+              </Accordion.Body>
             </Accordion.Item>
           ))}
         </Accordion>

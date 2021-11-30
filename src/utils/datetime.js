@@ -28,6 +28,24 @@ export const times = [
   }
 ]
 
+export const formatDate = (value, type) => {
+  const date = new Date(value)
+  switch (type) {
+    case 'datetime':
+      return `${
+        months[date.getMonth()]
+      }, ${date.getDate()}, ${date.getFullYear()} at ${date.getHours()}:${date.getMinutes()}`
+
+    case 'date':
+      return `${
+        months[date.getMonth()]
+      }, ${date.getDate()}, ${date.getFullYear()}`
+
+    case 'time':
+      return `${date.getHours()}:${date.getMinutes()}`
+  }
+}
+
 export const getDates = () => {
   const dates = []
   const dateObjects = []

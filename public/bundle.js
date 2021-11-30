@@ -35029,6 +35029,7 @@ var theme = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "times": () => (/* binding */ times),
+/* harmony export */   "formatDate": () => (/* binding */ formatDate),
 /* harmony export */   "getDates": () => (/* binding */ getDates)
 /* harmony export */ });
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -35042,6 +35043,20 @@ var times = [{
   value1: '9:00',
   value2: 'PM'
 }];
+var formatDate = function formatDate(value, type) {
+  var date = new Date(value);
+
+  switch (type) {
+    case 'datetime':
+      return "".concat(months[date.getMonth()], ", ").concat(date.getDate(), ", ").concat(date.getFullYear(), " at ").concat(date.getHours(), ":").concat(date.getMinutes());
+
+    case 'date':
+      return "".concat(months[date.getMonth()], ", ").concat(date.getDate(), ", ").concat(date.getFullYear());
+
+    case 'time':
+      return "".concat(date.getHours(), ":").concat(date.getMinutes());
+  }
+};
 var getDates = function getDates() {
   var dates = [];
   var dateObjects = [];
@@ -35474,10 +35489,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap/Accordion */ "./node_modules/react-bootstrap/esm/Accordion.js");
-/* harmony import */ var _context_user_UserContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../context/user/UserContext */ "./src/context/user/UserContext.js");
-/* harmony import */ var _MyPurchases_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MyPurchases.style */ "./src/views/MyPurchases/MyPurchases.style.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
+/* harmony import */ var react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap/Accordion */ "./node_modules/react-bootstrap/esm/Accordion.js");
+/* harmony import */ var _utils_datetime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/datetime */ "./src/utils/datetime.js");
+/* harmony import */ var _context_user_UserContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context/user/UserContext */ "./src/context/user/UserContext.js");
+/* harmony import */ var _MyPurchases_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MyPurchases.style */ "./src/views/MyPurchases/MyPurchases.style.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -35511,8 +35527,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var MyPurchases = function MyPurchases() {
-  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_UserContext__WEBPACK_IMPORTED_MODULE_2__.UserContext),
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_UserContext__WEBPACK_IMPORTED_MODULE_3__.UserContext),
       user = _useContext.user;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -35522,10 +35539,10 @@ var MyPurchases = function MyPurchases() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (user !== null && user !== void 0 && user.id) {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_4__.api.user, "/").concat(user.id, "/purchases")).then(function (_ref) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_5__.api.user, "/").concat(user.id, "/purchases")).then(function (_ref) {
         var data = _ref.data.data;
         return data.map(function (purchase) {
-          return axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_4__.api.movie, "/").concat(purchase.movieId)).then(function (_ref2) {
+          return axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_5__.api.movie, "/").concat(purchase.movieId)).then(function (_ref2) {
             var data = _ref2.data.data;
             return _objectSpread(_objectSpread({}, purchase), {}, {
               movie: data
@@ -35541,13 +35558,17 @@ var MyPurchases = function MyPurchases() {
       });
     }
   }, [user]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MyPurchases_style__WEBPACK_IMPORTED_MODULE_3__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MyPurchases_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "title"
-  }, "My Purchases"), purchases.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_5__["default"], null, purchases.map(function (purchase, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
+  }, "My Purchases"), purchases.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_6__["default"], null, purchases.map(function (purchase, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_6__["default"].Item, {
       key: purchase._id,
       eventKey: index
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_5__["default"].Header, null, purchase.movie.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_5__["default"].Body, null));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_6__["default"].Header, null, purchase.movie.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_6__["default"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "purchase-detail"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Purchase Datetime:"), ' ', (0,_utils_datetime__WEBPACK_IMPORTED_MODULE_2__.formatDate)(purchase.createdAt, 'datetime')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Movie date:"), ' ', (0,_utils_datetime__WEBPACK_IMPORTED_MODULE_2__.formatDate)(purchase.movieDate, 'date')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Movie time:"), " ", purchase.movieTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Seats:"), ' ', purchase.seats.reduce(function (accum, current, index) {
+      return "".concat(accum, ", ").concat(current);
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", purchase.total.toFixed(2)))));
   })));
 };
 
@@ -35572,7 +35593,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 90%;\n  width: 100%;\n  margin: 0 auto;\n  margin-top: 2rem;\n\n  .title {\n    margin-bottom: 2rem;\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 90%;\n  width: 100%;\n  margin: 0 auto;\n  margin-top: 2rem;\n\n  .title {\n    margin-bottom: 2rem;\n  }\n\n  .accordion-body {\n    background-color: #eee;\n\n    span {\n      font-weight: 600;\n    }\n  }\n\n  .purchase-detail {\n    color: #111;\n  }\n\n  @media (min-width: 900px) {\n    max-width: 900px;\n    width: 100%;\n  }\n"])));
 
 /***/ }),
 
