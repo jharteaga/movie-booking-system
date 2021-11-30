@@ -22,4 +22,15 @@ const postPurchase = (req, res, next) => {
     .catch((err) => res.status(500).json(new Response({}, {}, [err])))
 }
 
-module.exports = { postPurchase }
+const getPurchasesByUser = (req, res) => {
+  Purchase.find({ userId: req.params.userId })
+    .sort({ createdAt: -1 })
+    .then((results) => {
+      res.status(200).json(new Response({}, results, []))
+    })
+    .catch((err) => {
+      res.status(500).json(new Response({}, {}, [err]))
+    })
+}
+
+module.exports = { getPurchasesByUser, postPurchase }

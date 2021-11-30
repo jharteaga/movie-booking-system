@@ -9,6 +9,7 @@ import MovieDetail from './views/MovieDetail/MovieDetail'
 import Showtime from './views/Showtime/Showtime'
 import Purchase from './views/Purchase/Purchase'
 import Confirmation from './views/Confirmation/Confirmation'
+import MyPurchases from './views/MyPurchases/MyPurchases'
 
 import { Container } from './App.style'
 
@@ -18,6 +19,7 @@ const App = () => {
       <Header />
       <main>
         <Switch>
+          <Route path="/my-purchases" component={MyPurchases} />
           <Route path="/Confirmation" component={Confirmation} />
           <Route path="/payment" component={Purchase} />
           <Route path="/movie-detail" component={MovieDetail} />

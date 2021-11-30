@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import { NavLink } from 'react-router-dom'
+import { UserContext } from '../../context/user/UserContext'
+import { NavLink, useHistory } from 'react-router-dom'
 import { Container } from './Header.style'
 
 const Header = () => {
+  const history = useHistory()
+  const { user } = useContext(UserContext)
+
+  const handleGoMyPurchases = () => {
+    history.push('/my-purchases')
+  }
+
   return (
     <Container>
       <h1 className="logo">
@@ -11,8 +19,10 @@ const Header = () => {
       </h1>
       <div className="user-profile">
         <p className="user-profile">Hello!</p>
-        <NavDropdown title="Santiago" id="nav-dropdown">
-          <NavDropdown.Item>My Purchases</NavDropdown.Item>
+        <NavDropdown title={user.firstName} id="nav-dropdown">
+          <NavDropdown.Item onClick={handleGoMyPurchases}>
+            My Purchases
+          </NavDropdown.Item>
           <NavDropdown.Item>My Favorites</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item id="sign-out">Sign Out</NavDropdown.Item>

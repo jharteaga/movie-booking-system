@@ -5,7 +5,12 @@ const {
   getUser,
   postUser
 } = require('../controllers/userControllers')
+const purchaseRouter = require('../routes/purchase')
 
-router.get('/', getUsers).get('/:id', getUser).post('/', postUser)
+router
+  .get('/', getUsers)
+  .get('/:userId', getUser)
+  .post('/', postUser)
+  .use('/:userId/purchases', purchaseRouter)
 
 module.exports = router

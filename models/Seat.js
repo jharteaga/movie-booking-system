@@ -20,7 +20,7 @@ const seatSchema = new mongoose.Schema(
       set: setSeatsBooked
     }
   },
-  { timestamp: true }
+  { timestamps: true }
 )
 
 function setSeatsBooked(seats) {

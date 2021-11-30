@@ -35,7 +35,7 @@ const movieSchema = new mongoose.Schema(
       required: [true, 'Please provide the release date']
     }
   },
-  { timestamp: true }
+  { timestamps: true }
 )
 
 const Movie = new mongoose.model('Movie', movieSchema)

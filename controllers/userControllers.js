@@ -8,7 +8,7 @@ const getUsers = (req, res) => {
 }
 
 const getUser = (req, res) => {
-  User.findOne({ _id: req.params.id })
+  User.findOne({ _id: req.params.userId })
     .then((result) => {
       res.status(200).json(new Response({}, result, []))
     })

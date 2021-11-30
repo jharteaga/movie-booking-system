@@ -43,7 +43,7 @@ const purchaseSchema = new mongoose.Schema(
       required: [true, 'Provide cvv']
     }
   },
-  { timestamp: true }
+  { timestamps: true }
 )
 
 const Purchase = mongoose.model('Purchase', purchaseSchema)
