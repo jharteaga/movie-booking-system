@@ -3,14 +3,14 @@ const router = require('express').Router({ mergeParams: true })
 const {
   getUsers,
   getUser,
-  postUser
+  likeMovie
 } = require('../controllers/userControllers')
-const purchaseRouter = require('../routes/purchase')
+const purchasesRouter = require('./purchase')
 
 router
   .get('/', getUsers)
   .get('/:userId', getUser)
-  .post('/', postUser)
-  .use('/:userId/purchases', purchaseRouter)
+  .put('/:userId/like', likeMovie)
+  .use('/:userId/purchases', purchasesRouter)
 
 module.exports = router

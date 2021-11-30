@@ -33864,35 +33864,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _LikeButton_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LikeButton.style */ "./src/components/LikeButton/LikeButton.style.js");
 /* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-
-var LikeButton = function LikeButton() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      status = _useState2[0],
-      setStatus = _useState2[1];
+var LikeButton = function LikeButton(_ref) {
+  var _ref$active = _ref.active,
+      active = _ref$active === void 0 ? false : _ref$active,
+      movieId = _ref.movieId,
+      onChange = _ref.onChange;
 
   var handleChange = function handleChange() {
-    setStatus(function (prev) {
-      return !prev;
-    });
+    onChange(movieId);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_LikeButton_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, status ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__.FaHeart, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_LikeButton_style__WEBPACK_IMPORTED_MODULE_1__.Container, null, active ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__.FaHeart, {
     color: 'red',
     onClick: handleChange
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_2__.FaRegHeart, {
@@ -33938,10 +33924,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
-/* harmony import */ var _LikeButton_LikeButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../LikeButton/LikeButton */ "./src/components/LikeButton/LikeButton.js");
-/* harmony import */ var _Rating_Rating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Rating/Rating */ "./src/components/Rating/Rating.js");
-/* harmony import */ var _MovieCard_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MovieCard.style */ "./src/components/MovieCard/MovieCard.style.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap/Button */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _LikeButton_LikeButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../LikeButton/LikeButton */ "./src/components/LikeButton/LikeButton.js");
+/* harmony import */ var _Rating_Rating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Rating/Rating */ "./src/components/Rating/Rating.js");
+/* harmony import */ var _context_user_UserContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../context/user/UserContext */ "./src/context/user/UserContext.js");
+/* harmony import */ var _MovieCard_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./MovieCard.style */ "./src/components/MovieCard/MovieCard.style.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
 
 
 
@@ -33952,18 +33965,49 @@ var MovieCard = function MovieCard(_ref) {
   var data = _ref.data,
       onSelect = _ref.onSelect;
 
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_UserContext__WEBPACK_IMPORTED_MODULE_4__.UserContext),
+      user = _useContext.user,
+      updateLikes = _useContext.updateLikes;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      liked = _useState2[0],
+      setLike = _useState2[1];
+
   var handleCardClick = function handleCardClick(data) {
     onSelect(data._id);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MovieCard_style__WEBPACK_IMPORTED_MODULE_3__.Container, {
-    backImg: data.imageUrl,
-    onClick: function onClick() {
-      return handleCardClick(data);
-    }
+  var handleLike = function handleLike(movieId) {
+    var updated = {
+      movieLikes: user.movieLikes.includes(movieId) ? user.movieLikes.filter(function (movie) {
+        return movie !== movieId;
+      }) : [].concat(_toConsumableArray(user.movieLikes), [movieId])
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.user, "/").concat(user.id, "/like"), updated).then(function (res) {
+      setLike(function (prev) {
+        return !prev;
+      });
+      updateLikes(updated.movieLikes);
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var _user$movieLikes;
+
+    setLike(user === null || user === void 0 ? void 0 : (_user$movieLikes = user.movieLikes) === null || _user$movieLikes === void 0 ? void 0 : _user$movieLikes.includes(data._id));
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MovieCard_style__WEBPACK_IMPORTED_MODULE_5__.Container, {
+    backImg: data.imageUrl
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "card__like"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_LikeButton_LikeButton__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_LikeButton_LikeButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    active: liked,
+    onChange: handleLike,
+    movieId: data._id
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "card__title"
@@ -33975,11 +34019,14 @@ var MovieCard = function MovieCard(_ref) {
     className: "card__overview"
   }, data.overview), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "card__footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Rating_Rating__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Rating_Rating__WEBPACK_IMPORTED_MODULE_3__["default"], {
     review: data.rating
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Button__WEBPACK_IMPORTED_MODULE_7__["default"], {
     variant: "danger",
-    size: "sm"
+    size: "sm",
+    onClick: function onClick() {
+      return handleCardClick(data);
+    }
   }, "Buy Tickets"))));
 };
 
@@ -34004,7 +34051,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  /* background-image: url('https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg'); */\n  background-image: url(", ");\n  max-width: 320px;\n  width: 100%;\n  height: 450px;\n  object-fit: contain;\n  background-repeat: no-repeat;\n  background-position: top;\n  border-radius: 15px;\n  cursor: pointer;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n\n  .card__like {\n    align-self: flex-end;\n    padding-right: 10px;\n    padding-top: 10px;\n  }\n\n  .card {\n    background-color: rgba(0, 0, 0, 0.85);\n    font-size: 0.75rem;\n    padding: 0.6rem 0.8rem 0.8rem 0.8rem;\n    border-radius: 0;\n    border-bottom-left-radius: 15px;\n    border-bottom-right-radius: 15px;\n\n    &__title {\n      font-size: 1rem;\n      margin-bottom: 0;\n    }\n\n    &__meta,\n    &__overview {\n      color: #c5c5c5;\n    }\n\n    &__overview {\n      display: -webkit-box;\n      max-width: 300px;\n      -webkit-line-clamp: 4;\n      -webkit-box-orient: vertical;\n      overflow: hidden;\n    }\n\n    &__footer {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n    }\n  }\n"])), function (props) {
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  /* background-image: url('https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg'); */\n  background-image: url(", ");\n  max-width: 320px;\n  width: 100%;\n  height: 450px;\n  object-fit: contain;\n  background-repeat: no-repeat;\n  background-position: top;\n  border-radius: 15px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n\n  .card__like {\n    align-self: flex-end;\n    padding-right: 10px;\n    padding-top: 10px;\n    position: relative;\n    z-index: 9999;\n  }\n\n  .card {\n    background-color: rgba(0, 0, 0, 0.85);\n    font-size: 0.75rem;\n    padding: 0.6rem 0.8rem 0.8rem 0.8rem;\n    border-radius: 0;\n    border-bottom-left-radius: 15px;\n    border-bottom-right-radius: 15px;\n\n    &__title {\n      font-size: 1rem;\n      margin-bottom: 0;\n    }\n\n    &__meta,\n    &__overview {\n      color: #c5c5c5;\n    }\n\n    &__overview {\n      display: -webkit-box;\n      max-width: 300px;\n      -webkit-line-clamp: 4;\n      -webkit-box-orient: vertical;\n      overflow: hidden;\n    }\n\n    &__footer {\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n    }\n  }\n"])), function (props) {
   return props.backImg;
 });
 
@@ -34951,9 +34998,19 @@ var UserProvider = function UserProvider(_ref) {
     });
   };
 
+  var updateLikes = function updateLikes(likes) {
+    dispatch({
+      type: 'UPDATE_LIKES',
+      payload: {
+        likes: likes
+      }
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(UserContext.Provider, {
     value: {
-      user: state.user
+      user: state.user,
+      updateLikes: updateLikes
     }
   }, children);
 };
@@ -34978,7 +35035,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var UserReducer = function UserReducer(state, action) {
-  var _action$payload, _action$payload2, _action$payload3, _action$payload4;
+  var _action$payload, _action$payload2, _action$payload3, _action$payload4, _action$payload5, _action$payload6;
 
   switch (action.type) {
     case 'UPDATE_USER':
@@ -34987,8 +35044,16 @@ var UserReducer = function UserReducer(state, action) {
           id: (_action$payload = action.payload) === null || _action$payload === void 0 ? void 0 : _action$payload._id,
           email: (_action$payload2 = action.payload) === null || _action$payload2 === void 0 ? void 0 : _action$payload2.email,
           firstName: (_action$payload3 = action.payload) === null || _action$payload3 === void 0 ? void 0 : _action$payload3.firstName,
-          lastName: (_action$payload4 = action.payload) === null || _action$payload4 === void 0 ? void 0 : _action$payload4.lastName
+          lastName: (_action$payload4 = action.payload) === null || _action$payload4 === void 0 ? void 0 : _action$payload4.lastName,
+          movieLikes: (_action$payload5 = action.payload) === null || _action$payload5 === void 0 ? void 0 : _action$payload5.movieLikes
         }
+      });
+
+    case 'UPDATE_LIKES':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        user: _objectSpread(_objectSpread({}, state.user), {}, {
+          movieLikes: (_action$payload6 = action.payload) === null || _action$payload6 === void 0 ? void 0 : _action$payload6.likes
+        })
       });
 
     default:

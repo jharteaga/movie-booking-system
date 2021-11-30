@@ -10,7 +10,6 @@ export const Container = styled.div`
   background-repeat: no-repeat;
   background-position: top;
   border-radius: 15px;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,6 +18,8 @@ export const Container = styled.div`
     align-self: flex-end;
     padding-right: 10px;
     padding-top: 10px;
+    position: relative;
+    z-index: 9999;
   }
 
   .card {

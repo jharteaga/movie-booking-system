@@ -16,12 +16,7 @@ const getMovie = (req, res) => {
     .catch((err) => res.status(500).json(new Response({}, {}, [err])))
 }
 
-const postMovie = (req, res) => {
-  res.send('create a new movie')
-}
-
 module.exports = {
   getMovie,
-  getMovies,
-  postMovie
+  getMovies
 }

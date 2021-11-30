@@ -1,18 +1,43 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import axios from 'axios'
 import Button from 'react-bootstrap/Button'
 import LikeButton from '../LikeButton/LikeButton'
 import Rating from '../Rating/Rating'
+import { UserContext } from '../../context/user/UserContext'
 import { Container } from './MovieCard.style'
+import { api } from '../../config'
 
 const MovieCard = ({ data, onSelect }) => {
+  const { user, updateLikes } = useContext(UserContext)
+  const [liked, setLike] = useState(false)
+
   const handleCardClick = (data) => {
     onSelect(data._id)
   }
 
+  const handleLike = (movieId) => {
+    const updated = {
+      movieLikes: user.movieLikes.includes(movieId)
+        ? user.movieLikes.filter((movie) => movie !== movieId)
+        : [...user.movieLikes, movieId]
+    }
+    axios
+      .put(`${api.user}/${user.id}/like`, updated)
+      .then((res) => {
+        setLike((prev) => !prev)
+        updateLikes(updated.movieLikes)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    setLike(user?.movieLikes?.includes(data._id))
+  }, [])
+
   return (
-    <Container backImg={data.imageUrl} onClick={() => handleCardClick(data)}>
+    <Container backImg={data.imageUrl}>
       <div className="card__like">
-        <LikeButton />
+        <LikeButton active={liked} onChange={handleLike} movieId={data._id} />
       </div>
       <div className="card">
         <p className="card__title">{data.title}</p>
@@ -23,7 +48,11 @@ const MovieCard = ({ data, onSelect }) => {
         <p className="card__overview">{data.overview}</p>
         <div className="card__footer">
           <Rating review={data.rating} />
-          <Button variant="danger" size="sm">
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={() => handleCardClick(data)}
+          >
             Buy Tickets
           </Button>
         </div>

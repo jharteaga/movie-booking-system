@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 import { Container } from './LikeButton.style'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
-const LikeButton = () => {
-  const [status, setStatus] = useState(false)
-
+const LikeButton = ({ active = false, movieId, onChange }) => {
   const handleChange = () => {
-    setStatus((prev) => !prev)
+    onChange(movieId)
   }
 
   return (
     <Container>
-      {status ? (
+      {active ? (
         <FaHeart color={'red'} onClick={handleChange} />
       ) : (
         <FaRegHeart color={'red'} onClick={handleChange} />

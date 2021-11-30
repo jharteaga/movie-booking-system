@@ -7,7 +7,17 @@ export const UserReducer = (state, action) => {
           id: action.payload?._id,
           email: action.payload?.email,
           firstName: action.payload?.firstName,
-          lastName: action.payload?.lastName
+          lastName: action.payload?.lastName,
+          movieLikes: action.payload?.movieLikes
+        }
+      }
+
+    case 'UPDATE_LIKES':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          movieLikes: action.payload?.likes
         }
       }
 

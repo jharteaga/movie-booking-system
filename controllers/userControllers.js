@@ -15,12 +15,21 @@ const getUser = (req, res) => {
     .catch((err) => res.status(500).json(new Response({}, {}, [err])))
 }
 
-const postUser = (req, res) => {
-  res.send('create a new user')
+const likeMovie = (req, res) => {
+  const likes = {
+    movieLikes: req.body.movieLikes
+  }
+
+  User.findByIdAndUpdate({ _id: req.params.userId }, likes, { new: true })
+    .exec()
+    .then((results) => {
+      res.status(204).json(new Response({}, results ? results : {}, []))
+    })
+    .catch((err) => res.status(500).json(new Response({}, {}, [err])))
 }
 
 module.exports = {
   getUsers,
   getUser,
-  postUser
+  likeMovie
 }

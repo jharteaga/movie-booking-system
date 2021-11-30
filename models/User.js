@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Provide a phone number'],
       length: 10
+    },
+    movieLikes: {
+      type: Array,
+      default: []
     }
   },
   { timestamps: true }

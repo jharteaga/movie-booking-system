@@ -25,8 +25,12 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err))
   }
 
+  const updateLikes = (likes) => {
+    dispatch({ type: 'UPDATE_LIKES', payload: { likes } })
+  }
+
   return (
-    <UserContext.Provider value={{ user: state.user }}>
+    <UserContext.Provider value={{ user: state.user, updateLikes }}>
       {children}
     </UserContext.Provider>
   )
