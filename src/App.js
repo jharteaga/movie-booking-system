@@ -10,6 +10,7 @@ import Showtime from './views/Showtime/Showtime'
 import Purchase from './views/Purchase/Purchase'
 import Confirmation from './views/Confirmation/Confirmation'
 import MyPurchases from './views/MyPurchases/MyPurchases'
+import MyFavorites from './views/MyFavorites/MyFavorites'
 
 import { Container } from './App.style'
 
@@ -19,6 +20,7 @@ const App = () => {
       <Header />
       <main>
         <Switch>
+          <Route path="/my-favorites" component={MyFavorites} />
           <Route path="/my-purchases" component={MyPurchases} />
           <Route path="/Confirmation" component={Confirmation} />
           <Route path="/payment" component={Purchase} />

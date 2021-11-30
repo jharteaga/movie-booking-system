@@ -12,6 +12,10 @@ const Header = () => {
     history.push('/my-purchases')
   }
 
+  const handleGoMyFavorites = () => {
+    history.push('/my-favorites')
+  }
+
   return (
     <Container>
       <h1 className="logo">
@@ -23,7 +27,9 @@ const Header = () => {
           <NavDropdown.Item onClick={handleGoMyPurchases}>
             My Purchases
           </NavDropdown.Item>
-          <NavDropdown.Item>My Favorites</NavDropdown.Item>
+          <NavDropdown.Item onClick={handleGoMyFavorites}>
+            My Favorites
+          </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item id="sign-out">Sign Out</NavDropdown.Item>
         </NavDropdown>

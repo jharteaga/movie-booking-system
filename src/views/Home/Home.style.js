@@ -12,7 +12,7 @@ export const Container = styled.div`
   margin-top: 1.5rem;
   margin-bottom: 2rem;
 
-  h1 {
+  h2 {
     text-align: center;
   }
 

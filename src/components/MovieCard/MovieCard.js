@@ -7,7 +7,7 @@ import { UserContext } from '../../context/user/UserContext'
 import { Container } from './MovieCard.style'
 import { api } from '../../config'
 
-const MovieCard = ({ data, onSelect }) => {
+const MovieCard = ({ data, onSelect, onChange }) => {
   const { user, updateLikes } = useContext(UserContext)
   const [liked, setLike] = useState(false)
 
@@ -27,12 +27,17 @@ const MovieCard = ({ data, onSelect }) => {
         setLike((prev) => !prev)
         updateLikes(updated.movieLikes)
       })
+      .then(() => {
+        if (onChange) {
+          onChange(updated.movieLikes)
+        }
+      })
       .catch((err) => console.log(err))
   }
 
   useEffect(() => {
     setLike(user?.movieLikes?.includes(data._id))
-  }, [])
+  }, [user])
 
   return (
     <Container backImg={data.imageUrl}>

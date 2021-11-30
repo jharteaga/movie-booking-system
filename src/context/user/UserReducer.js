@@ -17,7 +17,7 @@ export const UserReducer = (state, action) => {
         ...state,
         user: {
           ...state.user,
-          movieLikes: action.payload?.likes
+          movieLikes: action.payload?.likes ? action.payload?.likes : []
         }
       }
 

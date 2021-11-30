@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
+import MovieCard from '../../components/MovieCard/MovieCard'
 import { useHistory } from 'react-router-dom'
 import { MovieContext } from '../../context/movie/MovieContext'
-import MovieCard from '../../components/MovieCard/MovieCard'
 import { api } from '../../config'
 import { Container } from './Home.style'
 
@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <Container>
-      <h1>On Theathers!</h1>
+      <h2>On Theathers!</h2>
       <div className="movies-container">
         {movies.map((movie) => (
           <MovieCard
