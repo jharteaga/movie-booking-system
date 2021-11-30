@@ -3,15 +3,25 @@ import { theme } from '../../theme'
 
 export const Container = styled.header`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 1rem 3rem;
+  padding: 1rem 1.5rem;
   max-width: 100%;
   width: 100%;
+  position: relative;
+
+  .mobile-menu {
+    display: block;
+  }
 
   a {
     color: inherit;
     text-decoration: none;
+  }
+
+  h1 {
+    flex-grow: 1;
+    text-align: center;
   }
 
   h1,
@@ -23,13 +33,30 @@ export const Container = styled.header`
     display: none;
   }
 
+  .mobile-nav-container {
+    display: block;
+  }
+
   @media (min-width: 500px) {
     justify-content: space-between;
+
+    .mobile-nav-container {
+      display: none;
+    }
+
+    h1 {
+      flex-grow: 0;
+      text-align: left;
+    }
 
     .user-profile {
       margin-top: -4px;
       display: flex;
       align-items: center;
+    }
+
+    .mobile-menu {
+      display: none;
     }
 
     .dropdown {
