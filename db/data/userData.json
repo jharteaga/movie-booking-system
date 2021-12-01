@@ -4,11 +4,5 @@
     "lastName": "Salazar",
     "email": "santiago@test.com",
     "phoneNumber": "(778) 555-5555"
-  },
-  {
-    "firstName": "Lucas",
-    "lastName": "Arteaga",
-    "email": "lucas@test.com",
-    "phoneNumber": "(604) 666-6666"
   }
 ]
