@@ -11,6 +11,8 @@ import Purchase from './views/Purchase/Purchase'
 import Confirmation from './views/Confirmation/Confirmation'
 import MyPurchases from './views/MyPurchases/MyPurchases'
 import MyFavorites from './views/MyFavorites/MyFavorites'
+import ErrorOccurred from './views/ErrorOccurred/ErrorOccurred'
+import NotFound from './views/NotFound/NotFound'
 
 import { Container } from './App.style'
 
@@ -26,6 +28,8 @@ const App = () => {
           <Route path="/payment" component={Purchase} />
           <Route path="/movie-detail" component={MovieDetail} />
           <Route path="/showtime" component={Showtime} />
+          <Route path="/error" component={ErrorOccurred} />
+          <Route path="/not-found" component={NotFound} />
           <Route path="/" exact component={Home} />
         </Switch>
       </main>

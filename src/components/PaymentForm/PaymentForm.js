@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
 import { Form, Row } from 'react-bootstrap'
-import {
-  checkCreditCard,
-  checkCardHolder,
-  checkCvv
-} from '../../utils/validations'
 import { Container } from './PaymentForm.style'
 
 const PaymentForm = ({ errors, onSubmit }) => {

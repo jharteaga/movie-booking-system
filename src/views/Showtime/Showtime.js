@@ -51,7 +51,11 @@ const Showtime = () => {
           if (data?._id) setSeatsId(data._id)
           else setSeatsId('')
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          if (err?.response?.status === 500) {
+            history.push({ pathname: '/error', state: { error: err } })
+          }
+        })
     }
   }, [timeSelected, dateSelected])
 

@@ -8,7 +8,7 @@ import Summary from '../../components/Summary/Summary'
 import { Container } from './Purchase.style'
 import { api } from '../../config'
 
-const Purchase = ({ location }) => {
+const Purchase = () => {
   const { movie, seatsSelected, seats } = useContext(MovieContext)
   const { user } = useContext(UserContext)
   const history = useHistory()
@@ -48,34 +48,32 @@ const Purchase = ({ location }) => {
         setErrors(error)
 
         if (seatId.length) {
-          axios
-            .put(`${api.movie}/${movie.id}/seats/${seatId}`, seatsReq)
-            .then((res) => history.push('/confirmation'))
+          return axios.put(`${api.movie}/${movie.id}/seats/${seatId}`, seatsReq)
         } else {
-          axios
-            .post(`${api.movie}/${movie.id}/seats`, seatsReq)
-            .then((res) => history.push('/confirmation'))
+          return axios.post(`${api.movie}/${movie.id}/seats`, seatsReq)
         }
       })
+      .then((res) => history.push('/confirmation'))
       .catch((err) => {
-        console.log(err)
-        err?.response?.data?.errors?.forEach(({ message, path }) => {
-          if (path[0] === 'cardNumber') {
-            return (error.cardNumber = message)
-          }
-          if (path[0] === 'cardHolder') {
-            return (error.cardHolder = message)
-          }
-          if (path[0] === 'expirationMonth') {
-            return (error.expirationMonth = message)
-          }
-          if (path[0] === 'expirationYear') {
-            return (error.expirationYear = message)
-          }
-          if (path[0] === 'cvv') {
-            return (error.cvv = message)
-          }
-        })
+        if (err?.response?.status === 400) {
+          err?.response?.data?.errors?.forEach(({ message, path }) => {
+            if (path[0] === 'cardNumber') {
+              return (error.cardNumber = message)
+            }
+            if (path[0] === 'cardHolder') {
+              return (error.cardHolder = message)
+            }
+            if (path[0] === 'expirationMonth') {
+              return (error.expirationMonth = message)
+            }
+            if (path[0] === 'expirationYear') {
+              return (error.expirationYear = message)
+            }
+            if (path[0] === 'cvv') {
+              return (error.cvv = message)
+            }
+          })
+        }
 
         setErrors(error)
       })
