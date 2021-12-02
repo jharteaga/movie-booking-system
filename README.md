@@ -92,4 +92,31 @@ npm run dev
 npm run watch
 ```
 
-VanCinema web platfom should be up and running :rocket:
+VanCinema web platfom should be up and running!! :rocket:
+
+## How to use VanCinema?
+
+### Buy movie tickets
+
+1. In the home page, select the movie that you want to watch in the movie theather by clicking the button "Buy tickets".
+2. User can check the movie details and then click in the button "Select seats"
+3. Now, the user can select the date and time of the movie, and then choose the seats of preference inside the movie theather.
+4. Then, the user has to introduce the payment information into the form, and click in "Purchase" when finish.
+5. Finally, get purchase confirmation
+
+<a href="https://www.loom.com/share/083b6ad247e14400ac0e008abbc5e7af">Demo</a>
+
+### Check purchase history
+
+1. In the user menu that is display when click the user first name, select the menu item "My Purchases"
+2. Now, the user can check all the purchases that he has made in the application.
+
+<a href="https://www.loom.com/share/9c9b2b01d55843d1844bd25ad95fa393">Demo</a>
+
+### Check my favorite movies
+
+1. In the user menu that is display when click the user first name, select the menu item "My favorites"
+2. User can see all the movies he has given like from the home page.
+3. In order to add liked movies into the list, let's go to the home page, and click in the heart icon to add it, or to remove it in case it is already added.
+
+<a href="https://www.loom.com/share/bf5e75121d964232859580bd5ff22d02">Demo</a>
