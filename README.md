@@ -43,12 +43,14 @@ Overall, VanCinema provides a full experience from end-to-end to buy online tick
   - From the home page, the user can like or dislike any movie, in order to store it in his account.
   - In the nav menu option "My Favorites", the user can check all the movies he liked from the home page. Besides, the user can dislike from this screen, and the movie will be removed automatically form the list.
 - All the information about the user and the movie selected, it is being handle with **React Context API and their reducers**, in order to prevent props drilling, and manage important states just in one place.
+- **Web application fully responsive**
 
 ## Tech Stack
 
 - React.js
 - React Hooks
 - React Context API
+- React Icons
 - Styled-Components
 - Node.js
 - Express.js
