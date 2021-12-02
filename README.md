@@ -72,7 +72,7 @@ Let's connect to MongoDB Compass, connect to our database, and then create a col
 
 Now, let's create the last collection called _"users"_, and we are going to do the same process importing a JSON file, but in this case with the file named _"userData.json"_.
 
-Finally, let's start the application. In order to start it we need to make sure that the _"webpack.config.js"_ file is in mode development mode, and not int production:
+Finally, let's start the application. In order to start it we need to make sure that in the _"webpack.config.js"_ file the mode property is development, and not in production:
 
 ```javascript
 module.exports = {
@@ -82,7 +82,7 @@ module.exports = {
 }
 ```
 
-Then, open 2 separate terminals. One will run the server, and the other one will run webpack in order to transpile our React into Vanilla JavasScript:
+Then, open 2 separate terminals. One will run the server, and the other one will run Webpack in order to transpile our React code into Vanilla JavasScript, and bundle it in just one file:
 
 ```bash
 # Terminal 1
@@ -122,3 +122,32 @@ VanCinema web platfom should be up and running!! :rocket:
 3. In order to add liked movies into the list, let's go to the home page, and click in the heart icon to add it, or to remove it in case it is already added.
 
 <a href="https://www.loom.com/share/bf5e75121d964232859580bd5ff22d02">Demo</a>
+
+## API documentation
+
+The API has its version, and so far the version that is live is v1.
+
+In the server side there are 2 main endpoints:
+
+- /movies
+- /users
+
+### Movies API Endpoints
+
+| Route                     | HTTP method | Description                                                                     |
+| :------------------------ | :---------- | :------------------------------------------------------------------------------ |
+| /movies                   | GET         | Get the complete list of movies                                                 |
+| /movies/:movieId          | GET         | Get details of a specific movie by its id                                       |
+| /movies/:movieId/seats    | GET         | Get seats for a specific movie by date and time available in the movie theather |
+| /movies/:movieId/seats    | POST        | Create new set of seats for a specific movie in a date and time given           |
+| /movies/:movieId/seats    | PUT         | Update booked seats for a specific movie in a date and time given               |
+| /movies/:movieId/purchase | GET         | Create a new purchase for a specific movie                                      |
+
+### Users API Endpoints
+
+| Route                    | HTTP method | Description                                     |
+| :----------------------- | :---------- | :---------------------------------------------- |
+| /users                   | GET         | Get list of all users registered in VanCinema   |
+| /users/:userId           | GET         | Get user details by its id                      |
+| /users/:userId/like      | PUT         | Update list of liked movies for a specific user |
+| /users/:userId/purchases | GET         | Get purchase history for a specific user        |
