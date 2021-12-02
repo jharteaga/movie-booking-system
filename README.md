@@ -56,3 +56,40 @@ _Note: You can find MongoDB connection string in MongoDB Atlas, in case you are 
 ```env
 DB_CONNECTION=mongodb+srv://<username>:<password>@<host>/<database-name>?retryWrites=true&w=majority
 ```
+
+Before starting the web application, we need to initialize the database with some data, such as list of movies and a user. The initial data is in JSON file inside the project, and it can be found in db > data directory:
+
+```bash
+cd ./db/data
+```
+
+Let's connect to MongoDB Compass, connect to our database, and then create a collection with the name: **movies**. Then, click in the button _"ADD DATA"_, and import the json file named _"movieData.json"_
+
+<img src="./assets/mongodb-add-data.png" alt="Add data in mongodb" width="500" style="display: block; margin-bottom: 0.5rem"/>
+<img src="./assets/mongodb-import-json-file.png" alt="Import json file in mongodb" width="500" />
+
+Now, let's create the last collection called _"users"_, and we are going to do the same process importing a JSON file, but in this case with the file named _"userData.json"_.
+
+Finally, let's start the application. In order to start it we need to make sure that the _"webpack.config.js"_ file is in mode development mode, and not int production:
+
+```javascript
+module.exports = {
+  mode: 'development',
+  // mode: 'production',
+  ...
+}
+```
+
+Then, open 2 separate terminals. One will run the server, and the other one will run webpack in order to transpile our React into Vanilla JavasScript:
+
+```bash
+# Terminal 1
+npm run dev
+```
+
+```bash
+# Terminal 2
+npm run watch
+```
+
+VanCinema web platfom should be up and running :rocket:
