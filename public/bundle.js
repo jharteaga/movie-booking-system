@@ -37323,6 +37323,11 @@ var MyFavorites = function MyFavorites() {
       movies = _useState2[0],
       setMovies = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1];
+
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
 
   var getLikes = function getLikes(movieLikes) {
@@ -37332,6 +37337,8 @@ var MyFavorites = function MyFavorites() {
         setMovies(function (prev) {
           return [].concat(_toConsumableArray(prev), [data]);
         });
+      }).then(function () {
+        return setLoading(false);
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -37342,6 +37349,7 @@ var MyFavorites = function MyFavorites() {
     var _user$movieLikes;
 
     if ((user === null || user === void 0 ? void 0 : (_user$movieLikes = user.movieLikes) === null || _user$movieLikes === void 0 ? void 0 : _user$movieLikes.length) > 0) {
+      setLoading(true);
       getLikes(user.movieLikes);
     }
   }, [user]);
@@ -37357,14 +37365,14 @@ var MyFavorites = function MyFavorites() {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MyFavorites_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "My Favorite Movies!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "movies-container"
-  }, movies.length > 0 && (movies === null || movies === void 0 ? void 0 : movies.map(function (movie) {
+  }, !loading && (movies === null || movies === void 0 ? void 0 : movies.length) > 0 && (movies === null || movies === void 0 ? void 0 : movies.map(function (movie) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_MovieCard_MovieCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: movie._id,
       data: movie,
       onSelect: handleMovieDetail,
       onChange: handleUpdateLikes
     });
-  }))), movies.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+  }))), !loading && (movies === null || movies === void 0 ? void 0 : movies.length) === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: "empty-title"
   }, "Your list is empty"));
 };

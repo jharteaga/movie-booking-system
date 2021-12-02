@@ -9,6 +9,7 @@ import { api } from '../../config'
 const MyFavorites = () => {
   const { user } = useContext(UserContext)
   const [movies, setMovies] = useState([])
+  const [loading, setLoading] = useState(false)
   const history = useHistory()
 
   const getLikes = (movieLikes) => {
@@ -18,12 +19,14 @@ const MyFavorites = () => {
         .then(({ data: { data } }) => {
           setMovies((prev) => [...prev, data])
         })
+        .then(() => setLoading(false))
         .catch((err) => console.log(err))
     })
   }
 
   useEffect(() => {
     if (user?.movieLikes?.length > 0) {
+      setLoading(true)
       getLikes(user.movieLikes)
     }
   }, [user])
@@ -41,7 +44,8 @@ const MyFavorites = () => {
     <Container>
       <h2>My Favorite Movies!</h2>
       <div className="movies-container">
-        {movies.length > 0 &&
+        {!loading &&
+          movies?.length > 0 &&
           movies?.map((movie) => (
             <MovieCard
               key={movie._id}
@@ -51,7 +55,7 @@ const MyFavorites = () => {
             />
           ))}
       </div>
-      {movies.length === 0 && (
+      {!loading && movies?.length === 0 && (
         <h3 className="empty-title">Your list is empty</h3>
       )}
     </Container>
