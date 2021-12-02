@@ -28,6 +28,7 @@ Overall, VanCinema provides a full experience from end-to-end to buy online tick
 - Styled-Components
 - Node.js
 - Express.js
+- Joi (Server side data validation and sanitization)
 - NoSQL Document Database: MongoDB
 - Webpack
 
@@ -125,7 +126,7 @@ VanCinema web platfom should be up and running!! :rocket:
 
 ## API documentation
 
-The API has its version, and so far the version that is live is v1.
+The API has its version, and so far the version that is live is v1. Therefore, the base path of the API is _/api/v1_
 
 In the server side there are 2 main endpoints:
 
@@ -134,20 +135,95 @@ In the server side there are 2 main endpoints:
 
 ### Movies API Endpoints
 
-| Route                     | HTTP method | Description                                                                     |
-| :------------------------ | :---------- | :------------------------------------------------------------------------------ |
-| /movies                   | GET         | Get the complete list of movies                                                 |
-| /movies/:movieId          | GET         | Get details of a specific movie by its id                                       |
-| /movies/:movieId/seats    | GET         | Get seats for a specific movie by date and time available in the movie theather |
-| /movies/:movieId/seats    | POST        | Create new set of seats for a specific movie in a date and time given           |
-| /movies/:movieId/seats    | PUT         | Update booked seats for a specific movie in a date and time given               |
-| /movies/:movieId/purchase | GET         | Create a new purchase for a specific movie                                      |
+| Route                     | HTTP method | Description                                                                     | Response Format |
+| :------------------------ | :---------- | :------------------------------------------------------------------------------ | :-------------- |
+| /movies                   | GET         | Get the complete list of movies                                                 | JSON            |
+| /movies/:movieId          | GET         | Get details of a specific movie by its id                                       | JSON            |
+| /movies/:movieId/seats    | GET         | Get seats for a specific movie by date and time available in the movie theather | JSON            |
+| /movies/:movieId/seats    | POST        | Create new set of seats for a specific movie in a date and time given           | JSON            |
+| /movies/:movieId/seats    | PUT         | Update booked seats for a specific movie in a date and time given               | JSON            |
+| /movies/:movieId/purchase | POST        | Create a new purchase for a specific movie                                      | JSON            |
+
+> /movies/:movieId/seats - POST Method
+
+_*Body request*_
+
+```JSON
+{
+  "showDate": "2021-12-04",
+  "showTime": "7:00PM",
+  "allSeats": [
+    { "identifier": "A", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "B", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "C", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "D", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "E", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "F", "row": [0, 0, 0, 0, 0, 0, 0, 0] }
+  ]
+}
+```
+
+> /movies/:movieId/seats - PUT Method
+
+_*Body request*_
+
+```JSON
+{
+  "seatId": "61a5c285d0bdc68044e5fff9",
+  "allSeats": [
+    { "identifier": "A", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "B", "row": [0, 0, -1, -1, 0, 0, 0, 0] },
+    { "identifier": "C", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "D", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "E", "row": [0, 0, 0, 0, 0, 0, 0, 0] },
+    { "identifier": "F", "row": [0, 0, 0, 0, 0, 0, 0, 0] }
+  ]
+}
+```
+
+> /movies/:movieId/purchase - POST Method
+
+_*Body request*_
+
+```JSON
+{
+	"userId": "6190699eba679222a49e5916",
+	"movie": {
+		"date": "2021-11-28",
+		"time": "7:00 PM",
+		"seats": [
+			"A1",
+			"A2"
+		],
+		"total": 15
+	},
+	"payment": {
+		"cardNumber": "1234567812345678",
+		"cardHolder": "Santiago Salazar",
+		"expirationMonth": "12",
+		"expirationYear": "22",
+		"cvv": "123"
+	}
+}
+```
 
 ### Users API Endpoints
 
-| Route                    | HTTP method | Description                                     |
-| :----------------------- | :---------- | :---------------------------------------------- |
-| /users                   | GET         | Get list of all users registered in VanCinema   |
-| /users/:userId           | GET         | Get user details by its id                      |
-| /users/:userId/like      | PUT         | Update list of liked movies for a specific user |
-| /users/:userId/purchases | GET         | Get purchase history for a specific user        |
+| Route                    | HTTP method | Description                                     | Response Format |
+| :----------------------- | :---------- | :---------------------------------------------- | :-------------- |
+| /users                   | GET         | Get list of all users registered in VanCinema   | JSON            |
+| /users/:userId           | GET         | Get user details by its id                      | JSON            |
+| /users/:userId/like      | PUT         | Update list of liked movies for a specific user | JSON            |
+| /users/:userId/purchases | GET         | Get purchase history for a specific user        | JSON            |
+
+> /users/:userId/like - POST Method
+
+_*Body request*_
+
+```JSON
+{
+	"movieLikes": [
+		"6190689fba679222a49e5910"
+	]
+}
+```
