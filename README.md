@@ -1,5 +1,7 @@
 # VanCinema - Movie Booking System
 
+![VanCinema Banner](assets/vancinema-banner.png)
+
 ## Description
 
 This web application is a movie ticket booking system, where the user can select a movie, check the different movie dates and times, select the seats, purchase the order, and get a confirmation message.
@@ -106,7 +108,7 @@ VanCinema web platfom should be up and running!! :rocket:
 
 <a href="https://www.loom.com/share/083b6ad247e14400ac0e008abbc5e7af">Demo</a>
 
-### Check purchase history
+### Check my purchase history
 
 1. In the user menu that is display when click the user first name, select the menu item "My Purchases"
 2. Now, the user can check all the purchases that he has made in the application.
