@@ -211,12 +211,12 @@ _*Body request*_
 
 ### Users API Endpoints
 
-| Route                    | HTTP method | Description                                     | Response Format |
-| :----------------------- | :---------- | :---------------------------------------------- | :-------------- |
-| /users                   | GET         | Get list of all users registered in VanCinema   | JSON            |
-| /users/:userId           | GET         | Get user details by its id                      | JSON            |
-| /users/:userId/like      | PUT         | Update list of liked movies for a specific user | JSON            |
-| /users/:userId/purchases | GET         | Get purchase history for a specific user        | JSON            |
+| Route                    | HTTP method | Description                                     | Response Format | Query String |
+| :----------------------- | :---------- | :---------------------------------------------- | :-------------- | :----------- |
+| /users                   | GET         | Get list of all users registered in VanCinema   | JSON            | None         |
+| /users/:userId           | GET         | Get user details by its id                      | JSON            | None         |
+| /users/:userId/like      | PUT         | Update list of liked movies for a specific user | JSON            | None         |
+| /users/:userId/purchases | GET         | Get purchase history for a specific user        | JSON            | None         |
 
 ---
 
