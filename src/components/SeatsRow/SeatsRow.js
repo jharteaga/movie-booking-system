@@ -4,8 +4,6 @@ import { MovieContext } from '../../context/movie/MovieContext'
 import { theme } from '../../theme'
 import { Container } from './SeatsRow.style'
 
-// const row = [0, 0, 0, 0, 0, 0, 0, 0]
-
 const seatStatus = {
   AVAILABLE: 0,
   BOOKED: 1,
@@ -46,7 +44,6 @@ const SeatsRow = ({ row, identifier = 'A' }) => {
                       bgColor={theme.seatBooked}
                       identifier={identifier}
                       number={index + 1}
-                      // onSelect={handleSelectSeat}
                     />
                   </span>
                 )

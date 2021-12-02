@@ -32,7 +32,7 @@ const putSeats = (req, res) => {
   const seatsUpdated = {
     allSeats: req.body.allSeats
   }
-  Seat.findByIdAndUpdate({ _id: req.body.seatId }, seatsUpdated)
+  Seat.findByIdAndUpdate({ _id: req.params.seatId }, seatsUpdated)
     .exec()
     .then((results) => {
       res.status(204).json(new Response({}, results ? results : {}, []))

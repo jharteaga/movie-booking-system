@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { MovieContext } from '../../context/movie/MovieContext'
+import { UserContext } from '../../context/user/UserContext'
 import PaymentForm from '../../components/PaymentForm/PaymentForm'
 import Summary from '../../components/Summary/Summary'
 import { Container } from './Purchase.style'
@@ -9,6 +10,7 @@ import { api } from '../../config'
 
 const Purchase = ({ location }) => {
   const { movie, seatsSelected, seats } = useContext(MovieContext)
+  const { user } = useContext(UserContext)
   const history = useHistory()
   const [errors, setErrors] = useState({})
 
@@ -22,7 +24,7 @@ const Purchase = ({ location }) => {
     }
 
     const purchaseReq = {
-      userId: '6190699eba679222a49e5916',
+      userId: user.id,
       movie: {
         date: movie.showDate,
         time: movie.showTime,
@@ -32,23 +34,22 @@ const Purchase = ({ location }) => {
       payment: paymentInfo
     }
 
-    const seatsId = localStorage.getItem('seatsId')
+    const seatId = localStorage.getItem('seatsId')
 
     const seatsReq = {
       showDate: movie.showDate,
       showTime: movie.showTime,
-      allSeats: seats,
-      seatId: seatsId
+      allSeats: seats
     }
 
     axios
-      .post(`${api.movie}/${movie.id}/purchase`, purchaseReq)
+      .post(`${api.movie}/${movie.id}/purchases`, purchaseReq)
       .then((res) => {
         setErrors(error)
 
-        if (seatsId.length) {
+        if (seatId.length) {
           axios
-            .put(`${api.movie}/${movie.id}/seats`, seatsReq)
+            .put(`${api.movie}/${movie.id}/seats/${seatId}`, seatsReq)
             .then((res) => history.push('/confirmation'))
         } else {
           axios
@@ -57,8 +58,8 @@ const Purchase = ({ location }) => {
         }
       })
       .catch((err) => {
-        console.log('ERROR', err.response)
-        err.response.data.errors.forEach(({ message, path }) => {
+        console.log(err)
+        err?.response?.data?.errors?.forEach(({ message, path }) => {
           if (path[0] === 'cardNumber') {
             return (error.cardNumber = message)
           }

@@ -25,4 +25,10 @@ export const Container = styled.div`
     justify-items: center;
     color: white;
   }
+
+  .empty-title {
+    margin-top: 2rem;
+    text-align: center;
+    color: lightgray;
+  }
 `

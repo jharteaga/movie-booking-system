@@ -5,7 +5,7 @@ const {
   getUser,
   likeMovie
 } = require('../controllers/userControllers')
-const purchasesRouter = require('./purchase')
+const purchasesRouter = require('./purchases')
 
 router
   .get('/', getUsers)

@@ -22,6 +22,11 @@ export const Container = styled.div`
     color: #111;
   }
 
+  .empty-title {
+    margin-top: 3rem;
+    color: lightgray;
+  }
+
   @media (min-width: 900px) {
     max-width: 900px;
     width: 100%;

@@ -6,6 +6,6 @@ const {
   putSeats
 } = require('../controllers/seatControllers')
 
-router.get('/', getSeats).post('/', postSeats).put('/', putSeats)
+router.get('/', getSeats).post('/', postSeats).put('/:seatId', putSeats)
 
 module.exports = router

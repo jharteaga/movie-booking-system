@@ -7,24 +7,24 @@ const schemas = {
     cardNumber: Joi.string()
       .empty('')
       .required()
+      .trim()
       .length(16)
-      .custom((value) => validator.isCreditCard(value))
+      .pattern(/^[0-9]{16}$/)
       .messages({
         'any.required': 'Required',
         'string.length': 'Invalid',
-        'any.custom': 'Invalid'
+        'string.pattern.base': 'Invalid credit card'
       }),
     cardHolder: Joi.string()
       .empty('')
+      .trim()
+      .required()
       .min(2)
       .max(30)
-      .required()
-      .custom((value) => validator.isAlpha(value))
       .messages({
         'any.required': 'Required',
         'string.min': 'Must have at least 2 characters',
-        'string.max': 'Must not have more than 30 characters',
-        'any.custom': 'Must have only letters'
+        'string.max': 'Must not have more than 30 characters'
       }),
     expirationMonth: Joi.string()
       .empty('')
@@ -58,27 +58,26 @@ const schemas = {
     cvv: Joi.string()
       .empty('')
       .required()
+      .trim()
       .length(3)
       .custom((value) => validator.isInt(value))
       .messages({
         'any.required': 'Required',
         'any.custom': 'Must be numeric',
-        'string.length': 'Invalid'
+        'string.length': '3 numbers'
       })
   })
 }
 
 const validate = (schema) => {
   return function (req, res, next) {
-    const { value, error } = schemas[schema].validate(req.body[schema], {
+    const { error } = schemas[schema].validate(req.body[schema], {
       abortEarly: false
     })
 
     if (error) {
       res.status(400).json(new Response({}, {}, error.details))
     } else {
-      // res.status(201).json(new Response({}, req.body, []))
-      // req.body.payment = value
       next()
     }
   }

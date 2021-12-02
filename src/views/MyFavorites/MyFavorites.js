@@ -41,15 +41,19 @@ const MyFavorites = () => {
     <Container>
       <h2>My Favorite Movies!</h2>
       <div className="movies-container">
-        {movies?.map((movie) => (
-          <MovieCard
-            key={movie._id}
-            data={movie}
-            onSelect={handleMovieDetail}
-            onChange={handleUpdateLikes}
-          />
-        ))}
+        {movies.length > 0 &&
+          movies?.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              data={movie}
+              onSelect={handleMovieDetail}
+              onChange={handleUpdateLikes}
+            />
+          ))}
       </div>
+      {movies.length === 0 && (
+        <h3 className="empty-title">Your list is empty</h3>
+      )}
     </Container>
   )
 }

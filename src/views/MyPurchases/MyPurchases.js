@@ -67,6 +67,9 @@ const MyPurchases = () => {
           ))}
         </Accordion>
       )}
+      {purchases.length === 0 && (
+        <h3 className="empty-title">You have not made any purchase</h3>
+      )}
     </Container>
   )
 }

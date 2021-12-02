@@ -36235,7 +36235,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // const row = [0, 0, 0, 0, 0, 0, 0, 0]
 
 var seatStatus = {
   AVAILABLE: 0,
@@ -36277,8 +36276,7 @@ var SeatsRow = function SeatsRow(_ref) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Seat_Seat__WEBPACK_IMPORTED_MODULE_1__["default"], {
           bgColor: _theme__WEBPACK_IMPORTED_MODULE_3__.theme.seatBooked,
           identifier: identifier,
-          number: index + 1 // onSelect={handleSelectSeat}
-
+          number: index + 1
         }));
 
       case seatStatus.SELECTED:
@@ -37359,14 +37357,16 @@ var MyFavorites = function MyFavorites() {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MyFavorites_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "My Favorite Movies!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "movies-container"
-  }, movies === null || movies === void 0 ? void 0 : movies.map(function (movie) {
+  }, movies.length > 0 && (movies === null || movies === void 0 ? void 0 : movies.map(function (movie) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_MovieCard_MovieCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: movie._id,
       data: movie,
       onSelect: handleMovieDetail,
       onChange: handleUpdateLikes
     });
-  })));
+  }))), movies.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    className: "empty-title"
+  }, "Your list is empty"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyFavorites);
@@ -37390,7 +37390,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1.5rem;\n  max-width: 95%;\n  width: 100%;\n  margin: auto;\n  margin-top: 1.5rem;\n  margin-bottom: 2rem;\n\n  h2 {\n    text-align: center;\n  }\n\n  .movies-container {\n    width: 100%;\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));\n    grid-template-rows: auto;\n    row-gap: 2rem;\n    justify-items: center;\n    color: white;\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  gap: 1.5rem;\n  max-width: 95%;\n  width: 100%;\n  margin: auto;\n  margin-top: 1.5rem;\n  margin-bottom: 2rem;\n\n  h2 {\n    text-align: center;\n  }\n\n  .movies-container {\n    width: 100%;\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));\n    grid-template-rows: auto;\n    row-gap: 2rem;\n    justify-items: center;\n    color: white;\n  }\n\n  .empty-title {\n    margin-top: 2rem;\n    text-align: center;\n    color: lightgray;\n  }\n"])));
 
 /***/ }),
 
@@ -37488,7 +37488,9 @@ var MyPurchases = function MyPurchases() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Purchase Datetime:"), ' ', (0,_utils_datetime__WEBPACK_IMPORTED_MODULE_2__.formatDate)(purchase.createdAt, 'datetime')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Movie date:"), ' ', (0,_utils_datetime__WEBPACK_IMPORTED_MODULE_2__.formatDate)(purchase.movieDate, 'date')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Movie time:"), " ", purchase.movieTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Seats:"), ' ', purchase.seats.reduce(function (accum, current, index) {
       return "".concat(accum, ", ").concat(current);
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", purchase.total.toFixed(2)))));
-  })));
+  })), purchases.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    className: "empty-title"
+  }, "You have not made any purchase"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyPurchases);
@@ -37512,7 +37514,7 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 90%;\n  width: 100%;\n  margin: 0 auto;\n  margin-top: 2rem;\n\n  .title {\n    margin-bottom: 2rem;\n  }\n\n  .accordion-body {\n    background-color: #eee;\n\n    span {\n      font-weight: 600;\n    }\n  }\n\n  .purchase-detail {\n    color: #111;\n  }\n\n  @media (min-width: 900px) {\n    max-width: 900px;\n    width: 100%;\n  }\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  max-width: 90%;\n  width: 100%;\n  margin: 0 auto;\n  margin-top: 2rem;\n\n  .title {\n    margin-bottom: 2rem;\n  }\n\n  .accordion-body {\n    background-color: #eee;\n\n    span {\n      font-weight: 600;\n    }\n  }\n\n  .purchase-detail {\n    color: #111;\n  }\n\n  .empty-title {\n    margin-top: 3rem;\n    color: lightgray;\n  }\n\n  @media (min-width: 900px) {\n    max-width: 900px;\n    width: 100%;\n  }\n"])));
 
 /***/ }),
 
@@ -37530,12 +37532,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _context_movie_MovieContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../context/movie/MovieContext */ "./src/context/movie/MovieContext.js");
-/* harmony import */ var _components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/PaymentForm/PaymentForm */ "./src/components/PaymentForm/PaymentForm.js");
-/* harmony import */ var _components_Summary_Summary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Summary/Summary */ "./src/components/Summary/Summary.js");
-/* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
+/* harmony import */ var _context_user_UserContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../context/user/UserContext */ "./src/context/user/UserContext.js");
+/* harmony import */ var _components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/PaymentForm/PaymentForm */ "./src/components/PaymentForm/PaymentForm.js");
+/* harmony import */ var _components_Summary_Summary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Summary/Summary */ "./src/components/Summary/Summary.js");
+/* harmony import */ var _Purchase_style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Purchase.style */ "./src/views/Purchase/Purchase.style.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../config */ "./src/config/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -37557,6 +37560,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Purchase = function Purchase(_ref) {
   var location = _ref.location;
 
@@ -37565,7 +37569,10 @@ var Purchase = function Purchase(_ref) {
       seatsSelected = _useContext.seatsSelected,
       seats = _useContext.seats;
 
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
+  var _useContext2 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_user_UserContext__WEBPACK_IMPORTED_MODULE_3__.UserContext),
+      user = _useContext2.user;
+
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
@@ -37581,7 +37588,7 @@ var Purchase = function Purchase(_ref) {
       cvv: ''
     };
     var purchaseReq = {
-      userId: '6190699eba679222a49e5916',
+      userId: user.id,
       movie: {
         date: movie.showDate,
         time: movie.showTime,
@@ -37590,28 +37597,29 @@ var Purchase = function Purchase(_ref) {
       },
       payment: paymentInfo
     };
-    var seatsId = localStorage.getItem('seatsId');
+    var seatId = localStorage.getItem('seatsId');
     var seatsReq = {
       showDate: movie.showDate,
       showTime: movie.showTime,
-      allSeats: seats,
-      seatId: seatsId
+      allSeats: seats
     };
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/purchase"), purchaseReq).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_7__.api.movie, "/").concat(movie.id, "/purchases"), purchaseReq).then(function (res) {
       setErrors(error);
 
-      if (seatsId.length) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
+      if (seatId.length) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().put("".concat(_config__WEBPACK_IMPORTED_MODULE_7__.api.movie, "/").concat(movie.id, "/seats/").concat(seatId), seatsReq).then(function (res) {
           return history.push('/confirmation');
         });
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_6__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("".concat(_config__WEBPACK_IMPORTED_MODULE_7__.api.movie, "/").concat(movie.id, "/seats"), seatsReq).then(function (res) {
           return history.push('/confirmation');
         });
       }
     })["catch"](function (err) {
-      console.log('ERROR', err.response);
-      err.response.data.errors.forEach(function (_ref2) {
+      var _err$response, _err$response$data, _err$response$data$er;
+
+      console.log(err);
+      err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : (_err$response$data = _err$response.data) === null || _err$response$data === void 0 ? void 0 : (_err$response$data$er = _err$response$data.errors) === null || _err$response$data$er === void 0 ? void 0 : _err$response$data$er.forEach(function (_ref2) {
         var message = _ref2.message,
             path = _ref2.path;
 
@@ -37639,7 +37647,7 @@ var Purchase = function Purchase(_ref) {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_5__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Purchase_style__WEBPACK_IMPORTED_MODULE_6__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Summary_Summary__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_PaymentForm_PaymentForm__WEBPACK_IMPORTED_MODULE_4__["default"], {
     onSubmit: handleSubmit,
     errors: errors
   }));
