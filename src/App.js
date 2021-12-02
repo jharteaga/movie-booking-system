@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -31,6 +31,7 @@ const App = () => {
           <Route path="/error" component={ErrorOccurred} />
           <Route path="/not-found" component={NotFound} />
           <Route path="/" exact component={Home} />
+          <Redirect to="/not-found" />
         </Switch>
       </main>
       <Footer />

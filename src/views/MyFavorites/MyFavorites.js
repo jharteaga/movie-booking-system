@@ -19,7 +19,15 @@ const MyFavorites = () => {
         .then(({ data: { data } }) => {
           setMovies((prev) => [...prev, data])
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          if (err?.response?.status === 404) {
+            history.push('/not-found')
+          }
+
+          if (err?.response?.status === 500) {
+            history.push({ pathname: '/error', state: { error: err } })
+          }
+        })
         .finally(() => setLoading(false))
     })
   }

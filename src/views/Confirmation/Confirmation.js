@@ -25,7 +25,6 @@ const Confirmation = () => {
         <p>Your purchase was successful</p>
       </div>
       <div className="ticket">
-        {/* <img src={movie.imageUrl} alt="" /> */}
         <div className="ticket__image"></div>
         <div className="ticket__information">
           <p className="ticket__title">{movie.title}</p>

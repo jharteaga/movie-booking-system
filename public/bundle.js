@@ -35122,6 +35122,8 @@ var App = function App() {
     path: "/",
     exact: true,
     component: _views_Home_Home__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Redirect, {
+    to: "/not-found"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Footer_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
@@ -37207,7 +37209,20 @@ var MovieDetail = function MovieDetail() {
       updateMovieSelected(res.data);
       setMovie(res.data);
     })["catch"](function (err) {
-      return console.log(err);
+      var _err$response, _err$response2;
+
+      if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 404) {
+        history.push('/not-found');
+      }
+
+      if ((err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : _err$response2.status) === 500) {
+        history.push({
+          pathname: '/error',
+          state: {
+            error: err
+          }
+        });
+      }
     });
   }, []);
 
@@ -37360,7 +37375,20 @@ var MyFavorites = function MyFavorites() {
           return [].concat(_toConsumableArray(prev), [data]);
         });
       })["catch"](function (err) {
-        return console.log(err);
+        var _err$response, _err$response2;
+
+        if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 404) {
+          history.push('/not-found');
+        }
+
+        if ((err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : _err$response2.status) === 500) {
+          history.push({
+            pathname: '/error',
+            state: {
+              error: err
+            }
+          });
+        }
       })["finally"](function () {
         return setLoading(false);
       });
@@ -37511,7 +37539,20 @@ var MyPurchases = function MyPurchases() {
           });
         });
       })["catch"](function (err) {
-        return console.log(err);
+        var _err$response, _err$response2;
+
+        if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 404) {
+          history.push('/not-found');
+        }
+
+        if ((err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : _err$response2.status) === 500) {
+          history.push({
+            pathname: '/error',
+            state: {
+              error: err
+            }
+          });
+        }
       });
     }
   }, [user]);
@@ -37695,7 +37736,7 @@ var Purchase = function Purchase() {
     }).then(function (res) {
       return history.push('/confirmation');
     })["catch"](function (err) {
-      var _err$response;
+      var _err$response, _err$response3, _err$response4;
 
       if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 400) {
         var _err$response2, _err$response2$data, _err$response2$data$e;
@@ -37722,6 +37763,19 @@ var Purchase = function Purchase() {
 
           if (path[0] === 'cvv') {
             return error.cvv = message;
+          }
+        });
+      }
+
+      if ((err === null || err === void 0 ? void 0 : (_err$response3 = err.response) === null || _err$response3 === void 0 ? void 0 : _err$response3.status) === 404) {
+        history.push('/not-found');
+      }
+
+      if ((err === null || err === void 0 ? void 0 : (_err$response4 = err.response) === null || _err$response4 === void 0 ? void 0 : _err$response4.status) === 500) {
+        history.push({
+          pathname: '/error',
+          state: {
+            error: err
           }
         });
       }
@@ -37856,9 +37910,13 @@ var Showtime = function Showtime() {
         data !== null && data !== void 0 && data.allSeats ? updateMovieDateTime(showDate, showTime, data === null || data === void 0 ? void 0 : data.allSeats) : updateMovieDateTime(showDate, showTime, _config__WEBPACK_IMPORTED_MODULE_7__.initSeats);
         if (data !== null && data !== void 0 && data._id) setSeatsId(data._id);else setSeatsId('');
       })["catch"](function (err) {
-        var _err$response;
+        var _err$response, _err$response2;
 
-        if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 500) {
+        if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) === 404) {
+          history.push('/not-found');
+        }
+
+        if ((err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : _err$response2.status) === 500) {
           history.push({
             pathname: '/error',
             state: {

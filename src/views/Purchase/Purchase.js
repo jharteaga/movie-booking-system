@@ -75,6 +75,14 @@ const Purchase = () => {
           })
         }
 
+        if (err?.response?.status === 404) {
+          history.push('/not-found')
+        }
+
+        if (err?.response?.status === 500) {
+          history.push({ pathname: '/error', state: { error: err } })
+        }
+
         setErrors(error)
       })
   }

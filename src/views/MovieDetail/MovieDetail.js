@@ -22,7 +22,15 @@ const MovieDetail = () => {
         updateMovieSelected(res.data)
         setMovie(res.data)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        if (err?.response?.status === 404) {
+          history.push('/not-found')
+        }
+
+        if (err?.response?.status === 500) {
+          history.push({ pathname: '/error', state: { error: err } })
+        }
+      })
   }, [])
 
   const handleGoBack = () => {
