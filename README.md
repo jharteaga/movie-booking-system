@@ -1,6 +1,19 @@
-# VanCinema - Movie Booking System
+# 🎥 VanCinema - Movie Booking System
 
 ![VanCinema Banner](assets/vancinema-banner.png)
+
+- [🎥 VanCinema - Movie Booking System](#-vancinema---movie-booking-system)
+  - [Description](#description)
+  - [Features](#features)
+  - [Tech Stack](#tech-stack)
+  - [Installation](#installation)
+  - [How to use VanCinema?](#how-to-use-vancinema)
+    - [Buy movie tickets](#buy-movie-tickets)
+    - [Check my purchase history](#check-my-purchase-history)
+    - [Check my favorite movies](#check-my-favorite-movies)
+  - [API documentation](#api-documentation)
+    - [Movies API Endpoints](#movies-api-endpoints)
+    - [Users API Endpoints](#users-api-endpoints)
 
 ## Description
 
