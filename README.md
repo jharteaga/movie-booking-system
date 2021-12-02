@@ -135,14 +135,16 @@ In the server side there are 2 main endpoints:
 
 ### Movies API Endpoints
 
-| Route                     | HTTP method | Description                                                                     | Response Format |
-| :------------------------ | :---------- | :------------------------------------------------------------------------------ | :-------------- |
-| /movies                   | GET         | Get the complete list of movies                                                 | JSON            |
-| /movies/:movieId          | GET         | Get details of a specific movie by its id                                       | JSON            |
-| /movies/:movieId/seats    | GET         | Get seats for a specific movie by date and time available in the movie theather | JSON            |
-| /movies/:movieId/seats    | POST        | Create new set of seats for a specific movie in a date and time given           | JSON            |
-| /movies/:movieId/seats    | PUT         | Update booked seats for a specific movie in a date and time given               | JSON            |
-| /movies/:movieId/purchase | POST        | Create a new purchase for a specific movie                                      | JSON            |
+| Route                     | HTTP method | Description                                                                     | Response Format | Query String                            |
+| :------------------------ | :---------- | :------------------------------------------------------------------------------ | :-------------- | :-------------------------------------- |
+| /movies                   | GET         | Get the complete list of movies                                                 | JSON            | None                                    |
+| /movies/:movieId          | GET         | Get details of a specific movie by its id                                       | JSON            | None                                    |
+| /movies/:movieId/seats    | GET         | Get seats for a specific movie by date and time available in the movie theather | JSON            | ?showDate=2021-02-04&showTime=7:00%20PM |
+| /movies/:movieId/seats    | POST        | Create new set of seats for a specific movie in a date and time given           | JSON            | None                                    |
+| /movies/:movieId/seats    | PUT         | Update booked seats for a specific movie in a date and time given               | JSON            | None                                    |
+| /movies/:movieId/purchase | POST        | Create a new purchase for a specific movie                                      | JSON            | None                                    |
+
+---
 
 > /movies/:movieId/seats - POST Method
 
@@ -215,6 +217,8 @@ _*Body request*_
 | /users/:userId           | GET         | Get user details by its id                      | JSON            |
 | /users/:userId/like      | PUT         | Update list of liked movies for a specific user | JSON            |
 | /users/:userId/purchases | GET         | Get purchase history for a specific user        | JSON            |
+
+---
 
 > /users/:userId/like - POST Method
 
