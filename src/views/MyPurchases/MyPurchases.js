@@ -9,9 +9,11 @@ import { api } from '../../config'
 const MyPurchases = () => {
   const { user } = useContext(UserContext)
   const [purchases, setPurchases] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (user?.id) {
+      setLoading(true)
       axios
         .get(`${api.user}/${user.id}/purchases`)
         .then(({ data: { data } }) => {
@@ -25,6 +27,7 @@ const MyPurchases = () => {
                 }
               })
               .then((res) => setPurchases((prev) => [...prev, res]))
+              .finally(() => setLoading(false))
           })
         })
         .catch((err) => console.log(err))
@@ -34,7 +37,7 @@ const MyPurchases = () => {
   return (
     <Container>
       <h2 className="title">My Purchases</h2>
-      {purchases.length > 0 && (
+      {!loading && purchases.length > 0 && (
         <Accordion>
           {purchases.map((purchase, index) => (
             <Accordion.Item key={purchase._id} eventKey={index}>
@@ -67,7 +70,7 @@ const MyPurchases = () => {
           ))}
         </Accordion>
       )}
-      {purchases.length === 0 && (
+      {!loading && user?.id && purchases.length === 0 && (
         <h3 className="empty-title">You have not made any purchase</h3>
       )}
     </Container>

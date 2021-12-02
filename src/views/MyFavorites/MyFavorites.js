@@ -19,8 +19,8 @@ const MyFavorites = () => {
         .then(({ data: { data } }) => {
           setMovies((prev) => [...prev, data])
         })
-        .then(() => setLoading(false))
         .catch((err) => console.log(err))
+        .finally(() => setLoading(false))
     })
   }
 

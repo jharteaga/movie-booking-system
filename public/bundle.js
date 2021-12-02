@@ -37337,10 +37337,10 @@ var MyFavorites = function MyFavorites() {
         setMovies(function (prev) {
           return [].concat(_toConsumableArray(prev), [data]);
         });
-      }).then(function () {
-        return setLoading(false);
       })["catch"](function (err) {
         return console.log(err);
+      })["finally"](function () {
+        return setLoading(false);
       });
     });
   };
@@ -37464,8 +37464,14 @@ var MyPurchases = function MyPurchases() {
       purchases = _useState2[0],
       setPurchases = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (user !== null && user !== void 0 && user.id) {
+      setLoading(true);
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("".concat(_config__WEBPACK_IMPORTED_MODULE_5__.api.user, "/").concat(user.id, "/purchases")).then(function (_ref) {
         var data = _ref.data.data;
         return data.map(function (purchase) {
@@ -37478,6 +37484,8 @@ var MyPurchases = function MyPurchases() {
             return setPurchases(function (prev) {
               return [].concat(_toConsumableArray(prev), [res]);
             });
+          })["finally"](function () {
+            return setLoading(false);
           });
         });
       })["catch"](function (err) {
@@ -37487,7 +37495,7 @@ var MyPurchases = function MyPurchases() {
   }, [user]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MyPurchases_style__WEBPACK_IMPORTED_MODULE_4__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
     className: "title"
-  }, "My Purchases"), purchases.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_6__["default"], null, purchases.map(function (purchase, index) {
+  }, "My Purchases"), !loading && purchases.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_6__["default"], null, purchases.map(function (purchase, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_bootstrap_Accordion__WEBPACK_IMPORTED_MODULE_6__["default"].Item, {
       key: purchase._id,
       eventKey: index
@@ -37496,7 +37504,7 @@ var MyPurchases = function MyPurchases() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Purchase Datetime:"), ' ', (0,_utils_datetime__WEBPACK_IMPORTED_MODULE_2__.formatDate)(purchase.createdAt, 'datetime')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Movie date:"), ' ', (0,_utils_datetime__WEBPACK_IMPORTED_MODULE_2__.formatDate)(purchase.movieDate, 'date')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Movie time:"), " ", purchase.movieTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Seats:"), ' ', purchase.seats.reduce(function (accum, current, index) {
       return "".concat(accum, ", ").concat(current);
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Total:"), " $", purchase.total.toFixed(2)))));
-  })), purchases.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+  })), !loading && (user === null || user === void 0 ? void 0 : user.id) && purchases.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: "empty-title"
   }, "You have not made any purchase"));
 };
