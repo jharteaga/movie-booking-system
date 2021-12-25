@@ -33,4 +33,4 @@ function setSeatsBooked(seats) {
 }
 
 const Seat = mongoose.model('Seat', seatSchema)
-module.exports = Seat
+module.exports = { Seat, setSeatsBooked }

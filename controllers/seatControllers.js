@@ -1,4 +1,4 @@
-const Seat = require('../models/Seat')
+const { Seat } = require('../models/Seat')
 const Response = require('../utils/Response')
 
 const getSeats = (req, res) => {

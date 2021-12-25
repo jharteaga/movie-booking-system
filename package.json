@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "dev": "nodemon server.js",
     "watch": "webpack --watch"
   },
@@ -40,6 +40,8 @@
     "webpack": "^5.64.4"
   },
   "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "jest": "^27.4.5",
     "webpack-cli": "^4.9.1"
   }
 }
