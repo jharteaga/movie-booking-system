@@ -1,16 +1,20 @@
 const { Seat } = require('../models/Seat')
 const Response = require('../utils/Response')
 
-const getSeats = (req, res) => {
-  Seat.findOne({
-    movieId: req.params.movieId,
-    showDate: req.query.showDate,
-    showTime: req.query.showTime
-  })
-    .then((results) => {
-      res.status(200).json(new Response({}, results, []))
+const getSeats = async (req, res) => {
+  try {
+    const seats = await Seat.findOne({
+      movieId: req.params.movieId,
+      showDate: req.query.showDate,
+      showTime: req.query.showTime
     })
-    .catch((err) => res.status(500).json(new Response({}, {}, [err])))
+
+    if (!seats) return res.status(404).send('Seats not found')
+
+    res.status(200).json(new Response({}, seats, []))
+  } catch (err) {
+    res.status(500).json(new Response({}, {}, [err]))
+  }
 }
 
 const postSeats = (req, res) => {
