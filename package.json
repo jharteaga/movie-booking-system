@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest --forceExit",
+    "test": "jest --coverage --forceExit",
     "dev": "nodemon server.js",
     "watch": "webpack --watch",
     "build": "webpack --mode production"

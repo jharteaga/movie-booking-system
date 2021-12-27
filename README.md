@@ -1,6 +1,7 @@
 # 🎥 VanCinema - Movie Booking System
 
 ![GitHub workflow](https://github.com/jharteaga/movie-booking-system/actions/workflows/push.yml/badge.svg)
+<img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fwmdd4936-jarteaga00.herokuapp.com" />
 
 ![VanCinema Banner](assets/vancinema-banner.png)
 
