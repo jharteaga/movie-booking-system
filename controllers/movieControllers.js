@@ -8,12 +8,17 @@ const getMovies = (req, res) => {
     .catch((err) => res.status(500).json(new Response({}, {}, [err])))
 }
 
-const getMovie = (req, res) => {
-  Movie.findOne({ _id: req.params.movieId })
-    .then((result) => {
-      res.status(200).json(new Response({}, result, []))
-    })
-    .catch((err) => res.status(500).json(new Response({}, {}, [err])))
+const getMovie = async (req, res) => {
+  try {
+    const movie = await Movie.findOne({ _id: req.params.movieId })
+
+    if (!movie)
+      return res.status(404).send('The movie with the given ID was not found')
+
+    res.status(200).json(new Response({}, movie, []))
+  } catch (err) {
+    res.status(500).json(new Response({}, {}, [err]))
+  }
 }
 
 module.exports = {
