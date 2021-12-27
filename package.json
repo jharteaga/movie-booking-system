@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest --watchAll --runInBand --verbose --coverage",
+    "test": "jest --runInBand --verbose --coverage",
     "dev": "nodemon server.js",
     "watch": "webpack --watch",
     "build": "webpack --mode production"
