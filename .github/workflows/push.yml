@@ -1,4 +1,4 @@
-name: Run all test
+name: API tests
 
 on:
   push:
