@@ -1,5 +1,7 @@
 # 🎥 VanCinema - Movie Booking System
 
+![example workflow](https://github.com/jharteaga/movie-booking-system/actions/workflows/push.yml/badge.svg)
+
 ![VanCinema Banner](assets/vancinema-banner.png)
 
 - [🎥 VanCinema - Movie Booking System](#-vancinema---movie-booking-system)
