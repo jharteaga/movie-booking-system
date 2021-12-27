@@ -7,12 +7,17 @@ const getUsers = (req, res) => {
     .catch((err) => res.status(500).json(new Response({}, {}, [err])))
 }
 
-const getUser = (req, res) => {
-  User.findOne({ _id: req.params.userId })
-    .then((result) => {
-      res.status(200).json(new Response({}, result, []))
-    })
-    .catch((err) => res.status(500).json(new Response({}, {}, [err])))
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.userId })
+
+    if (!user)
+      return res.status(404).send('User with the given id was not found')
+
+    res.status(200).json(new Response({}, user, []))
+  } catch (err) {
+    res.status(500).json(new Response({}, {}, [err]))
+  }
 }
 
 const likeMovie = (req, res) => {

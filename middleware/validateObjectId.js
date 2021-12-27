@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 
-module.exports = function (req, res, next) {
-  if (!mongoose.Types.ObjectId.isValid(req.params.movieId)) {
-    return res.status(404).send('Invalid ID')
+module.exports = function (id) {
+  return function (req, res, next) {
+    if (!mongoose.Types.ObjectId.isValid(req.params[id])) {
+      return res.status(404).send('Invalid ID')
+    }
+    next()
   }
-
-  next()
 }

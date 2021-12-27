@@ -7,7 +7,7 @@ const validateObjectId = require('../middleware/validateObjectId')
 
 router
   .get('/', getMovies)
-  .get('/:movieId', validateObjectId, getMovie)
+  .get('/:movieId', validateObjectId('movieId'), getMovie)
   .use('/:movieId/seats', seatsRouter)
   .use('/:movieId/purchases', purchaseRouter)
 
