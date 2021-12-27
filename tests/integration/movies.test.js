@@ -2,6 +2,7 @@ const request = require('supertest')
 const mongoose = require('mongoose')
 const Movie = require('../../models/Movie')
 const { Seat } = require('../../models/Seat')
+const Purchase = require('../../models/Purchase')
 const data = require('../../db/data/movieData.json')
 let server
 
@@ -30,7 +31,7 @@ describe('/api/v1/movies', () => {
     })
   })
 
-  describe('GET /:id', () => {
+  describe('GET /:movieId', () => {
     it('should return a movie if valid id is passed', async () => {
       const movie = new Movie({
         title: 'movie1',
@@ -66,7 +67,7 @@ describe('/api/v1/movies', () => {
     })
   })
 
-  describe('GET /:id/seats', () => {
+  describe('GET /:movieId/seats', () => {
     let id
     let showDate
     let showTime
@@ -118,13 +119,13 @@ describe('/api/v1/movies', () => {
     })
   })
 
-  describe('POST /:id/seats', () => {
-    let id
+  describe('POST /:movieId/seats', () => {
+    let movieId
     let seats
 
     const exec = async () => {
       return await request(server)
-        .post(`/api/v1/movies/${id}/seats`)
+        .post(`/api/v1/movies/${movieId}/seats`)
         .send(seats)
     }
 
@@ -143,7 +144,7 @@ describe('/api/v1/movies', () => {
         kids: false
       })
       await movie.save()
-      id = movie._id
+      movieId = movie._id
     })
 
     it('should save seats information by movie id', async () => {
@@ -166,7 +167,7 @@ describe('/api/v1/movies', () => {
     })
   })
 
-  describe('PUT /:id/seats/:seatId', () => {
+  describe('PUT /:movieId/seats/:seatId', () => {
     let allSeats = [
       { identifier: 'A', row: [0, 0, 0, 0, 0, 0, 0, 0] },
       { identifier: 'B', row: [0, -1, -1, 0, 0, 0, 0, 0] },
@@ -237,10 +238,94 @@ describe('/api/v1/movies', () => {
       ]
       const res = await exec()
 
-      console.log(res.body)
-
       expect(res.status).toBe(204)
       expect(res.body).toMatchObject({})
+    })
+  })
+
+  describe('POST /:movieId/purchases', () => {
+    let movieId
+    let purchaseData
+
+    const exec = async () => {
+      return await request(server)
+        .post(`/api/v1/movies/${movieId}/purchases`)
+        .send(purchaseData)
+    }
+
+    beforeEach(async () => {
+      const movie = new Movie({
+        title: 'movie1',
+        overview: 'description1',
+        imageUrl: 'url',
+        videoUrl: 'url',
+        genres: ['Action'],
+        rating: 3,
+        releaseDate: '2021-09-30',
+        kids: false
+      })
+      await movie.save()
+      movieId = movie._id
+    })
+
+    afterEach(async () => {
+      await Purchase.deleteMany({})
+    })
+
+    it('should save the purchase by movie id', async () => {
+      purchaseData = {
+        userId: '1',
+        movie: {
+          date: '2021-12-24',
+          time: '7:00 PM',
+          seats: ['A1'],
+          total: 7.0
+        },
+        payment: {
+          cardNumber: '1111222233334444',
+          cardHolder: 'John Doe',
+          expirationMonth: '02',
+          expirationYear: '22',
+          cvv: '123'
+        }
+      }
+
+      await exec()
+
+      const purchase = await Purchase.findOne({ movieDate: '2021-12-24' })
+
+      expect(purchase).not.toBeNull()
+      expect(purchase).toHaveProperty(
+        'cardNumber',
+        purchaseData.payment.cardNumber
+      )
+    })
+
+    it('should return 201 when purchase was successful', async () => {
+      purchaseData = {
+        userId: '1',
+        movie: {
+          date: '2021-12-24',
+          time: '7:00 PM',
+          seats: ['A1'],
+          total: 7.0
+        },
+        payment: {
+          cardNumber: '1111222233334444',
+          cardHolder: 'John Doe',
+          expirationMonth: '02',
+          expirationYear: '22',
+          cvv: '123'
+        }
+      }
+
+      const res = await exec()
+
+      expect(res.status).toBe(201)
+      expect(res.body.data).toHaveProperty(
+        'cardNumber',
+        purchaseData.payment.cardNumber
+      )
     })
   })
 })
